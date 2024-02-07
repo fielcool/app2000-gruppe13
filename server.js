@@ -5,6 +5,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
+//const db = require('./db');
+const userRoutes = require('./routes/userRoutes');
 const port = process.env.PORT || 8080;
 
 process.on("uncaughtException", function (err) {
@@ -12,7 +14,7 @@ process.on("uncaughtException", function (err) {
 });
 
 const app = express();
-
+app.use('/api/createUser', userRoutes);
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());

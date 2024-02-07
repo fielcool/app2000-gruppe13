@@ -1,15 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
- import axios from "axios";
+import axios from "axios";
 
-function EngStart() {
-  const navigate = useNavigate();
+function CreateUserForm() {
   const [input, setInput] = useState({
-    name: "",
-    company: "",
-    title: "",
+    navn: "",
+    organisasjon: "",
+    stillingstittel: "",
     email: "",
     passord: "",
   });
@@ -22,33 +20,43 @@ function EngStart() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.values(input).some((value) => value === "")) {
       // Show modal alert or handle the empty fields case as needed
       return;
     }
 
-    // Uncomment the following block if you want to submit the data to the server using axios
-   
-    const data = {
-      ...input,
-    };
+    try {
+      const { Navn, Organisasjon, Stillingstittel, Email, Passord } = input;
 
-    axios
-      .post("/api/submit", data)  // Update the API endpoint accordingly
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Data posted");
-        } else {
-          console.log("Response status " + response.status);
-        }
-      })
-      .catch((err) => console.log(err.response.data));
-    
+      // Assuming you have a function to handle MongoDB update on the client side
+      // updateDataInMongoDB(input);
 
-    // Uncomment the following line if you want to navigate to "/eng-q1" after form submission
-     navigate("/UserSucc");
+      // Send user registration data to the server
+      const response = await axios.post("/api/createUser", {
+         Email,
+        Passord: Passord,
+        Navn, Organisasjon, Stillingstittel
+        // Add other fields as needed
+      });
+
+      if (response.status === 201) {
+        console.log("User registered successfully");
+        // Optionally, you can reset the form after updating MongoDB
+        setInput({
+          Navn: "",
+          Organisasjon: "",
+          Stillingstittel: "",
+          Email: "",
+          Passord: "",
+        });
+      } else {
+        console.error("User registration failed");
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
   };
 
   return (
@@ -69,11 +77,11 @@ function EngStart() {
           ))}
         </Form.Group>
         <Button type="submit" variant="primary">
-          Submit
+          Register and Update MongoDB
         </Button>
       </Form>
     </div>
   );
 }
 
-export default EngStart;
+export default CreateUserForm;

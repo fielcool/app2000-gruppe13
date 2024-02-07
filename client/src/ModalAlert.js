@@ -6,9 +6,7 @@ export default function ModalAlert(props) {
     <div className="modal-div">
       <Modal show={props.show} onHide={props.close} className="modal-window">
         <Modal.Body>
-        
-            "Please fill in all required fields"
-      
+            Vennligst fyll inn alle felt
         </Modal.Body>
         <Modal.Footer>
           <Button
