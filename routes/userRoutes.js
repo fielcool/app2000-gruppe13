@@ -1,7 +1,7 @@
 // routes/userRoutes.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/userModel');
+const User = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 
 router.post('/api/createUser', async (req, res) => {
