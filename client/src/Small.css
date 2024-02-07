@@ -1,0 +1,194 @@
+/* responsive for mobile phone: width smaller than 480px */
+@media (max-width: 480px) {
+  body {
+    background: #db536a;
+    line-height: 22px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .radio-input {
+    margin-right: 8px;
+  }
+  .main {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    height: 100%;
+    min-height: 100vh;
+  }
+  .sticky-sub-div {
+    background-color: white;
+    position: sticky;
+    z-index: 100;
+    padding-bottom: 1rem;
+  }
+  .question-options {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+  .main h1 {
+    text-align: center;
+    margin: 0;
+  }
+  .lng-btn {
+    width: 100%;
+    height: 50px;
+    margin: 0 auto 2rem;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    background-color: #db536a;
+  }
+  .lng-menu {
+    width: 100%;
+    margin: auto auto;
+    vertical-align: middle;
+  }
+  .lng-div {
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+    vertical-align: middle;
+    font-size: 18px;
+  }
+  .lng-div p {
+    text-align: center;
+    padding: 0;
+    margin: auto auto;
+  }
+  .credentials-form {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .credentials-input {
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: 0;
+    height: 50px;
+    width: 100%;
+  }
+  .back-btn,
+  .next-btn,
+  .finish-btn {
+    height: 50px;
+    font-size: 16px;
+    width: 140px;
+  }
+
+  .question {
+    font-size: 14px;
+    text-align: left;
+    margin: 0.2rem 0 0.4rem;
+    line-height: 18px;
+  }
+  .question-i {
+    font-size: 14px;
+    text-align: left;
+    margin: 8px 0;
+    color: grey;
+    line-height: 18px;
+  }
+  .question-sub {
+    font-size: 14px;
+    font-style: italic;
+  }
+  .question-option {
+    font-size: 14px;
+    margin: 0;
+  }
+  .left-align-text {
+    margin: 0;
+  }
+  .progressBarEmpty {
+    margin-bottom: 1rem;
+  }
+  .input-text {
+    height: 40px;
+  }
+  .dontknow-btn,
+  .none-btn {
+    width: 100%;
+    height: 60px;
+    font-size: 14px;
+    margin: 1rem 0;
+  }
+  .start-btn {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  .s-q13 {
+    margin: 1rem 0 2rem;
+  }
+  .dropdown-btn {
+    margin: 1rem 0 2rem;
+  }
+  .input-text {
+    height: 50px;
+  }
+
+  .m-input-22 {
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+  .dontknow-22 {
+    height: 40px;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+  .percent {
+    font-size: 22px;
+  }
+  .m-div {
+    padding: 10px;
+    margin: 6px 0;
+  }
+  .m-label {
+    font-size: 14px;
+  }
+
+  .m-none-dontknow-div {
+    display: flex;
+    flex-direction: column;
+  }
+  .rus-none-btn {
+    font-size: 14px;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .rus-dontknow-btn,
+  .dontknow-btn {
+    font-size: 14px;
+    height: 50px;
+    width: 100%;
+  }
+  .q19-none-btn {
+    font-size: 14px;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+  .text-input {
+    margin: 1rem 0;
+    height: 50px;
+  }
+  .q19-dontknow-btn {
+    font-size: 14px;
+    width: 100%;
+    height: 60px;
+  }
+  .modal-window {
+    top: 35%;
+  }
+  .modal-btn {
+    width: 100%;
+    height: 50px;
+  }
+  .left-align-text .question {
+    margin-top: 1rem;
+  }
+}

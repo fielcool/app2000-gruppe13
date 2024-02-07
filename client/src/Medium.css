@@ -1,0 +1,196 @@
+/* responsive for tablets: width smaller than 768px */
+@media (max-width: 768px) {
+  body {
+    /* background-image: url("./back3.gif");
+    background-attachment: fixed; */
+    background-color: #dedede;
+  }
+  p {
+    font-size: 16px;
+  }
+  .nav-bar {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    padding-right: 1rem;
+    background-color: #2d2d2d;
+  }
+  .nav-bar-text {
+    color: #fff;
+    font-weight: bold;
+    width: 250px;
+    text-align: right;
+  }
+  .logo {
+    width: 100px;
+  }
+  .main {
+    text-align: center;
+    width: 80%;
+    margin: auto auto;
+    background-color: white;
+    padding: 1rem 2rem;
+    height: 100%;
+    min-height: 100vh;
+  }
+  .main .intro-heading {
+    text-align: center;
+    margin: 2rem auto;
+    width: 80%;
+  }
+  .main .intro-text {
+    text-align: justify;
+    margin: 1rem auto 2rem;
+    width: 100%;
+  }
+  .lng-btn {
+    margin: 1rem auto;
+    height: 60px;
+    font-size: 22px;
+    color: white;
+    width: 100%;
+  }
+  .lng-btn:active {
+    color: white;
+  }
+  .lng-menu {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .lng-menu a {
+    text-decoration: none;
+    color: black;
+  }
+  .lng-div {
+    background-color: rgb(244, 244, 244);
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .m-credentials-input {
+    margin: 1rem 0;
+    height: 60px;
+  }
+  .percent {
+    text-align: left;
+  }
+  .progressBarEmpty {
+    width: 100%;
+    margin: 0 auto 40px;
+    border-radius: 8px;
+    height: 10px;
+    background-color: lightgray;
+  }
+  .progressBarFilled {
+    background-color: #db536a;
+    border-radius: 8px;
+    height: 10px;
+  }
+  .back-next-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  .lng-btn,
+  .back-btn,
+  .next-btn,
+  .finish-btn {
+    margin-top: 2rem;
+    width: 250px;
+    height: 60px;
+    font-size: 22px;
+  }
+  .question {
+    text-align: left;
+    margin-top: 2rem;
+  }
+  .left-align-text {
+    text-align: left;
+    vertical-align: middle;
+  }
+  .m-div {
+    padding: 12px;
+    background-color: rgb(244, 244, 244);
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+  .m-label {
+    width: 100%;
+  }
+  .m-label:hover {
+    cursor: pointer;
+  }
+  .m-input {
+    margin-right: 8px;
+    padding: 0;
+  }
+  .m-radio-div {
+    background-color: red;
+    height: 200px;
+  }
+  .sticky-sub-div {
+    background-color: white;
+    position: sticky;
+    z-index: 100;
+    padding: 1rem 0;
+    top: 1px;
+  }
+  .back-arrow {
+    margin-right: 10px;
+  }
+  .next-arrow {
+    margin-left: 10px;
+  }
+  .select-countries,
+  .input-text {
+    width: 100%;
+    margin: 1rem auto;
+    height: 60px;
+  }
+  .dontknow-div {
+    text-align: left;
+    margin-top: 2rem;
+  }
+  .dontknow-btn {
+    width: 250px;
+    height: 60px;
+    font-size: 16px;
+    margin-top: 1rem;
+  }
+  .none-btn {
+    height: 60px;
+    width: 250px;
+    font-size: 16px;
+    margin-top: 1rem;
+  }
+  .m-input-22 {
+    height: 60px;
+    margin-bottom: 2rem;
+  }
+  .m-dontknow-22 {
+    height: 60px;
+    width: 100%;
+    border-radius: 6px;
+    border: none;
+    background-color: #dedede;
+  }
+  .m-none-dontknow-div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dropdown-toggle {
+    width: 100%;
+    height: 60px;
+  }
+  .dropdown-btn {
+    height: 60px;
+    width: 100%;
+  }
+  .finish-btn {
+    background-color: #db536a;
+    border: #db536a;
+  }
+}
