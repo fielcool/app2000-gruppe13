@@ -10,21 +10,6 @@ import { useNavigate } from "react-router-dom";
 export default function App() {
   const width = window.screen.width;
   const navigate = useNavigate();
-  const options = ["Русский", "English"];
-  const defaultOption = localStorage.getItem("language")
-    ? localStorage.getItem("language")
-    : "Select language / Выберите язык";
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (!localStorage.getItem("uuid")) {
-      localStorage.setItem("uuid", uuidv4());
-    }
-    localStorage.removeItem("q14-checked");
-    localStorage.removeItem("q15");
-    localStorage.removeItem("q15-dontknow");
-    localStorage.removeItem("q16");
-  }, []);
 
   const selectLanguage = (e) => {
     localStorage.setItem("language", e.value);
@@ -50,12 +35,7 @@ export default function App() {
     <div className="main">
       <div className="start-text">
         <h1 className="intro-heading">26th Annual Global CEO Survey</h1>
-        <h1 className="intro-heading">
-          26-ой Ежегодный опрос руководителей крупнейших компаний мира
-        </h1>
-        {/* <h1 className="intro-heading">
-          Здравствуйте, опрос закрыт.
-        </h1> */}
+
       </div>
       <div
         style={{

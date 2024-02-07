@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Buttons({ click }) {
-  const lng = localStorage.getItem('language') ? localStorage.getItem('language') : 'Русский'
+
   const navigate = useNavigate()
 
   return (
