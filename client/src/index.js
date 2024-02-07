@@ -3,22 +3,23 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import EngStart from "./EngStart";
+import EngFinish from "./UserSucc";
+
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import reportWebVitals from "./reportWebVitals";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-
   {
-    path: "/eng-start",
+    path: "/EngStart",
     element: <EngStart />,
   },
   {
-    path: "/eng-finish",
+    path: "/UserSucc",
     element: <EngFinish />,
   },
 ]);
@@ -35,4 +36,3 @@ createRoot(document.getElementById("root")).render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

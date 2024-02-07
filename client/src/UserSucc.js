@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 export default function EngFinish() {
-  const width = window.screen.width;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

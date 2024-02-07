@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Buttons({ click }) {
-
   const navigate = useNavigate()
 
   return (
@@ -14,11 +13,11 @@ export default function Buttons({ click }) {
         onClick={() => navigate(-1)}
       >
         <i className="fas fa-chevron-left back-arrow"></i>
-        {lng === "English" ? "Back" : "Назад"}
+         Back
       </Button>
 
       <Button variant="danger" className="next-btn" onClick={click}>
-        {lng === "English" ? "Next" : "Далее"}
+        Next
         <i className="fas fa-chevron-right next-arrow"></i>
       </Button>
     </div>
