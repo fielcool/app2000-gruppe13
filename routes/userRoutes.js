@@ -2,11 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/UserModel');
-const bcrypt = require('bcrypt');
 
 router.post('/createUser', async (req, res) => {
   try {
-    const { Navn , Email, Passord, Organisasjon, Stillingstittel } = req.body;
+    const { Navn, Email, Passord, Organisasjon, Stillingstittel } = req.body;
 
     // Check if the user with the provided email already exists
     const existingUser = await User.findOne({ Email });
@@ -14,19 +13,16 @@ router.post('/createUser', async (req, res) => {
       return res.status(400).json({ error: 'User with this email already exists' });
     }
 
-    // Hash the password before saving it to the database
-    const hashedPassword = await bcrypt.hash(Passord, 10);
-
-    // Create a new user
+    // Create a new user without hashing the password
     const newUser = new User({
       Navn,
       Organisasjon,
       Stillingstittel,
       Email,
-      Passord: hashedPassword,
+      Passord, // Store the password as is (insecure, for demonstration purposes only)
       // Add other fields as needed
     });
-    console.log('Server response:', response.data);
+
     // Save the user to the database
     await newUser.save();
 
