@@ -3,6 +3,35 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
+async function registerUser(userData) {
+  try {
+    const response = await axios.post('/api/createUser', userData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.status === 201) {
+      console.log("User registered successfully");
+      return true;
+    } else {
+      console.log('Server response:', response.data);
+      console.error("User registration failed");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error registering user:", error);
+
+    if (error.response) {
+      console.error("Response data:", error.response.data);
+      console.error("Response status:", error.response.status);
+      console.error("Response headers:", error.response.headers);
+    }
+
+    throw error; // Rethrow the error for the calling code to handle
+  }
+}
+
 function CreateUserForm() {
   const [input, setInput] = useState({
     navn: "",
@@ -23,51 +52,35 @@ function CreateUserForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form data:', input);
+    
     if (Object.values(input).some((value) => value === "")) {
       // Show modal alert or handle the empty fields case as needed
       return;
     }
 
     try {
-      const { Navn, Organisasjon, Stillingstittel, Email, Passord } = input;
+      const { navn, organisasjon, stillingstittel, email, passord } = input;
 
-      // Assuming you have a function to handle MongoDB update on the client side
-      // updateDataInMongoDB(input);
+      const isUserRegistered = await registerUser({
+        navn,
+        organisasjon,
+        stillingstittel,
+        email,
+        passord,
+      });
 
-      // Send user registration data to the server
-      const response = await axios.post('/api/createUser', {
-        Navn,
-        Organisasjon,
-        Stillingstittel,
-        Email,
-        Passord,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },});
-
-      if (response.status === 201) {
-        console.log("User registered successfully");
+      if (isUserRegistered) {
         // Optionally, you can reset the form after updating MongoDB
         setInput({
-          Navn: "",
-          Organisasjon: "",
-          Stillingstittel: "",
-          Email: "",
-          Passord: "",
+          navn: "",
+          organisasjon: "",
+          stillingstittel: "",
+          email: "",
+          passord: "",
         });
-      } else {
-        console.log('Server response:', response.data);
-        console.error("User registration failed");
       }
     } catch (error) {
-      console.error("Error registering user:", error);
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-        console.error("Response headers:", error.response.headers);
-        
-      }
+      // Handle the error based on your application's requirements
     }
   };
 
