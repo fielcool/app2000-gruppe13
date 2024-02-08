@@ -16,11 +16,18 @@ process.on("uncaughtException", function (err) {
 const app = express();
 app.use('/api/createUser', userRoutes);
 app.use(morgan("tiny"));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // app.use("/allinputs", responses);
 // app.use(express.urlencoded({ extended: true }));
+
+const corsOptions = {
+  origin: "https://b5-usn-506fb35bcb0a.herokuapp.com/", // Update with your frontend domain
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
 
 const options = {
   useNewUrlParser: true,
@@ -51,7 +58,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.post("/", (req, res) => {
+app.post("/api/createUser", (req, res) => {
   const filter = { "data.uuid": req.body.uuid };
   const update = {};
   for (const key of Object.keys(req.body)) {
