@@ -34,31 +34,37 @@ function CreateUserForm() {
       // updateDataInMongoDB(input);
 
       // Send user registration data to the server
-      const response = await axios.post("/api/createUser", {
+      const response = await axios.post("https://b5-usn-506fb35bcb0a.herokuapp.com/api/createUser", {
         Navn,
         Organisasjon,
         Stillingstittel,
         Email,
         Passord,
-      
-        // Add other fields as needed
-      });
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },});
 
       if (response.status === 201) {
         console.log("User registered successfully");
         // Optionally, you can reset the form after updating MongoDB
         setInput({
-          Navn: "",
-          Organisasjon: "",
-          Stillingstittel: "",
-          Email: "",
-          Passord: "",
+          navn: "",
+          organisasjon: "",
+          stillingstittel: "",
+          email: "",
+          passord: "",
         });
       } else {
         console.error("User registration failed");
       }
     } catch (error) {
       console.error("Error registering user:", error);
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
+      }
     }
   };
 

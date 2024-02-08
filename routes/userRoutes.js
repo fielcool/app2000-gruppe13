@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 
-router.post('/api/createUser', async (req, res) => {
+router.post('https://b5-usn-506fb35bcb0a.herokuapp.com/api/createUser', async (req, res) => {
   try {
     const { Navn , Email, Passord, Organisasjon, Stillingstittel } = req.body;
 
