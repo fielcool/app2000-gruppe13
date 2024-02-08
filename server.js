@@ -1,38 +1,82 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+// const responses = require("./routes/route");
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
+const mongoose = require("mongoose");
+const path = require("path");
+//const db = require('./db');
+const userRoutes = require('./routes/userRoutes');
+const port = process.env.PORT || 8080;
+
+process.on("uncaughtException", function (err) {
+  console.log(err);
+});
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+app.use('/api/createUser', userRoutes);
+app.use(morgan("tiny"));
+app.use(cors());
+app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+// app.use("/allinputs", responses);
+// app.use(express.urlencoded({ extended: true }));
 
-// Define a user schema
-const userSchema = new mongoose.Schema({
-  username: String,
-  email: String,
-  password: String,
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  // tlsAllowInvalidHostnames: true,
+  // tlsAllowInvalidCertificates: true,
+};
+mongoose
+  .set("strictQuery", true)
+  .connect(process.env.MONGO_URI, options)
+  .then(() => {
+    console.log("Database connected");
+  })
+  .catch((err) => console.log(err));
+
+const answerSchema = new mongoose.Schema({
+  data: Object,
+  date: { type: Date, default: Date.now },
 });
 
-const User = mongoose.model('User', userSchema);
+const Answer = new mongoose.model("Answer", answerSchema);
 
-// Middleware for parsing JSON
-app.use(bodyParser.json());
+//for production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
-// Route for creating a new user
-app.post('/api/users', async (req, res) => {
-  try {
-    const newUser = new User(req.body);
-    await newUser.save();
-    res.json(newUser);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
+app.post("/", (req, res) => {
+  const filter = { "data.uuid": req.body.uuid };
+  const update = {};
+  for (const key of Object.keys(req.body)) {
+    if (req.body[key] !== "") {
+      update["data." + key] = req.body[key];
+    }
   }
+
+  Answer.findOneAndUpdate(
+    filter,
+    { $set: update },
+    { upsert: true, new: true },
+    function (err, doc) {
+      if (!err) {
+        console.log(update);
+        res.send(doc);
+      } else {
+        console.log(err);
+        res.send(err);
+      }
+    }
+  );
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+//server
+app.listen(port, function () {
+  console.log("Express server launched...");
 });
