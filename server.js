@@ -14,12 +14,12 @@ process.on("uncaughtException", function (err) {
 });
 
 const app = express();
-
+console.log('Request Body:', req.body);
 
 app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
-app.use('/api', userRoutes);
+app.use('/api/createUser', userRoutes);
 
 // app.use("/allinputs", responses);
 // app.use(express.urlencoded({ extended: true }));
@@ -36,7 +36,7 @@ mongoose
   .then(() => {
     console.log("Database connected");
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log('db error'));
 
 
 
@@ -53,3 +53,4 @@ if (process.env.NODE_ENV === "production") {
 app.listen(port, function () {
   console.log("Express server launched...");
 });
+console.log('New User Data:', newUser);

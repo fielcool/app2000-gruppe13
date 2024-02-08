@@ -33,7 +33,14 @@ function CreateUserForm() {
 
       // Assuming you have a function to handle MongoDB update on the client side
       // updateDataInMongoDB(input);
-
+      const requestData = {
+        Navn,
+        Organisasjon,
+        Stillingstittel,
+        Email,
+        Passord,
+      };
+      console.log('Request Data:', requestData);
       // Send user registration data to the server
       const response = await axios.post('https://b5-usn-506fb35bcb0a.herokuapp.com/api/createUser', {
         Navn,
