@@ -14,7 +14,7 @@ process.on("uncaughtException", function (err) {
 });
 
 const app = express();
-console.log('Request Body:', req.body);
+
 
 app.use(express.json());
 app.use(cors());
