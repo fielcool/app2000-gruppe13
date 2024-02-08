@@ -1,7 +1,6 @@
 {
   "name": "newtestapp",
   "version": "1.0.0",
-  "proxy": "https://localhost:3000",
   "description": "",
   "engines": {
     "node": "19.6.0"
