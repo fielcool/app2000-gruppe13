@@ -17,8 +17,9 @@ const app = express();
 
 
 app.use(morgan("tiny"));
-app.use(cors());
 app.use('api/createUser', userRoutes);
+app.use(cors());
+
 app.use(express.json());
 
 // app.use("/allinputs", responses);
