@@ -30,7 +30,7 @@ const options = {
 };
 mongoose
   .set("strictQuery", true)
-  .connect(process.env.MONGO_URI, options)
+  .connect(process.env.MONGODB_URI, options)
   .then(() => {
     console.log("Database connected");
   })

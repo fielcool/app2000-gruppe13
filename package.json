@@ -1,6 +1,7 @@
 {
   "name": "newtestapp",
   "version": "1.0.0",
+  "proxy": "https://b5-usn-506fb35bcb0a.herokuapp.com/",
   "description": "",
   "engines": {
     "node": "19.6.0"
