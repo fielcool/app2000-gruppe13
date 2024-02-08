@@ -35,9 +35,12 @@ function CreateUserForm() {
 
       // Send user registration data to the server
       const response = await axios.post("/api/createUser", {
-         Email,
+        Navn,
+        Organisasjon,
+        Stillingstittel,
+        Email,
         Passord: Passord,
-        Navn, Organisasjon, Stillingstittel
+      
         // Add other fields as needed
       });
 
