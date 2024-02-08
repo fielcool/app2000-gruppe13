@@ -36,12 +36,7 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-const answerSchema = new mongoose.Schema({
-  data: Object,
-  date: { type: Date, default: Date.now },
-});
 
-const Answer = new mongoose.model("Answer", answerSchema);
 
 //for production
 if (process.env.NODE_ENV === "production") {
@@ -51,30 +46,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.post("/", (req, res) => {
-  const filter = { "data.uuid": req.body.uuid };
-  const update = {};
-  for (const key of Object.keys(req.body)) {
-    if (req.body[key] !== "") {
-      update["data." + key] = req.body[key];
-    }
-  }
-
-  Answer.findOneAndUpdate(
-    filter,
-    { $set: update },
-    { upsert: true, new: true },
-    function (err, doc) {
-      if (!err) {
-        console.log(update);
-        res.send(doc);
-      } else {
-        console.log(err);
-        res.send(err);
-      }
-    }
-  );
-});
 
 //server
 app.listen(port, function () {
