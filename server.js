@@ -14,11 +14,12 @@ process.on("uncaughtException", function (err) {
 });
 
 const app = express();
-app.use('api/createUser', userRoutes);
+
+
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
-
+app.use('api/createUser', userRoutes);
 // app.use("/allinputs", responses);
 // app.use(express.urlencoded({ extended: true }));
 
