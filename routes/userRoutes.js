@@ -1,11 +1,12 @@
 // routes/userRoutes.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/UserModel');
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 router.post('/api/createUser', async (req, res) => {
   try {
+    
     const { Navn , Email, Passord, Organisasjon, Stillingstittel } = req.body;
 
     // Check if the user with the provided email already exists
