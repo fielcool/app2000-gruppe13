@@ -89,7 +89,7 @@ function CreateUserForm() {
           ))}
         </Form.Group>
         <Button type="submit" variant="primary">
-          Register and Update MongoDB
+          opprett bruker
         </Button>
       </Form>
     </div>
