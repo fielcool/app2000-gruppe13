@@ -67,7 +67,7 @@ function CreateUserForm() {
         console.error("Response status:", error.response.status);
         console.error("Response headers:", error.response.headers);
       }
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: 'Internal Server mongo Error' });
     }
   };
 
