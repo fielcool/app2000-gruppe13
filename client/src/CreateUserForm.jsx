@@ -39,7 +39,7 @@ function CreateUserForm() {
         Organisasjon,
         Stillingstittel,
         Email,
-        Passord: Passord,
+        Passord,
       
         // Add other fields as needed
       });
