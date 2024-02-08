@@ -26,7 +26,7 @@ router.post('/api/createUser', async (req, res) => {
       Passord: hashedPassword,
       // Add other fields as needed
     });
-
+    console.log('Server response:', response.data);
     // Save the user to the database
     await newUser.save();
 

@@ -22,6 +22,7 @@ function CreateUserForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form data:', input);
     if (Object.values(input).some((value) => value === "")) {
       // Show modal alert or handle the empty fields case as needed
       return;
@@ -34,7 +35,7 @@ function CreateUserForm() {
       // updateDataInMongoDB(input);
 
       // Send user registration data to the server
-      const response = await axios.post('/api/createUser', {
+      const response = await axios.post('https://b5-usn-506fb35bcb0a.herokuapp.com/api/createUser', {
         Navn,
         Organisasjon,
         Stillingstittel,
@@ -56,6 +57,7 @@ function CreateUserForm() {
           Passord: "",
         });
       } else {
+        console.log('Server response:', response.data);
         console.error("User registration failed");
       }
     } catch (error) {
@@ -64,6 +66,7 @@ function CreateUserForm() {
         console.error("Response data:", error.response.data);
         console.error("Response status:", error.response.status);
         console.error("Response headers:", error.response.headers);
+        
       }
     }
   };
