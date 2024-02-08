@@ -20,8 +20,7 @@ router.post('/api/createUser', async (req, res) => {
     // Create a new user
     const newUser = new User({
       Navn,
-      Organisasjon,
-      Stillingstittel,
+    
       Email,
       Passord: hashedPassword,
       // Add other fields as needed
