@@ -53,4 +53,3 @@ if (process.env.NODE_ENV === "production") {
 app.listen(port, function () {
   console.log("Express server launched...");
 });
-console.log('New User Data:', newUser);
