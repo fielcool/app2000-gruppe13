@@ -8,7 +8,6 @@ const path = require("path");
 //const db = require('./db');
 const userRoutes = require('./routes/userRoutes');
 const port = process.env.PORT || 8080;
-const MONGODB_URI = process.env.MONGODB_URI;
 
 process.on("uncaughtException", function (err) {
   console.log(err);
@@ -20,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
-app.use('/api/createUser', userRoutes);
+app.use('/api', userRoutes);
 
 // app.use("/allinputs", responses);
 // app.use(express.urlencoded({ extended: true }));
@@ -33,7 +32,7 @@ const options = {
 };
 mongoose
   
-  .connect(MONGODB_URI, options)
+  .connect(process.env.MONGODB_URI, options)
   .then(() => {
     console.log("Database connected");
   })
