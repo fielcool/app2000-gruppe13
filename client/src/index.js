@@ -5,7 +5,7 @@ import App from "./App";
 import UserLogin from "./UserLogin";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CreateUserForm from "./CreateUserForm";
+import UserForm from "./UserForm";
 
 
 const router = createBrowserRouter([
@@ -14,8 +14,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/CreateUserForm",
-    element: <CreateUserForm />,
+    path: "/UserForm",
+    element: <UserForm />,
   },
   {
     path: "/UserLogin",

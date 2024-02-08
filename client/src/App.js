@@ -9,7 +9,7 @@ export default function App() {
 
   const handleUserCreationClick = () => {
     // Use the navigate function to go to the "EngStart" page
-    navigate("/CreateUserForm");
+    navigate("/UserForm");
   };
 
   const handleUserLoginClick = () => {
