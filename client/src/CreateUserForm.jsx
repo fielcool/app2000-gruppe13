@@ -35,7 +35,7 @@ function CreateUserForm() {
       // updateDataInMongoDB(input);
 
       // Send user registration data to the server
-      const response = await axios.post('/', {
+      const response = await axios.post('/api', {
         Navn,
         Organisasjon,
         Stillingstittel,
@@ -68,7 +68,6 @@ function CreateUserForm() {
         console.error("Response headers:", error.response.headers);
         
       }
-      
     }
   };
 

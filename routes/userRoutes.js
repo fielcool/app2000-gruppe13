@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 
-router.post('/', async (req, res) => {
+router.post('/api', async (req, res) => {
   try {
     const { Navn , Email, Passord, Organisasjon, Stillingstittel } = req.body;
 
