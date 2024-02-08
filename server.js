@@ -20,7 +20,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
-app.use('api/createUser', userRoutes);
+app.use('/api/createUser', userRoutes);
 
 // app.use("/allinputs", responses);
 // app.use(express.urlencoded({ extended: true }));

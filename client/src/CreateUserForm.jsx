@@ -34,7 +34,7 @@ function CreateUserForm() {
       // updateDataInMongoDB(input);
 
       // Send user registration data to the server
-      const response = await axios.post('api/createUser', {
+      const response = await axios.post('/api/createUser', {
         Navn,
         Organisasjon,
         Stillingstittel,
