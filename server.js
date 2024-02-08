@@ -8,6 +8,7 @@ const path = require("path");
 //const db = require('./db');
 const userRoutes = require('./routes/userRoutes');
 const port = process.env.PORT || 8080;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 process.on("uncaughtException", function (err) {
   console.log(err);
@@ -32,7 +33,7 @@ const options = {
 };
 mongoose
   
-  .connect(process.env.MONGODB_URI, options)
+  .connect(MONGODB_URI, options)
   .then(() => {
     console.log("Database connected");
   })
