@@ -49,11 +49,11 @@ function CreateUserForm() {
         console.log("User registered successfully");
         // Optionally, you can reset the form after updating MongoDB
         setInput({
-          navn: "",
-          organisasjon: "",
-          stillingstittel: "",
-          email: "",
-          passord: "",
+          Navn: "",
+          Organisasjon: "",
+          Stillingstittel: "",
+          Email: "",
+          Passord: "",
         });
       } else {
         console.error("User registration failed");

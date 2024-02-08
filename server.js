@@ -14,7 +14,7 @@ process.on("uncaughtException", function (err) {
 });
 
 const app = express();
-app.use('https://b5-usn-506fb35bcb0a.herokuapp.com/api/createUser', userRoutes);
+app.use('api/createUser', userRoutes);
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
