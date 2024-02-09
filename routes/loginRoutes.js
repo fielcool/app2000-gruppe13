@@ -16,15 +16,12 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials mail' });
         }
 
-        // Compare the entered password with the hashed password in the database
-        const isPasswordValid = await bcrypt.compare(passord, user.passord);
-
         // Logging for debugging
         console.log('Entered Password:', passord);
         console.log('Stored Hashed Password:', user.passord);
-        console.log('Is password valid?', isPasswordValid);
 
-        if (!isPasswordValid) {
+        // Temporarily compare passwords without bcrypt for testing
+        if (passord !== user.passord) {
             console.log('Invalid credentials: Password mismatch');
             return res.status(401).json({ error: 'Invalid credentials password' });
         }
