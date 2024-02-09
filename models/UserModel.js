@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   // Define your user schema fields here
   navn: String,
   organisasjon: String,
-  stillingsnavn: String,
+  stillingstittel: String,
   email: String,
   passord: String
 
