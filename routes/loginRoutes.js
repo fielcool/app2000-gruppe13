@@ -20,8 +20,12 @@ router.post('/login', async (req, res) => {
         console.log('Entered Password:', passord);
         console.log('Stored Hashed Password:', user.passord);
 
-        // Temporarily compare passwords without bcrypt for testing
-        if (passord !== user.passord) {
+        // Logging to check the types of the variables
+        console.log('Type of Entered Password:', typeof passord);
+        console.log('Type of Stored Hashed Password:', typeof user.passord);
+
+        // Explicitly convert both variables to strings and compare
+        if (String(passord) !== String(user.passord)) {
             console.log('Invalid credentials: Password mismatch');
             return res.status(401).json({ error: 'Invalid credentials password' });
         }
