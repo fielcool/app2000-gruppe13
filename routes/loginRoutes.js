@@ -18,12 +18,12 @@ router.post('/login', async (req, res) => {
         console.log('Invalid credentials: User not found');
         return res.status(401).json({ error: 'Invalid credentials mail' });
       }
-  
+      console.log('Before Comparison:', passord === user.passord);  // Check before bcrypt.compare
       // Compare the entered password with the hashed password in the database
       const isPasswordValid = await bcrypt.compare(passord, user.passord);
   
       // Logging for debugging
-      console.log('Is password valid?', isPasswordValid);
+      console.log('After Comparison:', isPasswordValid);
       console.log('Entered Password:', passord);
       console.log('Stored Hashed Password:', user.passord);
       console.log('Is password valid?', isPasswordValid);
