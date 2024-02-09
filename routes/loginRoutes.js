@@ -21,7 +21,8 @@ router.post('/login', async (req, res) => {
       console.log('Before Comparison:', passord === user.passord);  // Check before bcrypt.compare
       // Compare the entered password with the hashed password in the database
       
-      const isPasswordValid = await bcrypt.compare(passord, user.passord.toString('utf8'));
+      const hashedEnteredPassword = await bcrypt.hash(passord, 10);
+      const isPasswordValid = await bcrypt.compare(hashedEnteredPassword, user.passord);
   
       // Logging for debugging
       console.log('After Comparison:', isPasswordValid);
