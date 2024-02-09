@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
       // Check if the user exists
       if (!user) {
         console.log('Invalid credentials: User not found');
-        return res.status(401).json({ error: 'Invalid credentials' });
+        return res.status(401).json({ error: 'Invalid credentials mail' });
       }
   
       // Compare the entered password with the hashed password in the database
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
   
       if (!isPasswordValid) {
         console.log('Invalid credentials: Password mismatch');
-        return res.status(401).json({ error: 'Invalid credentials' });
+        return res.status(401).json({ error: 'Invalid credentials password' });
       }
   
       // If the password is valid, you can generate a token and send it to the client for authentication
