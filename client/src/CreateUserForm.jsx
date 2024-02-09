@@ -52,7 +52,7 @@ function CreateUserForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form data:', input);
-    
+
     if (Object.values(input).some((value) => value === "")) {
       // Show modal alert or handle the empty fields case as needed
       return;
@@ -92,7 +92,7 @@ function CreateUserForm() {
             <Form.Control
               key={fieldName}
               autoComplete="off"
-              type="text"
+              type={fieldName === 'passord' ? 'password' : 'text'}
               placeholder={`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}*`}
               name={fieldName}
               value={input[fieldName]}
