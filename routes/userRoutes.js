@@ -5,7 +5,7 @@ const User = require('../models/UserModel');
 
 router.post('/createUser', async (req, res) => {
   try {
-    const { Navn, Email, Passord, Organisasjon, Stillingstittel } = req.body;
+    const { navn, email, passord, organisasjon, stillingstittel } = req.body;
 
     // Check if the user with the provided email already exists
     const existingUser = await User.findOne({ Email });
@@ -15,11 +15,11 @@ router.post('/createUser', async (req, res) => {
 
     // Create a new user without hashing the password
     const newUser = new User({
-      Navn,
-      Organisasjon,
-      Stillingstittel,
-      Email,
-      Passord, // Store the password as is (insecure, for demonstration purposes only)
+      navn,
+      organisasjonn,
+      stillingstittel,
+      email,
+      passord, // Store the password as is (insecure, for demonstration purposes only)
       // Add other fields as needed
     });
 
