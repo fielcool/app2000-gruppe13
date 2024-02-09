@@ -8,7 +8,7 @@ router.post('/createUser', async (req, res) => {
     const { navn, email, passord, organisasjon, stillingstittel } = req.body;
 
     // Check if the user with the provided email already exists
-    const existingUser = await User.findOne({ Email });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'User with this email already exists' });
     }
@@ -16,7 +16,7 @@ router.post('/createUser', async (req, res) => {
     // Create a new user without hashing the password
     const newUser = new User({
       navn,
-      organisasjonn,
+      organisasjon,
       stillingstittel,
       email,
       passord, // Store the password as is (insecure, for demonstration purposes only)
