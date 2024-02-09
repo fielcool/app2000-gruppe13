@@ -13,7 +13,7 @@ export default function App() {
   };
 
   const handleUserLoginClick = () => {
-    navigate ("/UserLogin");
+    navigate ("/LoginUser");
   }
 
   return (

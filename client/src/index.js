@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
-import UserLogin from "./UserLogin";
+import LoginUser from "./LoginUser";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreateUserForm from "./CreateUserForm";
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
     element: <CreateUserForm />,
   },
   {
-    path: "/UserLogin",
-    element: <UserLogin />,
+    path: "/LoginUser",
+    element: <LoginUser />,
   },
 ]);
 
