@@ -16,15 +16,12 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials mail' });
         }
 
-        // Hash the entered password
-        const hashedEnteredPassword = await bcrypt.hash(passord, 10);
-
         // Logging for debugging
-        console.log('Hashed Entered Password:', hashedEnteredPassword);
+        console.log('Entered Password:', passord);
         console.log('Stored Hashed Password:', user.passord);
 
         // Compare the entered password with the hashed password in the database
-        const isPasswordValid = await bcrypt.compare(hashedEnteredPassword, user.passord);
+        const isPasswordValid = await bcrypt.compare(passord, user.passord);
 
         // Logging for debugging
         console.log('Is password valid?', isPasswordValid);
