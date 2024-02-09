@@ -1,6 +1,6 @@
-// routes/userRoutes.js
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
 
 router.post('/createUser', async (req, res) => {
@@ -13,13 +13,16 @@ router.post('/createUser', async (req, res) => {
       return res.status(400).json({ error: 'User with this email already exists' });
     }
 
-    // Create a new user without hashing the password
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(passord, 10); // 10 is the number of salt rounds
+
+    // Create a new user with the hashed password
     const newUser = new User({
       navn,
       organisasjon,
       stillingstittel,
       email,
-      passord, // Store the password as is (insecure, for demonstration purposes only)
+      passord: hashedPassword,
       // Add other fields as needed
     });
 
