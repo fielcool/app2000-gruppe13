@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 //const db = require('./db');
 const userRoutes = require('./routes/userRoutes');
+const loginRoutes = require('./routes/loginRoutes');
 const port = process.env.PORT || 8080;
 
 process.on("uncaughtException", function (err) {
