@@ -16,7 +16,7 @@ router.post('/createUser', async (req, res) => {
     }
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(passord, 10); // 10 is the number of salt rounds
+    const hashedPassword = await bcrypt.hash(this.passord, 10); // 10 is the number of salt rounds
 
     // Create a new user with the hashed password
     const newUser = new User({
