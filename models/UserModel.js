@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   // Define your user schema fields here
-  Navn: String,
-  Organisasjon: String,
-  Stillingsnavn: String,
-  Email: String,
-  Passord: String
+  navn: String,
+  organisasjon: String,
+  stillingsnavn: String,
+  email: String,
+  passord: String
 
 });
 
