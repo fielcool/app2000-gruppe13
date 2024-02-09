@@ -18,6 +18,9 @@ router.post('/createUser', async (req, res) => {
     // Hash the password
     const hashedPassword = await bcrypt.hash(passord, 10); // 10 is the number of salt rounds
 
+    // Log the hashed password before saving to the database
+    console.log('Hashed Password before saving to DB:', hashedPassword);
+
     // Create a new user with the hashed password
     const newUser = new User({
       navn,

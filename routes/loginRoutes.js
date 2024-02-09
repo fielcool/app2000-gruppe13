@@ -9,14 +9,17 @@ router.post('/login', async (req, res) => {
 
         // Find the user by email
         const user = await User.findOne({ email });
-
+        console.log('Hashed Password retrieved from DB:', user.passord);
         // Check if the user exists
         if (!user) {
             console.log('Invalid credentials: User not found');
             return res.status(401).json({ error: 'Invalid credentials mail' });
         }
 
-        // Logging for debugging
+        // Compare the entered password with the hashed password in the database
+        const isPasswordValid = await bcrypt.compare(passord, user.passord);
+
+        // Log the entered and stored hashed password
         console.log('Entered Password:', passord);
         console.log('Stored Hashed Password:', user.passord);
 
@@ -24,8 +27,8 @@ router.post('/login', async (req, res) => {
         console.log('Type of Entered Password:', typeof passord);
         console.log('Type of Stored Hashed Password:', typeof user.passord);
 
-        // Explicitly convert both variables to strings and compare
-        if (String(passord) !== String(user.passord)) {
+        // Check if the passwords match
+        if (!isPasswordValid) {
             console.log('Invalid credentials: Password mismatch');
             return res.status(401).json({ error: 'Invalid credentials password' });
         }
