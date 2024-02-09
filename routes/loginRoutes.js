@@ -24,7 +24,9 @@ router.post('/login', async (req, res) => {
   
       // Logging for debugging
       console.log('Is password valid?', isPasswordValid);
-  
+      console.log('Entered Password:', passord);
+      console.log('Stored Hashed Password:', user.passord);
+      console.log('Is password valid?', isPasswordValid);
       if (!isPasswordValid) {
         console.log('Invalid credentials: Password mismatch');
         return res.status(401).json({ error: 'Invalid credentials password' });
