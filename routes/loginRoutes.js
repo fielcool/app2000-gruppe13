@@ -17,11 +17,11 @@ router.post('/login', async (req, res) => {
         }
 
         // Compare the entered password with the hashed password in the database
-        const isPasswordValid = await bcrypt.compare(passord, user.passord);
+        const isPasswordValid = await bcrypt.compare(passord, user.passord.trim());
 
         // Log the entered and stored hashed password
         console.log('Entered Password:', passord);
-        console.log('Stored Hashed Password:', user.passord);
+        console.log('Stored Hashed Password:', user.passord.trim());
 
         // Logging to check the types of the variables
         console.log('Type of Entered Password:', typeof passord);
