@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; 
-
-
+import LoggedInUser from "./LoggedInUser";  // Import the LoggedInUser component
 
 async function loginUser(credentials) {
-
- 
-
   try {
     const response = await axios.post('/api/login', credentials, {
       headers: {
@@ -18,11 +14,11 @@ async function loginUser(credentials) {
  
     if (response.status === 200) {
       console.log("Login successful");
-      return true;
+      return response.data.token; // Return the token from the response
     } else {
       console.log('Server response:', response.data);
       console.error("Login failed");
-      return false;
+      return null;
     }
   } catch (error) {
     console.error("Error logging in:", error);
@@ -43,6 +39,8 @@ function LoginForm() {
     passord: "",
   });
 
+  const [authToken, setAuthToken] = useState(null);  // Declare authToken state
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prevCredentials) => ({
@@ -51,12 +49,10 @@ function LoginForm() {
     }));
   };
 
-
-  const navigate = useNavigate();  // Initialize the useNavigate hook
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Login data:', credentials);
 
     if (Object.values(credentials).some((value) => value === "")) {
       // Show modal alert or handle the empty fields case as needed
@@ -66,21 +62,27 @@ function LoginForm() {
     try {
       const { email, passord } = credentials;
 
-      const isLoggedIn = await loginUser({
-        email,
-        passord,
-      });
-   
-      if (isLoggedIn) {
-        navigate('/LoggedInUser');  
+      const token = await loginUser({ email, passord });
+
+      if (token) {
+        console.log("Login successful");
+        setAuthToken(token);  // Set the authentication token in state
+        navigate('/LoggedInUser');
+      } else {
+        console.error("Login failed");
       }
     } catch (error) {
+      console.error("Error logging in:", error);
       // Handle the error based on your application's requirements
     }
   };
 
   return (
     <div className="main">
+      {/* Pass authToken as a prop to LoggedInUser */}
+      {authToken ? (
+        <LoggedInUser authToken={authToken} />
+      ) : (
       <Form onSubmit={handleLogin}>
         <Form.Group className="credentials-form m-credentials-form">
           {Object.keys(credentials).map((fieldName) => (
@@ -99,7 +101,8 @@ function LoginForm() {
         <Button type="submit" variant="primary">
           Logg inn
         </Button>
-      </Form>
+        </Form>
+      )}
     </div>
   );
 }
