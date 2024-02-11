@@ -15,7 +15,7 @@ async function loginUser(credentials) {
         'Content-Type': 'application/json',
       },
     });
-
+ 
     if (response.status === 200) {
       console.log("Login successful");
       return true;
@@ -51,7 +51,7 @@ function LoginForm() {
     }));
   };
 
-  
+
   const navigate = useNavigate();  // Initialize the useNavigate hook
 
   const handleLogin = async (e) => {
