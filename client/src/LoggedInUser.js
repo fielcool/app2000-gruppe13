@@ -1,7 +1,26 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import axios from "axios";
 
 const LoggedInUser = () => {
+  const handleDeleteUser = async () => {
+    try {
+      // Make a DELETE request to the deleteUser endpoint
+      await axios.delete('/api/deleteUser', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${yourTokenHere}` // Replace yourTokenHere with the actual token
+        },
+      });
+
+      // Optionally, you can navigate the user to a different page or perform other actions
+      console.log('User deleted successfully');
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      // Handle the error based on your application's requirements
+    }
+  };
+
   return (
     <div className="main">
       <Card style={{ width: '88rem' }}>
@@ -9,8 +28,12 @@ const LoggedInUser = () => {
         <Card.Body>
           <Card.Title>Logged In User</Card.Title>
           <Card.Text>
-            Welcome! This is your profile. Add more content as needed.
+            Placeholder for innlogget bruker
           </Card.Text>
+          {/* Button to delete the user */}
+          <Button variant="danger" onClick={handleDeleteUser}>
+            Slett min bruker
+          </Button>
         </Card.Body>
       </Card>
     </div>

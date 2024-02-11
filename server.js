@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser');
 const { verifyToken, generateToken } = require('./LogInTokens');
 const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+const deleteUserRoute = require('./routes/deleteUser');
+
 const port = process.env.PORT || 8080;
 
 process.on("uncaughtException", function (err) {
@@ -32,6 +34,8 @@ app.get('/api/loggedInUser', verifyToken, (req, res) => {
 // Your existing routes
 app.use('/api', loginRoutes, userRoutes);
 
+
+
 // Login route
 app.post('/api/login', (req, res) => {
   // Authenticate user, generate a token, and send it back in the response cookie
@@ -40,7 +44,8 @@ app.post('/api/login', (req, res) => {
   res.cookie('token', token, { httpOnly: true, sameSite: 'strict' }).sendStatus(200);
 });
 
-// Database connection
+//slette bruker 
+app.use('/api/deleteUser', deleteUserRoute);
 
 // Database connection
 const options = {
