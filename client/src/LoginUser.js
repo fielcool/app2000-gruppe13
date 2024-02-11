@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'; 
+
+const navigate = useNavigate();  // Initialize the useNavigate hook
 
 async function loginUser(credentials) {
   try {
@@ -63,7 +66,7 @@ function LoginForm() {
       });
 
       if (isLoggedIn) {
-        // Redirect or perform actions after successful login
+        navigate('/LoggedInUser');  
       }
     } catch (error) {
       // Handle the error based on your application's requirements

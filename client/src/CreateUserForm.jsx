@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';  // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom'; 
 
 function CreateUserForm() {
   const navigate = useNavigate();  // Initialize the useNavigate hook
@@ -72,7 +72,7 @@ function CreateUserForm() {
 
       if (isUserRegistered) {
         // Optionally, you can reset the form after updating MongoDB
-        navigate('/LoginUser');  // Use navigate without curly braces and remove the curly braces from "/LoginUser"
+        navigate('/LoginUser');  
       }
     } catch (error) {
       // Handle the error based on your application's requirements
