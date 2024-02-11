@@ -23,6 +23,9 @@ app.use(cookieParser());
 app.use(cors());
 app.use(morgan("tiny"));
 
+app.post('/api/createUser', async (req, res, next) => {
+  next();
+});
 // Token verification middleware for protected routes
 app.use('/api', verifyToken);
 
