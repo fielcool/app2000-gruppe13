@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 const LoggedInUser = () => {
   return (
     <div className="main">
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '88rem' }}>
         <Card.Img variant="top" src="https://ninjatables.com/wp-content/uploads/2023/07/Best-Data-Comparison-Charts.jpg" />
         <Card.Body>
           <Card.Title>Logged In User</Card.Title>
