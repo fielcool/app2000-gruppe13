@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 async function loginUser(credentials) {
 
-  const navigate = useNavigate();  // Initialize the useNavigate hook
+ 
 
   try {
     const response = await axios.post('/api/login', credentials, {
@@ -51,6 +51,9 @@ function LoginForm() {
     }));
   };
 
+  
+  const navigate = useNavigate();  // Initialize the useNavigate hook
+
   const handleLogin = async (e) => {
     e.preventDefault();
     console.log('Login data:', credentials);
@@ -67,7 +70,7 @@ function LoginForm() {
         email,
         passord,
       });
-
+   
       if (isLoggedIn) {
         navigate('/LoggedInUser');  
       }
