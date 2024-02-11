@@ -28,7 +28,7 @@ const LoggedInUser = () => {
           {userData ? (
             <>
               <Card.Text>
-                Welcome, {userData.email}! This is your profile. Add more content as needed.
+                Velkommen, {userData.email}! 
               </Card.Text>
               {/* You can display more user information as needed */}
             </>
