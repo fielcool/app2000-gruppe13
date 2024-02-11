@@ -12,22 +12,20 @@ const loginRoutes = require('./routes/loginRoutes');
 const port = process.env.PORT || 8080;
 
 process.on("uncaughtException", function (err) {
-  console.log(err);
+  console.error("Uncaught Exception:", err);
+  process.exit(1); // Exit the process on uncaught exceptions
 });
 
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
 app.use(morgan("tiny"));
 
-app.post('/api/createUser', async (req, res, next) => {
-  next();
-});
 // Token verification middleware for protected routes
-app.use('/api', verifyToken);
+app.use('/api/loggedInUser', verifyToken);
 
 // Your existing routes
 app.use('/api', loginRoutes, userRoutes);
@@ -41,16 +39,22 @@ app.post('/api/login', (req, res) => {
 });
 
 // Database connection
+
+// Database connection
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-};
+}
+
 mongoose
   .connect(process.env.MONGODB_URI, options)
   .then(() => {
     console.log("Database connected");
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.error("MongoDB Connection Error:", err);
+    process.exit(1); // Exit the process on MongoDB connection error
+  });
 
 // For production
 if (process.env.NODE_ENV === "production") {
@@ -59,6 +63,12 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
 
 // Server
 app.listen(port, function () {
