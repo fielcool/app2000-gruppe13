@@ -12,12 +12,12 @@ const loginRoutes = require('./routes/loginRoutes');
 const deleteUserRoute = require('./routes/deleteUser');
 
 const port = process.env.PORT || 8080;
-
+/*
 process.on("uncaughtException", function (err) {
   console.error("Uncaught Exception:", err);
   process.exit(1); // Exit the process on uncaught exceptions
 });
-
+*/
 const app = express();
 
 // Middleware
