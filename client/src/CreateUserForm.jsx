@@ -2,37 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-
-async function registerUser(userData) {
-  try {
-    const response = await axios.post('/api/createUser', userData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.status === 201) {
-      console.log("User registered successfully");
-      return true;
-    } else {
-      console.log('Server response:', response.data);
-      console.error("User registration failed");
-      return false;
-    }
-  } catch (error) {
-    console.error("Error registering user:", error);
-
-    if (error.response) {
-      console.error("Response data:", error.response.data);
-      console.error("Response status:", error.response.status);
-      console.error("Response headers:", error.response.headers);
-    }
-
-    throw error; // Rethrow the error for the calling code to handle
-  }
-}
+import { useNavigate } from 'react-router-dom';  // Import useNavigate from react-router-dom
 
 function CreateUserForm() {
+  const navigate = useNavigate();  // Initialize the useNavigate hook
+
   const [input, setInput] = useState({
     navn: "",
     organisasjon: "",
@@ -47,6 +21,33 @@ function CreateUserForm() {
       ...prevInput,
       [name]: value,
     }));
+  };
+
+  const registerUser = async (userData) => {
+    try {
+      const response = await axios.post('/api/createUser', userData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 201) {
+        console.log("User registered successfully");
+        return true;
+      } else {
+        console.log('Server response:', response.data);
+        console.error("User registration failed");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
+      }
+      throw error;
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -71,13 +72,7 @@ function CreateUserForm() {
 
       if (isUserRegistered) {
         // Optionally, you can reset the form after updating MongoDB
-        setInput({
-          navn: "",
-          organisasjon: "",
-          stillingstittel: "",
-          email: "",
-          passord: "",
-        });
+        navigate('/LoginUser');  // Use navigate without curly braces and remove the curly braces from "/LoginUser"
       }
     } catch (error) {
       // Handle the error based on your application's requirements

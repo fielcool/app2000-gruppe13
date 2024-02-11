@@ -22,6 +22,10 @@ const router = createBrowserRouter([
     path: "/LoginUser",
     element: <LoginUser />,
   },
+  {
+    path: "/LoggedInUser",
+    element: <LoggedInUser/>,
+ }
 ]);
 
 createRoot(document.getElementById("root")).render(
