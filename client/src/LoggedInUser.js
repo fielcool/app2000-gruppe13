@@ -3,14 +3,14 @@ import { Card } from "react-bootstrap";
 import { Card, Button } from "react-bootstrap";
 import axios from "axios";
 
-const LoggedInUser = ({ authToken }) => {
+const LoggedInUser = () => {
   const handleDeleteUser = async () => {
     try {
       // Make a DELETE request to the deleteUser endpoint
       await axios.delete('/api/deleteUser', {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
+          'Authorization': `Bearer ${yourTokenHere}` // Replace yourTokenHere with the actual token
         },
       });
 
