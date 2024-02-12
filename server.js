@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(morgan("tiny"));
 
 // Token verification middleware for protected routes
-app.use('/api/loggedInUser', verifyToken);
+app.use('/api/user', verifyToken);
 
 //  routes
 app.use('/api', loginRoutes, userRoutes, deleteRoutes);
