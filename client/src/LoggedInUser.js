@@ -10,7 +10,7 @@ const LoggedInUser = ({ authToken }) => {
     console.log('Auth Token:', authToken);
     try {
       // Make an API request to delete the user account
-      const response = await axios.delete('/user', {
+      const response = await axios.delete('/api/user', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
