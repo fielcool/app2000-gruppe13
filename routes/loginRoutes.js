@@ -33,7 +33,6 @@ router.post('/login', async (req, res) => {
 
         // If the password is valid, you can generate a token and send it to the client for authentication
         // For simplicity, let's just send a success message for now
-        const token = generateToken(user);
         console.log('Login successful');
         res.status(200).json({ message: 'Login successful' });
     } catch (error) {
