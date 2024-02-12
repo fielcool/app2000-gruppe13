@@ -34,8 +34,7 @@ function LoginForm() {
     passord: "",
   });
 
-  // Henter autentiseringsnøkkelen fra lokal lagring ved første render
-  const [authToken, setAuthToken] = useState(() => localStorage.getItem('authToken') || null);
+  const [authToken, setAuthToken] = useState(localStorage.getItem('authToken') || null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,7 +61,7 @@ function LoginForm() {
       if (token) {
         console.log("Login successful");
         setAuthToken(token);
-        localStorage.setItem('authToken', token); // Lagrer token lokalt
+        localStorage.setItem('authToken', token); // Lagrer token i lokal lagring
         navigate('/LoggedInUser');
       } else {
         console.error("Login failed");
