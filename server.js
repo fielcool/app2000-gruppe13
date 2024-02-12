@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 const { verifyToken, generateToken } = require('./LogInTokens');
 const userRoutes = require('./routes/userRoutes');
