@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 
 const { verifyToken, generateToken } = require('./LogInTokens');
+const deleteRoutes = require('./routes/deleteRoutes');
 const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const port = process.env.PORT || 8080;
@@ -28,8 +29,8 @@ app.use(morgan("tiny"));
 // Token verification middleware for protected routes
 app.use('/api/loggedInUser', verifyToken);
 
-// Your existing routes
-app.use('/api', loginRoutes, userRoutes);
+//  routes
+app.use('/api', loginRoutes, userRoutes, deleteRoutes);
 
 // Login route
 app.post('/api/login', (req, res) => {
@@ -39,7 +40,7 @@ app.post('/api/login', (req, res) => {
   res.cookie('token', token, { httpOnly: true, sameSite: 'strict' }).sendStatus(200);
 });
 
-// Database connection
+
 
 // Database connection
 const options = {
