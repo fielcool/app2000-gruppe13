@@ -59,6 +59,7 @@ function CreateUserForm() {
       return;
     }
 
+    //legger form inputs inn i POST request som sendes til mongodb
     try {
       const { navn, organisasjon, stillingstittel, email, passord } = input;
 
@@ -69,9 +70,9 @@ function CreateUserForm() {
         email,
         passord,
       });
-
+ 
+      //navigerer til Login siden
       if (isUserRegistered) {
-        // Optionally, you can reset the form after updating MongoDB
         navigate('/LoginUser');  
       }
     } catch (error) {
