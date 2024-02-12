@@ -8,31 +8,31 @@ router.post('/login', async (req, res) => {
     try {
         const { email, passord } = req.body;
 
-        // Find the user by email
+        // Finn brukeren basert på e-post
         const user = await User.findOne({ email });
 
-        // Check if the user exists
+        // Sjekk om brukeren eksisterer
         if (!user) {
-            console.log('Invalid credentials: User not found');
-            return res.status(401).json({ error: 'Invalid credentials mail' });
+            console.log('Ugyldige påloggingsopplysninger: Bruker ikke funnet');
+            return res.status(401).json({ error: 'Ugyldige påloggingsopplysninger e-post' });
         }
 
-        // Compare the entered password with the hashed password in the database
-        const isPasswordValid = await bcrypt.compare(passord, user.passord);
+        // Sammenlign det innskrevne passordet med det hasjede passordet i databasen
+        const erPassordGyldig = await bcrypt.compare(passord, user.passord);
 
-        if (!isPasswordValid) {
-            console.log('Invalid credentials: Password mismatch');
-            return res.status(401).json({ error: 'Invalid credentials password' });
+        if (!erPassordGyldig) {
+            console.log('Ugyldige påloggingsopplysninger: Passord stemmer ikke');
+            return res.status(401).json({ error: 'Ugyldige påloggingsopplysninger passord' });
         }
 
-        // If the password is valid, generate a token
+        // Hvis passordet er gyldig, generer en token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
 
-        // Send the token to the client
+        // Send tokenet til klienten
         res.status(200).json({ token });
     } catch (error) {
-        console.error('Error logging in:', error);
-        res.status(500).json({ error: 'Internal Server Error', details: error.message, stack: error.stack });
+        console.error('Feil ved pålogging:', error);
+        res.status(500).json({ error: 'Intern serverfeil', detaljer: error.message, stakk: error.stack });
     }
 });
 

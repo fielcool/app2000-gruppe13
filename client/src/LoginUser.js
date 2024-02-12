@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-//import { useNavigate } from 'react-router-dom';
 import LoggedInUser from "./LoggedInUser";
 async function loginUser(credentials) {
   try {
@@ -72,8 +71,6 @@ function LoginForm() {
         // Oppdaterer både tilstanden og lagrer autentiseringsnøkkelen i lokal lagring
         setAuthToken(token);
         localStorage.setItem('authToken', token);
-        // Navigerer til "/LoggedInUser"
-       // navigate('/LoggedInUser');
       } else {
         // Logger feilmelding hvis påloggingen mislykkes
         console.error("Login failed");
