@@ -3,7 +3,6 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import LoggedInUser from "./LoggedInUser";
-
 async function loginUser(credentials) {
   try {
     const response = await axios.post('/api/login', credentials, {
@@ -14,10 +13,12 @@ async function loginUser(credentials) {
 
     if (response.status === 200) {
       console.log("Login successful");
-      return response.data.token; // Return the token from the response
+      const token = response.data.token;
+      console.log("Received token:", token);
+      return token;
     } else {
       console.log('Server response:', response.data);
-      console.error("Login failed");
+      console.error("Login failed - Status:", response.status);
       return null;
     }
   } catch (error) {
@@ -25,6 +26,7 @@ async function loginUser(credentials) {
     throw error;
   }
 }
+
 
 function LoginForm() {
   const [credentials, setCredentials] = useState({
