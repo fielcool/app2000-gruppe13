@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
 
 // DELETE route for deleting a user account
-router.delete('/user', verifyToken, async (req, res) => {
+router.delete('/LoggedInUser', verifyToken, async (req, res) => {
   try {
     // Get the user ID from the decoded token
     const userId = req.decoded.id;
