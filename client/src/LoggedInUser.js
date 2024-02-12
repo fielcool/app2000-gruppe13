@@ -1,26 +1,5 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Card, Button } from "react-bootstrap";
-import axios from "axios";
-
-const LoggedInUser = () => {
-  const handleDeleteUser = async () => {
-    try {
-      // Make a DELETE request to the deleteUser endpoint
-      await axios.delete('/api/deleteUser', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${yourTokenHere}` // Replace yourTokenHere with the actual token
-        },
-      });
-
-      // Optionally, you can navigate the user to a different page or perform other actions
-      console.log('User deleted successfully');
-    } catch (error) {
-      console.error('Error deleting user:', error);
-      // Handle the error based on your application's requirements
-    }
-  };
 
 const LoggedInUser = () => {
   return (
@@ -32,17 +11,6 @@ const LoggedInUser = () => {
           <Card.Text>
             Welcome! This is your profile. Add more content as needed.
           </Card.Text>
-          <Card.Title>Bruker som er logget inn</Card.Title>
-          {userData ? (
-            <>
-              <Card.Text>
-                Welcome, {userData.email}! This is your profile. Add more content as needed.
-              </Card.Text>
-              {/* You can display more user information as needed */}
-            </>
-          ) : (
-            <p>Loading user data...</p>
-          )}
           {/* Button to delete the user */}
           <Button variant="danger" onClick={handleDeleteUser}>
             Slett min bruker
