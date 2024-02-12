@@ -7,18 +7,17 @@ const LoggedInUser = ({ authToken }) => {
   const handleDeleteUser = async () => {
     try {
       // Make a DELETE request to the deleteUser endpoint
-      await axios.delete('/api/delete', {
+      await axios.delete('/api/deleteUser', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`
         },
       });
-  
+
       // Optionally, you can navigate the user to a different page or perform other actions
       console.log('User deleted successfully');
     } catch (error) {
       console.error('Error deleting user:', error);
-      console.error('Full error response:', error.response); // Log the full error response for more details
       // Handle the error based on your application's requirements
     }
   };
