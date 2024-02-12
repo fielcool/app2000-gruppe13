@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');  // Import the jsonwebtoken library
 const User = require('../models/UserModel');
 
 router.post('/login', async (req, res) => {
@@ -17,19 +16,25 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials mail' });
         }
 
+        // Logging for debugging
+        console.log('Entered Password:', passord);
+        console.log('Stored Hashed Password:', user.passord);
+
         // Compare the entered password with the hashed password in the database
         const isPasswordValid = await bcrypt.compare(passord, user.passord);
+
+        // Logging for debugging
+        console.log('Is password valid?', isPasswordValid);
 
         if (!isPasswordValid) {
             console.log('Invalid credentials: Password mismatch');
             return res.status(401).json({ error: 'Invalid credentials password' });
         }
 
-        // If the password is valid, generate a token
-        const token = jwt.sign({ userId: user._id, email: user.email }, 'your_secret_key', { expiresIn: '1h' });
-
-        // Send the token to the client
-        res.cookie('token', token, { httpOnly: true, sameSite: 'strict' }).status(200).json({ message: 'Login successful' });
+        // If the password is valid, you can generate a token and send it to the client for authentication
+        // For simplicity, let's just send a success message for now
+        console.log('Login successful');
+        res.status(200).json({ message: 'Login successful' });
     } catch (error) {
         console.error('Error logging in:', error);
         res.status(500).json({ error: 'Internal Server Error', details: error.message, stack: error.stack });

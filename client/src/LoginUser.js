@@ -13,9 +13,8 @@ async function loginUser(credentials) {
     });
  
     if (response.status === 200) {
-      
       console.log("Login successful");
-      return response.data.token // Return the token from the response
+    //  return response.data.token; // Return the token from the response
     } else {
       console.log('Server response:', response.data);
       console.error("Login failed");

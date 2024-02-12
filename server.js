@@ -28,7 +28,6 @@ app.use(morgan("tiny"));
 <<<<<<< HEAD
 app.get('/api/loggedInUser', verifyToken, (req, res) => {
   res.json({ message: 'Welcome to the protected route, ' + req.user.username + '!', email: req.user.email });
-  console.log("Decoded User Information:", req.user);
 });
 =======
 app.use('/api/loggedInUser', verifyToken);
