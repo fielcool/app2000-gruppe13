@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { verifyToken } = require('../LogInTokens'); // Adjust the path based on your file structure
-const User = require('../models/UserModel'); // Import your User model
+const User = require('../models/User'); // Import your User model
 
 router.delete('/delete', verifyToken, async (req, res) => {
   try {
