@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
 const loginRoutes = require('./loginRoutes');
 
+
 router.use('/login', loginRoutes);
 router.post('/createUser', async (req, res) => {
   try {

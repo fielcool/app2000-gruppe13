@@ -4,7 +4,7 @@
   "proxy": "https://b5-usn-506fb35bcb0a.herokuapp.com/",
   "description": "",
   "engines": {
-    "node": "19.6.0"
+    "node": "20.5.1"
   },
   "main": "server.js",
   "scripts": {
