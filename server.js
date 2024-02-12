@@ -29,6 +29,7 @@ app.use(morgan("tiny"));
 // Token verification middleware for protected routes
 app.get('/api/loggedInUser', verifyToken, (req, res) => {
   res.json({ message: 'Welcome to the protected route, ' + req.user.username + '!', email: req.user.email });
+  console.log("Decoded User Information:", req.user);
 });
 
 // Your existing routes
