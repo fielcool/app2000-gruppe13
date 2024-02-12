@@ -7,6 +7,7 @@ const LoggedInUser = ({ authToken }) => {
   const navigate = useNavigate();
 
   const handleDeleteAccount = async () => {
+    console.log('Auth Token:', authToken);
     try {
       // Make an API request to delete the user account
       const response = await axios.delete('/api/user', {

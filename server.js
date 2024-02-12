@@ -26,8 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("tiny"));
 
-// DELETE route for deleting a user account
-app.delete('/api/user', verifyToken, deleteRoutes);
+
 
 //  routes
 app.use('/api', loginRoutes, userRoutes, deleteRoutes);
@@ -40,7 +39,8 @@ app.post('/api/login', (req, res) => {
   res.cookie('token', token, { httpOnly: true, sameSite: 'strict' }).sendStatus(200);
 });
 
-
+// DELETE route for deleting a user account
+app.delete('/api/user', verifyToken, deleteRoutes);
 
 // Database connection
 const options = {
