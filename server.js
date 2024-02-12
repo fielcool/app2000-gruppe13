@@ -25,10 +25,14 @@ app.use(cookieParser());
 app.use(morgan("tiny"));
 
 // Token verification middleware for protected routes
+<<<<<<< HEAD
 app.get('/api/loggedInUser', verifyToken, (req, res) => {
   res.json({ message: 'Welcome to the protected route, ' + req.user.username + '!', email: req.user.email });
   console.log("Decoded User Information:", req.user);
 });
+=======
+app.use('/api/loggedInUser', verifyToken);
+>>>>>>> parent of 0136624 (	modified:   client/src/LoggedInUser.js)
 
 // Your existing routes
 app.use('/api', loginRoutes, userRoutes);
