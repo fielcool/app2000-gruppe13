@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const secretKey = 'your-secret-key'; // Replace with a strong, unique secret key
+const secretKey = process.env.JWT_SECRET; // Replace with a strong, unique secret key
 
 // Middleware to verify the token on protected routes
 const verifyToken = (req, res, next) => {

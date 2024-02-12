@@ -1,4 +1,5 @@
 // In your userRoutes.js file or similar
+const { verifyToken } = require('../LogInTokens');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -32,7 +33,7 @@ router.delete('/user', verifyToken, async (req, res) => {
     }
 
     // Perform the logic to delete the user account based on the user ID
-    // Example: await User.findByIdAndDelete(userId);
+    await User.findByIdAndDelete(userId);
 
     // Respond with a success message or appropriate response
     res.status(200).json({ message: 'Account deleted successfully' });
