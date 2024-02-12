@@ -7,12 +7,10 @@ const LoggedInUser = () => {
       <Card style={{ width: '88rem' }}>
         <Card.Img variant="top" src="https://ninjatables.com/wp-content/uploads/2023/07/Best-Data-Comparison-Charts.jpg" />
         <Card.Body>
-<<<<<<< HEAD
           <Card.Title>Logged In User</Card.Title>
           <Card.Text>
             Welcome! This is your profile. Add more content as needed.
           </Card.Text>
-=======
           <Card.Title>Bruker som er logget inn</Card.Title>
           {userData ? (
             <>
@@ -24,7 +22,6 @@ const LoggedInUser = () => {
           ) : (
             <p>Loading user data...</p>
           )}
->>>>>>> parent of 0136624 (	modified:   client/src/LoggedInUser.js)
         </Card.Body>
       </Card>
 
