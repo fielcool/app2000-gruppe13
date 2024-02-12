@@ -55,7 +55,7 @@ function LoginForm() {
     e.preventDefault();
 
     if (Object.values(credentials).some((value) => value === "")) {
-      // ingen modal alerts enda
+      // Show modal alert or handle the empty fields case as needed
       return;
     }
 
