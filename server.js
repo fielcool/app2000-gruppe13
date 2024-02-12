@@ -26,8 +26,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("tiny"));
 
-// Token verification middleware for protected routes
-app.use('/api/user', verifyToken);
+// DELETE route for deleting a user account
+app.delete('/api/user', verifyToken, deleteRoutes);
 
 //  routes
 app.use('/api', loginRoutes, userRoutes, deleteRoutes);
