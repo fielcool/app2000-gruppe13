@@ -22,8 +22,8 @@ async function loginUser(credentials) {
       return null;
     }
   } catch (error) {
-    console.error("Error logging in:", error);
-    throw error;
+    console.error("Error logging in:", error);  // Log the error details
+    throw error;  // Rethrow the error for the calling code to handle
   }
 }
 
