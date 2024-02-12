@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { Card, Button, Modal } from "react-bootstrap";
 import axios from "axios";
@@ -29,6 +30,12 @@ const LoggedInUser = ({ authToken }) => {
     }
   };
 
+=======
+import React from "react";
+import { Card } from "react-bootstrap";
+
+const LoggedInUser = () => {
+>>>>>>> parent of 797ea28 (	modified:   client/src/LoggedInUser.js)
   return (
     <div className="main">
       <Card style={{ width: '18rem' }}>
@@ -36,11 +43,14 @@ const LoggedInUser = ({ authToken }) => {
         <Card.Body>
           <Card.Title>Logged In User</Card.Title>
           <Card.Text>
-            Placeholder for innlogget bruker
+            Welcome! This is your profile. Add more content as needed.
           </Card.Text>
+<<<<<<< HEAD
           <Button variant="danger" onClick={() => setShowConfirmation(true)}>
             Slett min bruker
           </Button>
+=======
+>>>>>>> parent of 797ea28 (	modified:   client/src/LoggedInUser.js)
         </Card.Body>
       </Card>
 
