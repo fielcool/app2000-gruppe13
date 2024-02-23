@@ -14,7 +14,8 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
   try {
     return await bcrypt.compare(candidatePassword, this.passord);
   } catch (error) {
-    throw error;
+    console.error('Error comparing passwords:', error);
+    throw new Error('Error comparing passwords');
   }
 };
 

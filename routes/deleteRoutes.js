@@ -1,21 +1,18 @@
-// In your userRoutes.js file or similar
 const { verifyToken } = require('../LogInTokens');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
-// Import the User model
 const User = require('../models/UserModel');
 
 // DELETE route for deleting a user account
 router.delete('/user', verifyToken, async (req, res) => {
-    try {
-      console.log('Delete route accessed');
-      
-      // Get the user ID from the decoded token
-      const userId = req.decoded.id;
-  
-      console.log('Decoded user ID:', userId);
+  try {
+    console.log('Delete route accessed');
+
+    // Get the user ID from the decoded token
+    const userId = req.decoded.userId; // Use the correct property name from your token payload
+
+    console.log('Decoded user ID:', userId);
 
     // Get the user's password from the request body
     const { password } = req.body;
