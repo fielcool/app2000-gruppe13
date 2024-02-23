@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 const LoggedInUser = ({ authToken }) => {
   const navigate = useNavigate();
-
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
     try {
@@ -15,12 +14,16 @@ const LoggedInUser = ({ authToken }) => {
       });
   
       // Make an API request to delete the user account
-      const response = await axios.delete('/api/user', {
+      const response = await axios.delete('https://b5-usn-506fb35bcb0a.herokuapp.com/api/user', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
+        withCredentials: true,  // Add this line
+        data: {
+          password: "user_password_here" // Replace with the actual user's password
+        }
       });
-
+  
       if (response.status === 200) {
         // If the account is deleted successfully, you can perform additional actions
         console.log('Account deleted successfully');
@@ -43,6 +46,7 @@ const LoggedInUser = ({ authToken }) => {
       }
     }
   };
+  
 
   return (
     <div className="main">
