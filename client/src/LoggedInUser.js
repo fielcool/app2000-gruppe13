@@ -9,6 +9,11 @@ const LoggedInUser = ({ authToken }) => {
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
     try {
+      // Log the request headers just before making the request
+      console.log('Request headers:', {
+        Authorization: `Bearer ${authToken}`,
+      });
+  
       // Make an API request to delete the user account
       const response = await axios.delete('/api/user', {
         headers: {
@@ -26,6 +31,16 @@ const LoggedInUser = ({ authToken }) => {
       }
     } catch (error) {
       console.error('Error deleting account:', error);
+    
+      // Log the entire error object
+      console.log(error);
+    
+      // Or log specific properties
+      if (error.response) {
+        console.log('Response data:', error.response.data);
+        console.log('Response status:', error.response.status);
+        console.log('Response headers:', error.response.headers);
+      }
     }
   };
 
