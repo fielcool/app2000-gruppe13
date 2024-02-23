@@ -7,6 +7,7 @@ const User = require('../models/UserModel');
 // DELETE route for deleting a user account
 router.delete('/user', verifyToken, async (req, res) => {
   try {
+    console.log('Incoming headers:', req.headers);
     // Get the user ID from the decoded token
     const userId = req.decoded.userId;
 
