@@ -8,16 +8,15 @@ const LoggedInUser = ({ authToken }) => {
   
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
-    try {
-      // Log the request headers just before making the request
-      console.log('Request headers:', {
-        Authorization: `Bearer ${authToken}`,
-      });
   
-      // Replace "user_password_here" with the actual user's password
+    // Log the request headers just before making the request
+    console.log('Request headers:', {
+      Authorization: `Bearer ${authToken}`,
+    });
+  
+    try {
       const userPassword = "user_password_here";
   
-      // Make an API request to delete the user account
       const response = await axios.delete('https://b5-usn-506fb35bcb0a.herokuapp.com/api/user', {
         headers: {
           Authorization: `Bearer ${authToken}`,
@@ -28,10 +27,10 @@ const LoggedInUser = ({ authToken }) => {
         },
       });
   
+      console.log('Delete response:', response);
+  
       if (response.status === 200) {
-        // If the account is deleted successfully, you can perform additional actions
         console.log('Account deleted successfully');
-        // Redirect to the front page after deletion
         navigate('/');
       } else {
         console.error('Failed to delete account:', response.data);
