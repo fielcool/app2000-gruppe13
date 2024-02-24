@@ -5,7 +5,7 @@ const secretKey = process.env.JWT_SECRET; // Replace with a strong, unique secre
 // Middleware to verify the token on protected routes
 const verifyToken = (req, res, next) => {
   let token;
-  
+
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
@@ -30,6 +30,8 @@ const verifyToken = (req, res, next) => {
 
     req.user = decoded; // Attach the user information to the request
     console.log('Decoded token:', decoded); // Log the decoded token
+    console.log('User:', req.user); // Log the user object
+
     next();
   });
 };
