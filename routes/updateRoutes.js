@@ -23,10 +23,13 @@ router.put('/update-user-info', verifyToken, async (req, res) => {
       return res.status(401).json({ error: 'Current password does not match' });
     }
 
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(passord, 10); // 10 is the number of salt rounds
+
     // If the current password matches, proceed with the update
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { navn, organisasjon, stillingstittel, email, passord },
+      { navn, organisasjon, stillingstittel, email, passord: hashedPassword },
       { new: true }
     );
 
