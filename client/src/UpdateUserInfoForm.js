@@ -37,20 +37,20 @@ function UpdateUserInfoForm() {
   const confirmUpdate = async () => {
     try {
       // Make API request to update user information
-      const response = await axios.put('https://b5-usn-506fb35bcb0a.herokuapp.com/api/update-user-info', newUserInfo, {
+      const response = await axios.put('/api/update-user-info', newUserInfo, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`
         },
       });
-
+  
       if (response.status === 200) {
         console.log("User information updated successfully");
         navigate('/profile'); // Navigate to the profile page after successful update
       } else {
         console.error("Failed to update user information");
       }
-
+  
       // Close the modal after update
       setShowModal(false);
     } catch (error) {
