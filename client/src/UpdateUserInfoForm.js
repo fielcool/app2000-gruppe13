@@ -37,7 +37,7 @@ function UpdateUserInfoForm() {
   const confirmUpdate = async () => {
     try {
       // Make API request to update user information
-      const response = await axios.put('https://https://b5-usn-506fb35bcb0a.herokuapp.com/api/update-user-info', newUserInfo, {
+      const response = await axios.put('https://b5-usn-506fb35bcb0a.herokuapp.com/api/update-user-info', newUserInfo, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`
