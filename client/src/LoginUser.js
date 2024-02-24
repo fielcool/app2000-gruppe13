@@ -44,27 +44,26 @@ function LoginForm() {
     }));
   };
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-
+  
     if (Object.values(credentials).some((value) => value === "")) {
       return;
     }
-
-    try {
-      const token = await loginUser(credentials);
-
-      if (token) {
-        console.log("Login successful");
-        // Update the authentication state using the setAuthToken function
-        setAuthToken(token);
-        localStorage.setItem('authToken', token);
-      } else {
-        console.error("Login failed");
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-    }
+  
+    loginUser(credentials)
+      .then((token) => {
+        if (token) {
+          console.log("Login successful");
+          setAuthToken(token);
+          localStorage.setItem('authToken', token);
+        } else {
+          console.error("Login failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+      });
   };
 
   return (
