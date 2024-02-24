@@ -23,7 +23,7 @@ const verifyToken = (req, res, next) => {
   }
 
   jwt.verify(token, secretKey, (err, decoded) => {
-    if (err) {
+    if (err || !decoded || !decoded.userId) {
       console.error('Error decoding token:', err);
       return res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
