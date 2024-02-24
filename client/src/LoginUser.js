@@ -34,7 +34,7 @@ function LoginForm() {
   });
 
   // Using the useAuth hook to access authentication state and functions
-  const { authToken, setAuthToken } = useAuth();
+  const { authToken, login, logout } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,16 +46,16 @@ function LoginForm() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-  
+
     if (Object.values(credentials).some((value) => value === "")) {
       return;
     }
-  
+
     loginUser(credentials)
       .then((token) => {
         if (token) {
           console.log("Login successful");
-          setAuthToken(token);
+          login(token);
           localStorage.setItem('authToken', token);
         } else {
           console.error("Login failed");
@@ -66,10 +66,21 @@ function LoginForm() {
       });
   };
 
+  const handleLogout = () => {
+    // Perform any additional logout logic if needed
+    logout();
+    console.log("Logged out");
+  };
+
   return (
     <div className="main">
       {authToken ? (
-        <LoggedInUser authToken={authToken} />
+        <>
+          <LoggedInUser authToken={authToken} />
+          <Button variant="danger" onClick={handleLogout}>
+            Logg ut
+          </Button>
+        </>
       ) : (
         <Form onSubmit={handleLogin}>
           <Form.Group className="credentials-form m-credentials-form">
