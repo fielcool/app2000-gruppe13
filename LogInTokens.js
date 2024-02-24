@@ -4,7 +4,10 @@ const secretKey = process.env.JWT_SECRET; // Replace with a strong, unique secre
 
 // Middleware to verify the token on protected routes
 const verifyToken = (req, res, next) => {
+  console.log('Incoming headers:', req.headers);
+  console.log('Cookies:', req.cookies);
   const token = req.cookies.token;
+  console.log('Token:', token);
 
   if (!token) {
     console.error('Error: Missing token');
