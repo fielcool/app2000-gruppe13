@@ -18,7 +18,7 @@ const LoggedInUser = ({ authToken }) => {
   
     try {
       // Replace "user_password_here" with the actual user's password
-      const userPassword = "user_password_here";
+      const userPassword = password;
   
       // Make an API request to delete the user account
       const response = await axios.delete('https://b5-usn-506fb35bcb0a.herokuapp.com/api/user', {
