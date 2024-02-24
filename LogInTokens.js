@@ -7,6 +7,7 @@ const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
 
   if (!token) {
+    console.error('Error: Missing token');
     return res.status(401).json({ error: 'Unauthorized: Missing token' });
   }
 
@@ -22,14 +23,12 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-
 // Token generation
 const generateToken = (user) => {
   const payload = { userId: user.id, username: user.username };
   const options = { expiresIn: process.env.JWT_EXPIRATION_TIME || '1h' };
   return jwt.sign(payload, secretKey, options);
 };
-
 
 // Export the functions for use in other files
 module.exports = { verifyToken, generateToken };
