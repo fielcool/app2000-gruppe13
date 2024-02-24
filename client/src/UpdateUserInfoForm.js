@@ -54,7 +54,7 @@ function UpdateUserInfoForm() {
 
       if (response.status === 200) {
         console.log("User information updated successfully");
-        navigate('/LoggedInUser'); 
+        navigate('/LoginUser'); 
       } else {
         console.error("Failed to update user information");
       }

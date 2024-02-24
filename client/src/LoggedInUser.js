@@ -71,12 +71,12 @@ const LoggedInUser = () => {
         <Card.Body>
           <Card.Title>Your Profile</Card.Title>
           <Button variant="danger" onClick={() => setShowModal(true)}>
-            Delete Account
+            Slett bruker
           </Button>
 
           {/* Button to toggle the visibility of UpdateUserInfoForm */}
           <Button variant="primary" onClick={handleUpdateUserInfo}>
-            Update User Info
+            Oppdater brukerinformasjon
           </Button>
 
           <Modal show={showModal} onHide={handleCancel}>
