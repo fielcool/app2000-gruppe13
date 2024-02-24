@@ -19,6 +19,7 @@ router.delete('/user', verifyToken, async (req, res) => {
 
     // Get the user's password from the request body
     const { password } = req.body;
+    console.log('Entered password:', password);
 
     // Find the user by ID
     const user = await User.findById(userId);
@@ -28,8 +29,9 @@ router.delete('/user', verifyToken, async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Compare the entered password with the stored hashed password
-    const isPasswordValid = await user.comparePassword(password);
+ // Compare the entered password with the stored hashed password
+const isPasswordValid = await user.comparePassword(password);
+console.log('Is password valid:', isPasswordValid);
 
     if (!isPasswordValid) {
       // If the password is not valid, respond with an error
