@@ -8,8 +8,14 @@ const User = require('../models/UserModel');
 router.delete('/user', verifyToken, async (req, res) => {
   try {
     console.log('Incoming headers:', req.headers);
+
+    // Check if req.user exists and has userId property
+    if (!req.user || !req.user.userId) {
+      throw new Error('User information not available');
+    }
+
     // Get the user ID from the decoded token
-    const userId = req.decoded.userId;
+    const userId = req.user.userId;
 
     // Get the user's password from the request body
     const { password } = req.body;
