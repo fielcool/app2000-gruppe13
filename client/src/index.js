@@ -1,14 +1,13 @@
 import React from "react";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./App";
-import LoginUser from "./LoginUser";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { AuthProvider } from './context/AuthContext';  // Adjust the path accordingly
+import App from "./App";
+import LoginUser from "./LoginUser";
 import CreateUserForm from "./CreateUserForm";
 import LoggedInUser from "./LoggedInUser";
-
-
 
 const router = createBrowserRouter([
   {
@@ -25,12 +24,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/LoggedInUser",
-    element: <LoggedInUser/>,
- }
+    element: <LoggedInUser />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
 );
 
 // ReactDOM.render(
