@@ -11,6 +11,7 @@ const { verifyToken, generateToken } = require('./LogInTokens');
 const deleteRoutes = require('./routes/deleteRoutes');
 const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+const updateRoutes = require('./routes/updateRoutes');
 const port = process.env.PORT || 8080;
 
 process.on("uncaughtException", function (err) {
@@ -29,7 +30,7 @@ app.use(morgan("tiny"));
 
 
 //  routes
-app.use('/api', loginRoutes, userRoutes, deleteRoutes);
+app.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
 
 // Login route
 app.post('/api/login', (req, res) => {
