@@ -5,7 +5,7 @@ const { verifyToken } = require('../LogInTokens');
 const User = require('../models/UserModel');
 
 // Update user information
-router.put('/api/update-user-info', verifyToken, async (req, res) => {
+router.put('/update-user-info', verifyToken, async (req, res) => {
   try {
     // Assuming the user ID is available in req.user.userId after verification
     const userId = req.user.userId;

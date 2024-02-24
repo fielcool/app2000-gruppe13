@@ -37,7 +37,7 @@ function UpdateUserInfoForm() {
   const confirmUpdate = async () => {
     try {
       // Make API request to update user information
-      const response = await axios.put('/api/update-user-info', newUserInfo, {
+      const response = await axios.put('https://https://b5-usn-506fb35bcb0a.herokuapp.com//api/update-user-info', newUserInfo, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`
@@ -62,7 +62,60 @@ function UpdateUserInfoForm() {
     <div className="update-user-info-form">
       <Form>
         {/* Input fields for new user information */}
-        {/* ... (unchanged) */}
+        <Form.Group>
+          <Form.Label>Full Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter your full name"
+            name="navn"
+            value={newUserInfo.navn}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Organization</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter your organization"
+            name="organisasjon"
+            value={newUserInfo.organisasjon}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Job Title</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter your job title"
+            name="stillingstittel"
+            value={newUserInfo.stillingstittel}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            value={newUserInfo.email}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter your password"
+            name="passord"
+            value={newUserInfo.passord}
+            onChange={handleChange}
+          />
+        </Form.Group>
 
         {/* Button to trigger the update process */}
         <Button variant="primary" onClick={handleUpdate}>
@@ -72,7 +125,26 @@ function UpdateUserInfoForm() {
 
       {/* Modal for password confirmation */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
-        {/* ... (unchanged) */}
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Control
+            type="password"
+            placeholder="Enter your password to confirm"
+            name="passord"
+            value={newUserInfo.passord}
+            onChange={handleChange}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={confirmUpdate}>
+            Confirm
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
