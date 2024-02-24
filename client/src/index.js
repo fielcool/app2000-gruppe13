@@ -8,6 +8,7 @@ import App from "./App";
 import LoginUser from "./LoginUser";
 import CreateUserForm from "./CreateUserForm";
 import LoggedInUser from "./LoggedInUser";
+import UpdateUserInfoForm from "./UpdateUserInfoForm";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/LoggedInUser",
     element: <LoggedInUser />,
+  },
+  {
+    path: "/UpdateUserInfoForm",
+    element: <UpdateUserInfoForm />,
   },
 ]);
 
