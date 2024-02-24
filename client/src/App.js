@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./App.css";
 import "./Medium.css";
 import "./Small.css";
-//import UpdateUserInfoForm from './UpdateUserInfoForm'; // Import the UpdateUserInfoForm component
+
 
 export default function App() {
   const navigate = useNavigate();
