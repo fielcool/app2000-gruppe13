@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Card, Button, Modal } from "react-bootstrap"; // Import Modal from react-bootstrap
+import { Card, Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../AuthContext";  // Adjust the path accordingly
 
-const LoggedInUser = ({ authToken }) => {
+const LoggedInUser = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState('');
+  const { authToken, logout } = useAuth();  // Use the useAuth hook to access authentication function
 
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
@@ -34,7 +36,7 @@ const LoggedInUser = ({ authToken }) => {
       if (response.status === 200) {
         // If the account is deleted successfully, you can perform additional actions
         console.log('Account deleted successfully');
-        // Redirect to the front page after deletion
+        logout();  // Call the logout function to clear the authentication token
         navigate('/');
       } else {
         console.error('Failed to delete account:', response.data);
