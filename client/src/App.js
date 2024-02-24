@@ -16,9 +16,6 @@ export default function App() {
     navigate("/LoginUser");
   };
 
-  const handleUpdateUserInfoClick = () => {
-    navigate("/UpdateUserInfo");
-  };
 
   return (
     <div className="main">
@@ -30,10 +27,6 @@ export default function App() {
         <button onClick={handleUserCreationClick} className="create-user-button">
           Opprett ny bruker
         </button>
-        <button onClick={handleUpdateUserInfoClick} className="update-user-info-button">
-          Update User Info
-        </button>
-        {/* Remove the UpdateUserInfoForm component from here */}
       </div>
     </div>
   );
