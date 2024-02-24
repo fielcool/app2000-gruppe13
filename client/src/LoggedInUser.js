@@ -10,6 +10,7 @@ const LoggedInUser = () => {
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState('');
   const { authToken, logout } = useAuth();  
+  const [showUpdateForm, setShowUpdateForm] = useState(false); // State to toggle the visibility of UpdateUserInfoForm
 
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
@@ -59,7 +60,8 @@ const LoggedInUser = () => {
   };
 
   const handleUpdateUserInfo = () => {
-    navigate('/update-user-info');
+    // Toggle the visibility of UpdateUserInfoForm
+    setShowUpdateForm(true);
   };
 
   return (
@@ -72,7 +74,7 @@ const LoggedInUser = () => {
             Delete Account
           </Button>
 
-          {/* Button to navigate to the update user info page */}
+          {/* Button to toggle the visibility of UpdateUserInfoForm */}
           <Button variant="primary" onClick={handleUpdateUserInfo}>
             Update User Info
           </Button>
@@ -101,8 +103,8 @@ const LoggedInUser = () => {
         </Card.Body>
       </Card>
 
-      {/* Render the UpdateUserInfoForm component when the route is /update-user-info */}
-      <UpdateUserInfoForm path="/update-user-info" />
+      {/* Render the UpdateUserInfoForm component conditionally */}
+      {showUpdateForm && <UpdateUserInfoForm />}
     </div>
   );
 };
