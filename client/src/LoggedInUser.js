@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from "./AuthContext";  // Adjust the path accordingly
+import { useAuth } from "./context/AuthContext";  // Adjust the path accordingly
 
 const LoggedInUser = () => {
   const navigate = useNavigate();
