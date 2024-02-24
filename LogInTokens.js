@@ -4,10 +4,18 @@ const secretKey = process.env.JWT_SECRET; // Replace with a strong, unique secre
 
 // Middleware to verify the token on protected routes
 const verifyToken = (req, res, next) => {
-  console.log('Incoming headers:', req.headers);
-  console.log('Cookies:', req.cookies);
-  const token = req.cookies.token;
-  console.log('Token:', token);
+  let token;
+  
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    // Extract the token from the Authorization header
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.token) {
+    // If there's no Authorization header, check if the token is in cookies
+    token = req.cookies.token;
+  }
 
   if (!token) {
     console.error('Error: Missing token');
