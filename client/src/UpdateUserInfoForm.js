@@ -31,9 +31,7 @@ function UpdateUserInfoForm() {
   };
 
   const handleUpdate = async () => {
-    try {  
-       
-    
+    try {
       // Show password confirmation modal
       setShowModal(true);
     } catch (error) {
@@ -73,10 +71,10 @@ function UpdateUserInfoForm() {
       <Form>
         {/* Input fields for new user information */}
         <Form.Group>
-          <Form.Label>Full Name</Form.Label>
+          <Form.Label>Navn</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter your full name"
+            placeholder="Vennligst skriv inn navnet ditt"
             name="navn"
             value={newUserInfo.navn}
             onChange={handleChange}
@@ -84,10 +82,10 @@ function UpdateUserInfoForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Organization</Form.Label>
+          <Form.Label>Organisasjon</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter your organization"
+            placeholder="Vennligst skriv inn hvilken organisasjon du tilhører"
             name="organisasjon"
             value={newUserInfo.organisasjon}
             onChange={handleChange}
@@ -95,10 +93,10 @@ function UpdateUserInfoForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Job Title</Form.Label>
+          <Form.Label>Stillingstittel</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter your job title"
+            placeholder="Vennligst skriv inn stillingstittelen din"
             name="stillingstittel"
             value={newUserInfo.stillingstittel}
             onChange={handleChange}
@@ -109,7 +107,7 @@ function UpdateUserInfoForm() {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter your email"
+            placeholder="Vennligst skriv inn ny email"
             name="email"
             value={newUserInfo.email}
             onChange={handleChange}
@@ -117,10 +115,10 @@ function UpdateUserInfoForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Passord</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Enter your password"
+            placeholder="Vennligst skriv inn nytt passord"
             name="passord"
             value={newUserInfo.passord}
             onChange={handleChange}
@@ -136,12 +134,12 @@ function UpdateUserInfoForm() {
       {/* Modal for password confirmation */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Password</Modal.Title>
+          <Modal.Title>Bekreft med gammelt passord</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Control
             type="password"
-            placeholder="Skriv inn gammelt passord for bekreftelse"
+            placeholder="Vennligst skriv inn gammelt passord for å bekrefte oppdatering"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
