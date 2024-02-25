@@ -1,25 +1,26 @@
-import React, { useState } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
-import axios from "axios";
-import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
+// UpdateUserInfoForm.js
+import React from "react";
+import { Form, Button } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
+import UserInfoFields from './UserInfoFields'; // New component for user information fields
+import PasswordConfirmationModal from './PasswordConfirmationModal'; // New component for password confirmation modal
+import axios from "axios";
 
 function UpdateUserInfoForm() {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-  const [newUserInfo, setNewUserInfo] = useState({
+  const [showModal, setShowModal] = React.useState(false);
+  const [newUserInfo, setNewUserInfo] = React.useState({
     navn: "",
     organisasjon: "",
     stillingstittel: "",
     email: "",
     passord: ""
   });
-  const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [confirmPassword, setConfirmPassword] = React.useState("");
   const { authToken } = useAuth();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (name, value) => {
     setNewUserInfo((prevInfo) => ({
       ...prevInfo,
       [name]: value,
@@ -30,18 +31,12 @@ function UpdateUserInfoForm() {
     setConfirmPassword(e.target.value);
   };
 
-  const handleUpdate = async () => {
-    try {
-      // Show password confirmation modal
-      setShowModal(true);
-    } catch (error) {
-      console.error("Error updating user information:", error);
-    }
+  const handleUpdate = () => {
+    setShowModal(true);
   };
 
   const confirmUpdate = async () => {
     try {
-      // Make API request to update user information
       const response = await axios.put('/api/update-user-info', {
         ...newUserInfo,
         confirmPassword: confirmPassword,
@@ -54,12 +49,11 @@ function UpdateUserInfoForm() {
 
       if (response.status === 200) {
         console.log("User information updated successfully");
-        navigate('/LoginUser'); 
+        navigate('/LoginUser');
       } else {
         console.error("Failed to update user information");
       }
 
-      // Close the modal after update
       setShowModal(false);
     } catch (error) {
       console.error("Error updating user information:", error);
@@ -69,90 +63,19 @@ function UpdateUserInfoForm() {
   return (
     <div className="update-user-info-form">
       <Form>
-        {/* Input fields for new user information */}
-        <Form.Group>
-          <Form.Label>Navn</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Vennligst skriv inn navnet ditt"
-            name="navn"
-            value={newUserInfo.navn}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Organisasjon</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Vennligst skriv inn hvilken organisasjon du tilhører"
-            name="organisasjon"
-            value={newUserInfo.organisasjon}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Stillingstittel</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Vennligst skriv inn stillingstittelen din"
-            name="stillingstittel"
-            value={newUserInfo.stillingstittel}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Vennligst skriv inn ny email"
-            name="email"
-            value={newUserInfo.email}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Passord</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Vennligst skriv inn nytt passord"
-            name="passord"
-            value={newUserInfo.passord}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        {/* Button to trigger the update process */}
+        <UserInfoFields newUserInfo={newUserInfo} handleChange={handleChange} />
         <Button variant="primary" onClick={handleUpdate}>
           Update User Info
         </Button>
       </Form>
 
-      {/* Modal for password confirmation */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Bekreft med gammelt passord</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form.Control
-            type="password"
-            placeholder="Vennligst skriv inn gammelt passord for å bekrefte oppdatering"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={confirmUpdate}>
-            Confirm
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <PasswordConfirmationModal
+        showModal={showModal}
+        handleClose={() => setShowModal(false)}
+        handleConfirm={confirmUpdate}
+        confirmPassword={confirmPassword}
+        handleConfirmPasswordChange={handleConfirmPasswordChange}
+      />
     </div>
   );
 }
