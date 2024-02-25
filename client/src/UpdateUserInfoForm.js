@@ -32,10 +32,8 @@ function UpdateUserInfoForm() {
 
   const handleUpdate = async () => {
     try {  
-        if (!newUserInfo.navn || !newUserInfo.organisasjon || !newUserInfo.stillingstittel || !newUserInfo.email || !newUserInfo.passord || !confirmPassword) {
-      setRequiredFieldsModal(true);
-      return;
-    }
+       
+    
       // Show password confirmation modal
       setShowModal(true);
     } catch (error) {
@@ -131,24 +129,9 @@ function UpdateUserInfoForm() {
 
         {/* Button to trigger the update process */}
         <Button variant="primary" onClick={handleUpdate}>
-          Oppdater brukerinformasjon
+          Update User Info
         </Button>
       </Form>
-
-      {/* Modal for required fields */}
-      <Modal show={requiredFieldsModal} onHide={handleCloseRequiredFieldsModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Påkrevde felt</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Vennligst fyll inn alle felt.</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseRequiredFieldsModal}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
 
       {/* Modal for password confirmation */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>

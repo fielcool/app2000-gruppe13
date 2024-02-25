@@ -1,12 +1,12 @@
-import { Modal, Button } from "react-bootstrap";
 import React from "react";
+import { Modal, Button } from "react-bootstrap";
 
 export default function ModalAlert(props) {
   return (
     <div className="modal-div">
       <Modal show={props.show} onHide={props.close} className="modal-window">
         <Modal.Body>
-            Vennligst fyll inn alle felt
+          {props.content}
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -14,7 +14,7 @@ export default function ModalAlert(props) {
             onClick={props.close}
             className="modal-btn"
           >
-            OK
+            {props.buttonText}
           </Button>
         </Modal.Footer>
       </Modal>
