@@ -1,5 +1,5 @@
-const { connection1 } = require('../server');
 const mongoose = require('mongoose');
+const { connection1 } = require('../server');
 const bcrypt = require('bcrypt');
 
 
