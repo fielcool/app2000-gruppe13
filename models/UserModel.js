@@ -1,6 +1,7 @@
+const { connection1 } = require('../server');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { connection1 } = require('../server');
+
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
