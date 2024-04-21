@@ -12,7 +12,6 @@ const deleteRoutes = require('./routes/deleteRoutes');
 const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const updateRoutes = require('./routes/updateRoutes');
-const testResultRoutes = require('./routes/testResultRoutes'); // Import test result routes
 const port = process.env.PORT || 8080;
 
 process.on("uncaughtException", function (err) {
@@ -28,9 +27,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("tiny"));
 
-// Routes
+
+
+//  routes
 app.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
-app.use('/api', verifyToken, testResultRoutes); // Protect test result routes with authentication middleware
 
 // Login route
 app.post('/api/login', (req, res) => {
