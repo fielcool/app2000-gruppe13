@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// Get the connection for the brukere database from server.js
+const connection = mongoose.connections.find(connection => connection === connection1);
+
 const userSchema = new mongoose.Schema({
   navn: { type: String, required: true },
   organisasjon: { type: String, required: true },
