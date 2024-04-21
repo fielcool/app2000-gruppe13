@@ -50,26 +50,26 @@ const options = {
 }
 
 //mongo for brukere
-mongoose
-  .connect(process.env.MONGODB_URI, options)
-  .then(() => {
-    console.log("Database connected");
-  })
-  .catch((err) => {
-    console.error("MongoDB Connection Error:", err);
-    process.exit(1); // Exit the process on MongoDB connection error
-  });
+const connection1 = mongoose.createConnection(process.env.MONGODB_URI, options);
+connection1.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
+connection1.once('open', () => {
+  console.log('Database 1 connected');
+});
 
 //mongo til bigfive testene
-mongoose
-  .connect(process.env.MONGODB_URI_2, options) // Connect to the second MongoDB instance
-  .then(() => {
-    console.log("Second MongoDB Database connected");
-  })
-  .catch((err) => {
-    console.error("Second MongoDB Connection Error:", err);
-    process.exit(1); // Exit the process on MongoDB connection error
+const connection2 = mongoose.createConnection(process.env.MONGODB_URI_2, options);
+connection2.on('error', console.error.bind(console, 'Second MongoDB Connection Error:'));
+connection2.once('open', () => {
+  console.log('Second MongoDB Database connected');
+});
+
+// For production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
+}
 
 // For production
 if (process.env.NODE_ENV === "production") {
