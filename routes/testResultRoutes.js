@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const TestResult = require('../models/TestResult');
-const { verifyToken } = require('./LogInTokens'); // Import verifyToken middleware
+const { verifyToken } = require('../LogInTokens'); // Import verifyToken middleware
 
 // Middleware to verify token on protected routes
 router.use(verifyToken);
