@@ -56,7 +56,7 @@ connection1.once('open', () => {
   console.log('Database 1 connected');
 });
 // Export connection1 so it can be accessed in other files
-module.exports.connection1 = connection1;
+module.exports = { connection1 };
 
 //mongo til bigfive testene
 const connection2 = mongoose.createConnection(process.env.MONGODB_URI_2, options);
@@ -65,7 +65,7 @@ connection2.once('open', () => {
   console.log('Database 2 connected');
 });
 // Export connection2 so it can be accessed in other files
-module.exports.connection2 = connection2;
+//module.exports.connection2 = connection2;
 
 // For production
 if (process.env.NODE_ENV === "production") {
