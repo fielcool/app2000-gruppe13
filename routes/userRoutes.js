@@ -1,9 +1,10 @@
+const { connection1 } = require('../server');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
 const loginRoutes = require('./loginRoutes');
-const { connection1 } = require('../server');
+
 
 router.use('/login', loginRoutes);
 router.post('/createUser', async (req, res) => {
