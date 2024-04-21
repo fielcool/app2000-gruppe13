@@ -1,4 +1,4 @@
-const { connection1 } = require('../server');
+//const { connection1 } = require('../server');
 const express = require('express');
 const router = express.Router();
 const { verifyToken } = require('../LogInTokens');

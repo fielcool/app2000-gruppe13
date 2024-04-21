@@ -1,7 +1,7 @@
-const { connection1 } = require('../server');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const { connection1 } = require('../server');
 const User = require('../models/UserModel');
 const loginRoutes = require('./loginRoutes');
 
