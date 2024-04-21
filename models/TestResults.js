@@ -37,6 +37,6 @@ const testResultSchema = new mongoose.Schema({
   ]
 }, { timestamps: true });
 
-const TestResult = mongoose.model('TestResult', testResultSchema);
+const TestResult = mongoose.model('TestResult', testResultSchema, 'results');
 
 module.exports = TestResult;
