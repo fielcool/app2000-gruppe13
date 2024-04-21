@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { connection1 } = require('../server');
 
-
-// Get the connection for the brukere database from server.js
-const connection = mongoose.connections.find(connection => connection === connection1);
-
+// Define the user schema
 const userSchema = new mongoose.Schema({
   navn: { type: String, required: true },
   organisasjon: { type: String, required: true },
@@ -24,6 +21,7 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
   }
 };
 
-const User = connection1.model('users', userSchema, 'users');
+// Create the User model using connection1
+const User = connection1.model('User', userSchema, 'users');
 
 module.exports = User;
