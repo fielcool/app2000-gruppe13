@@ -60,9 +60,9 @@ module.exports.connection1 = connection1;
 
 //mongo til bigfive testene
 const connection2 = mongoose.createConnection(process.env.MONGODB_URI_2, options);
-connection2.on('error', console.error.bind(console, 'Second MongoDB Connection Error:'));
+connection2.on('error', console.error.bind(console, 'MongoDB 2 Connection Error:'));
 connection2.once('open', () => {
-  console.log('Second MongoDB Database connected');
+  console.log('Database 2 connected');
 });
 // Export connection2 so it can be accessed in other files
 module.exports.connection2 = connection2;

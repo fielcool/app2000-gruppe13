@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
+const { connection1 } = require('../server');
 
 // DELETE route for deleting a user account
 router.delete('/user', verifyToken, async (req, res) => {

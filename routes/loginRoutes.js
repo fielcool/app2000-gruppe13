@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
+const { connection1 } = require('../server');
 
 router.post('/login', async (req, res) => {
     try {

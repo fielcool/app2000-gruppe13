@@ -3,6 +3,7 @@ const router = express.Router();
 const { verifyToken } = require('../LogInTokens');
 const User = require('../models/UserModel');
 const bcrypt = require('bcrypt');
+const { connection1 } = require('../server');
 
 // Update user information
 router.put('/update-user-info', verifyToken, async (req, res) => {
