@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+// Import database connections
+const { connection1, connection2 } = require('./database');
 
 const { verifyToken, generateToken } = require('./LogInTokens');
 const deleteRoutes = require('./routes/deleteRoutes');
@@ -19,6 +21,8 @@ process.on("uncaughtException", function (err) {
   console.error("Uncaught Exception:", err);
   process.exit(1); // Exit the process on uncaught exceptions
 });
+
+
 
 const app = express();
 
@@ -43,29 +47,6 @@ app.post('/api/login', (req, res) => {
 // DELETE route for deleting a user account
 app.delete('/api/user', verifyToken, deleteRoutes);
 
-// Database connection
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}
-
-//mongo for brukere
-const connection1 = mongoose.createConnection(process.env.MONGODB_URI, options);
-connection1.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
-connection1.once('open', () => {
-  console.log('Database 1 connected');
-});
-// Export connection1 so it can be accessed in other files
-module.exports = { connection1 };
-
-//mongo til bigfive testene
-const connection2 = mongoose.createConnection(process.env.MONGODB_URI_2, options);
-connection2.on('error', console.error.bind(console, 'MongoDB 2 Connection Error:'));
-connection2.once('open', () => {
-  console.log('Database 2 connected');
-});
-// Export connection2 so it can be accessed in other files
-//module.exports.connection2 = connection2;
 
 // For production
 if (process.env.NODE_ENV === "production") {

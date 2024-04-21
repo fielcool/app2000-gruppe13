@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const { connection1 } = require('../server');
+const { connection1 } = require('../database'); // Import the database connection
 const bcrypt = require('bcrypt');
-
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
