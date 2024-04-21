@@ -49,6 +49,7 @@ const options = {
   useUnifiedTopology: true,
 }
 
+//mongo for brukere
 mongoose
   .connect(process.env.MONGODB_URI, options)
   .then(() => {
@@ -56,6 +57,17 @@ mongoose
   })
   .catch((err) => {
     console.error("MongoDB Connection Error:", err);
+    process.exit(1); // Exit the process on MongoDB connection error
+  });
+
+//mongo til bigfive testene
+mongoose
+  .connect(process.env.MONGODB_URI_2, options) // Connect to the second MongoDB instance
+  .then(() => {
+    console.log("Second MongoDB Database connected");
+  })
+  .catch((err) => {
+    console.error("Second MongoDB Connection Error:", err);
     process.exit(1); // Exit the process on MongoDB connection error
   });
 
