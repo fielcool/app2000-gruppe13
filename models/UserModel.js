@@ -1,6 +1,7 @@
+const { connection1 } = require('../server');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { connection1 } = require('../server');
+
 
 // Get the connection for the brukere database from server.js
 const connection = mongoose.connections.find(connection => connection === connection1);
