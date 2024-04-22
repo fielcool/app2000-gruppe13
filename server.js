@@ -34,17 +34,7 @@ app.use(morgan("tiny"));
 // Routes
 appMiddleware.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
 appMiddleware.use('/api', testResultRoutes); // Protect test result routes with authentication middleware
-
-// Login route
-appMiddleware.post('/api/login', (req, res) => {
-  // Authenticate user, generate a token, and send it back in the response cookie
-  const user = { id: 1, username: 'example' };
-  const token = generateToken(user);
-  res.cookie('token', token, { httpOnly: true, sameSite: 'strict' }).sendStatus(200);
-});
-
-// DELETE route for deleting a user account
-appMiddleware.delete('/api/user', verifyToken, deleteRoutes);
+appMiddleware.delete('/api', verifyToken, deleteRoutes);
 
 // For production
 if (process.env.NODE_ENV === "production") {
