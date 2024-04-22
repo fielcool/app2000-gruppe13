@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-// Import database connections
 const { connection1, connection2 } = require('./database');
 
 const { verifyToken, generateToken } = require('./LogInTokens');
@@ -33,11 +32,11 @@ app.use(cookieParser());
 app.use(morgan("tiny"));
 
 // Routes
-app.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
-app.use('/api', testResultRoutes); // Protect test result routes with authentication middleware
+appMiddleware.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
+appMiddleware.use('/api', testResultRoutes); // Protect test result routes with authentication middleware
 
 // Login route
-app.post('/api/login', (req, res) => {
+appMiddleware.post('/api/login', (req, res) => {
   // Authenticate user, generate a token, and send it back in the response cookie
   const user = { id: 1, username: 'example' };
   const token = generateToken(user);
@@ -45,25 +44,23 @@ app.post('/api/login', (req, res) => {
 });
 
 // DELETE route for deleting a user account
-app.delete('/api/user', verifyToken, deleteRoutes);
-
+appMiddleware.delete('/api/user', verifyToken, deleteRoutes);
 
 // For production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
+  appMiddleware.use(express.static("client/build"));
+  appMiddleware.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
-
 // Error handling middleware
-app.use((err, req, res, next) => {
+appMiddleware.use((err, req, res, next) => {
   console.error("Error:", err);
   res.status(500).json({ error: 'Internal Server Error' });
 });
 
 // Server
-app.listen(port, function () {
+appMiddleware.listen(port, function () {
   console.log("Express server launched...");
 });
