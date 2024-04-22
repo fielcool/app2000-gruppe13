@@ -7,7 +7,7 @@ const path = require("path");
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const { connection1, connection2 } = require('./database');
-
+const appMiddleware = require('./middleware');
 const { verifyToken, generateToken } = require('./LogInTokens');
 const deleteRoutes = require('./routes/deleteRoutes');
 const userRoutes = require('./routes/userRoutes');
