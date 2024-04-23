@@ -1,21 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/UserModel');
 const { protect } = require('../middleware');
+const User = require('../models/UserModel');
 
-// Route to update the user's testId
+// Update user's testId
 router.put('/updateTestId', protect, async (req, res) => {
   try {
     const { testId } = req.body;
-    const userId = req.user._id; // Assuming the user ID is available in the request object
+    const userId = req.user._id;
 
     // Update the user's testId
-    await User.findByIdAndUpdate(userId, { testId });
+    const updatedUser = await User.findByIdAndUpdate(userId, { testId }, { new: true });
 
-    res.status(200).json({ message: 'TestId updated successfully' });
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'TestId updated successfully', user: updatedUser });
   } catch (error) {
     console.error('Error updating testId:', error);
-    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

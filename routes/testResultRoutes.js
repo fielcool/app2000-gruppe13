@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { connection1 } = require('../database');
 const TestResult = require('../models/TestResult');
 const { verifyToken } = require('../LogInTokens'); // Import verifyToken middleware
 
