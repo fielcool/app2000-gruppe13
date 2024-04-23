@@ -12,8 +12,8 @@ function PersonalityTestIdForm({ authToken }) {
     e.preventDefault();
     try {
       console.log("Sending request to save personality test ID...");
-      await axios.post(
-        "/api/updateTestId",
+      await axios.put(
+        "/api/updateTestId", // Using PUT request to match backend route
         { testId },
         {
           headers: {
