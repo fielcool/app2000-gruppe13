@@ -3,12 +3,12 @@ const cors = require("cors");
 const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
 
-const appMiddleware = express.Router(); // Create a router instance
+const app = express();
 
 // Middleware
-appMiddleware.use(cors());
-appMiddleware.use(express.json());
-appMiddleware.use(cookieParser());
-appMiddleware.use(morgan("tiny"));
+app.use(cors());
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan("tiny"));
 
-module.exports = appMiddleware;
+module.exports = app;
