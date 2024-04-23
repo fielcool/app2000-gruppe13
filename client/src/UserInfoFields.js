@@ -59,6 +59,16 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           onChange={(e) => handleChange(e.target.name, e.target.value)}
         />
       </Form.Group>
+      <Form.Group>
+        <Form.Label>Test Id</Form.Label>
+        <Form.Control
+          type="TestId"
+          placeholder="Legg inn test ID om du allerede har en"
+          name="TestId"
+          value={newUserInfo.passord}
+          onChange={(e) => handleChange(e.target.name, e.target.value)}
+        />
+      </Form.Group>
     </>
   );
 }
