@@ -69,10 +69,28 @@ const LoggedInUser = () => {
     setTestId(e.target.value);
   };
 
-  const handleSaveTestId = () => {
-    // Logic to save the testId to the user or organization
-    console.log('Test ID:', testId);
-    // Add your logic here to save the testId
+  const handleSaveTestId = async () => {
+    try {
+      const response = await axios.put(
+        'https://b5-usn-506fb35bcb0a.herokuapp.com/api/updateTestId',
+        { testId },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      if (response.status === 200) {
+        console.log('Test ID saved successfully');
+        // Optionally, you can update the UI or perform other actions upon successful save
+      } else {
+        console.error('Failed to save test ID:', response.data);
+      }
+    } catch (error) {
+      console.error('Error saving test ID:', error);
+    }
   };
 
   return (
