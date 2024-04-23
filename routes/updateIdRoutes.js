@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('../middleware');
+const { verifyToken } = require('../LogInTokens');
 const User = require('../models/UserModel');
 
 // Route to update the user's testId
-router.put('/updateTestId', protect, async (req, res) => {
+router.put('/updateTestId', verifyToken, async (req, res) => {
   try {
     const { testId } = req.body;
     const userId = req.user._id; // Assuming the user ID is available in the request object
