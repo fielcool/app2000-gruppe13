@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   stillingstittel: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   passord: { type: String, required: true },
-  personalityTestId: { type: String } // Add personalityTestId field
+  testId: { type: String } // Add personalityTestId field
 });
 
 // Adding a method to compare passwords during login

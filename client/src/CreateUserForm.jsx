@@ -60,7 +60,7 @@ function CreateUserForm() {
     }
 
     try {
-      const { navn, organisasjon, stillingstittel, email, passord } = input;
+      const { navn, organisasjon, stillingstittel, email, passord, testId } = input;
 
       const isUserRegistered = await registerUser({
         navn,
@@ -68,6 +68,7 @@ function CreateUserForm() {
         stillingstittel,
         email,
         passord,
+        testId,
       });
 
       if (isUserRegistered) {
