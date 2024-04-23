@@ -11,6 +11,7 @@ function PersonalityTestIdForm({ authToken }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("Sending request to save personality test ID...");
       await axios.post(
         "/api/savePersonalityTestId",
         { testId },

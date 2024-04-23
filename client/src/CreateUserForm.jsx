@@ -12,7 +12,7 @@ function CreateUserForm() {
     stillingstittel: "",
     email: "",
     passord: "",
-    testId: " ", // Added testId field
+    testId: " ", 
   });
 
   const handleChange = (e) => {
