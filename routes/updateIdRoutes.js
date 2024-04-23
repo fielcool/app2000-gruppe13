@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/UserModel');
 const { protect } = require('../middleware');
+const User = require('../models/UserModel');
 
 // Route to update the user's testId
 router.put('/updateTestId', protect, async (req, res) => {
