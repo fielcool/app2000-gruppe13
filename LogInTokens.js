@@ -28,9 +28,9 @@ const verifyToken = (req, res, next) => {
       return res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
 
-    console.log('Decoded token:', decoded); // Log the entire decoded token
+    console.log('Decoded token:', decoded); // Log the entire decoded token .... >>remove this<<
 
-    req.user = decoded; // Attach the user information to the request
+    req.user = decoded; // Attach the user information to the request ---- >>>remove this<<<
 
     next();
   });
