@@ -7,7 +7,7 @@ const path = require("path");
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const { connection1, connection2 } = require('./database');
-const appMiddleware = require('./middleware');
+const appMiddleware = require('./middleware'); // Import the app object from middleware.js
 const { verifyToken, generateToken } = require('./LogInTokens');
 const deleteRoutes = require('./routes/deleteRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -20,16 +20,6 @@ process.on("uncaughtException", function (err) {
   console.error("Uncaught Exception:", err);
   process.exit(1); // Exit the process on uncaught exceptions
 });
-
-
-
-const app = express();
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(cookieParser());
-app.use(morgan("tiny"));
 
 // Routes
 appMiddleware.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
