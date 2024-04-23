@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   organisasjon: { type: String, required: true },
   stillingstittel: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  passord: { type: String, required: true }
+  passord: { type: String, required: true },
+  personalityTestId: { type: String } // Add personalityTestId field
 });
 
 // Adding a method to compare passwords during login

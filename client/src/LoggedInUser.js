@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, Modal } from "react-bootstrap";
+import { Card, Button, Modal, Form } from "react-bootstrap"; // Import Form component from react-bootstrap
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "./context/AuthContext";  
@@ -11,6 +11,7 @@ const LoggedInUser = () => {
   const [password, setPassword] = useState('');
   const { authToken, logout } = useAuth();  
   const [showUpdateForm, setShowUpdateForm] = useState(false); // State to toggle the visibility of UpdateUserInfoForm
+  const [testId, setTestId] = useState(''); // State to store the personality test ID
 
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
@@ -64,6 +65,16 @@ const LoggedInUser = () => {
     setShowUpdateForm(true);
   };
 
+  const handleTestIdChange = (e) => {
+    setTestId(e.target.value);
+  };
+
+  const handleSaveTestId = () => {
+    // Logic to save the testId to the user or organization
+    console.log('Test ID:', testId);
+    // Add your logic here to save the testId
+  };
+
   return (
     <div className="main">
       <Card style={{ width: '44rem' }}>
@@ -77,6 +88,22 @@ const LoggedInUser = () => {
           <Button variant="primary" onClick={handleUpdateUserInfo}>
             Oppdater brukerinformasjon
           </Button>
+
+          {/* Add Form for entering test ID */}
+          <Form>
+            <Form.Group controlId="testId">
+              <Form.Label>Personality Test ID</Form.Label>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter test ID" 
+                value={testId} 
+                onChange={handleTestIdChange} 
+              />
+            </Form.Group>
+            <Button variant="primary" onClick={handleSaveTestId}>
+              Save Test ID
+            </Button>
+          </Form>
 
           <Modal show={showModal} onHide={handleCancel}>
             <Modal.Header closeButton>
