@@ -13,7 +13,7 @@ const deleteRoutes = require('./routes/deleteRoutes');
 const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const updateRoutes = require('./routes/updateRoutes');
-const savePersonalityTestRoutes = require('./routes/savePersonalityTestRoutes');
+const updateIdRoutes = require('./routes/updateIdRoutes');
 
 const testResultRoutes = require('./routes/testResultRoutes'); // Import test result routes
 const port = process.env.PORT || 8080;
@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(morgan("tiny"));
 
 // Routes
-appMiddleware.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes, savePersonalityTestRoutes);
+appMiddleware.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes, updateIdRoutes);
 appMiddleware.use('/api', testResultRoutes); // Protect test result routes with authentication middleware
 appMiddleware.delete('/api', verifyToken, deleteRoutes);
 
