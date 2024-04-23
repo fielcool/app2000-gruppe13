@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; 
@@ -13,6 +12,7 @@ function CreateUserForm() {
     stillingstittel: "",
     email: "",
     passord: "",
+    testId: "",
   });
 
   const handleChange = (e) => {
@@ -96,9 +96,19 @@ function CreateUserForm() {
               className="credentials-input m-credentials-input"
             />
           ))}
+          {/* Input field for the testId */}
+          <Form.Control
+            autoComplete="off"
+            type="text"
+            placeholder="Test ID"
+            name="testId"
+            value={input.testId}
+            onChange={handleChange}
+            className="credentials-input m-credentials-input"
+          />
         </Form.Group>
         <Button type="submit" variant="primary">
-          opprett bruker
+          Opprett bruker
         </Button>
       </Form>
     </div>
