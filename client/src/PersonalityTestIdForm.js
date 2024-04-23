@@ -13,7 +13,7 @@ function PersonalityTestIdForm({ authToken }) {
     try {
       console.log("Sending request to save personality test ID...");
       await axios.post(
-        "/api/savePersonalityTestId",
+        "/api/updateTestId",
         { testId },
         {
           headers: {
