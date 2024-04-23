@@ -12,7 +12,7 @@ function CreateUserForm() {
     stillingstittel: "",
     email: "",
     passord: "",
-    testId: "",
+    testId: "", // Added testId field
   });
 
   const handleChange = (e) => {
@@ -96,16 +96,6 @@ function CreateUserForm() {
               className="credentials-input m-credentials-input"
             />
           ))}
-          {/* Input field for the testId */}
-          <Form.Control
-            autoComplete="off"
-            type="text"
-            placeholder="Test ID"
-            name="testId"
-            value={input.testId}
-            onChange={handleChange}
-            className="credentials-input m-credentials-input"
-          />
         </Form.Group>
         <Button type="submit" variant="primary">
           Opprett bruker
