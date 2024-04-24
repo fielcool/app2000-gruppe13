@@ -9,6 +9,7 @@ import LoginUser from "./LoginUser";
 import CreateUserForm from "./CreateUserForm";
 import LoggedInUser from "./LoggedInUser";
 import UpdateUserInfoForm from "./UpdateUserInfoForm";
+import OrgOverview from "./OrgOverview";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/UpdateUserInfoForm",
     element: <UpdateUserInfoForm />,
+  },
+  {
+    path: "/OrgOverview",
+    element: <OrgOverview />,
   },
 ]);
 

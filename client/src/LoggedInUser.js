@@ -64,6 +64,11 @@ const LoggedInUser = () => {
     setShowUpdateForm(true);
   };
 
+  const handleGoToOrgOverview = () => {
+    // Navigate to OrgOverview site
+    navigate('/OrgOverview');
+  };
+
   return (
     <div className="main">
       <Card style={{ width: '44rem' }}>
@@ -75,6 +80,10 @@ const LoggedInUser = () => {
 
           <Button variant="primary" onClick={handleUpdateUserInfo}>
             Oppdater brukerinformasjon
+          </Button>
+
+          <Button variant="info" onClick={handleGoToOrgOverview}>
+            Go to OrgOverview
           </Button>
 
           <PersonalityTestIdForm authToken={authToken} />
