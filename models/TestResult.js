@@ -48,11 +48,11 @@ const testResultSchema = new mongoose.Schema({
     }
   },
   timeElapsed: {
-    type: mongoose.Schema.Types.Int32,
+    type: Number,
     required: true
   },
   dateStamp: {
-    type: mongoose.Schema.Types.Double,
+    type: Number,
     required: true
   }
 }, { timestamps: true });
