@@ -12,13 +12,25 @@ const OrgOverview = () => {
 
   useEffect(() => {
     const fetchChartData = async () => {
-      try {
-        const response = await axios.get('/api/pieChart');
-        setChartData(response.data);
-      } catch (error) {
-        console.error('Error fetching pie chart data:', error);
-      }
-    };
+        try {
+          const authToken = localStorage.getItem('authToken'); // Assuming the token is stored in localStorage
+          if (!authToken) {
+            throw new Error('Missing token');
+          }
+      
+          const response = await axios.get('/api/pieChart', {
+            headers: {
+              Authorization: `Bearer ${authToken}`
+            }
+          });
+          setChartData(response.data);
+        } catch (error) {
+          console.error('Error fetching pie chart data:', error);
+          // Handle the error gracefully, e.g., redirect to login page
+          navigate('/login');
+        }
+      };
+      
 
     fetchChartData();
   }, []); // Empty dependency array ensures the effect runs only once on mount
