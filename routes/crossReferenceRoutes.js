@@ -9,6 +9,9 @@ router.get('/pieChart', verifyToken, async (req, res) => {
   try {
     const organisasjon = req.user.organisasjon;
 
+    // Log the organization for debugging
+    console.log('Organization:', organisasjon);
+
     // Aggregate test scores for the organization
     const aggregateScores = await User.aggregate([
       {
@@ -33,11 +36,17 @@ router.get('/pieChart', verifyToken, async (req, res) => {
       }
     ]);
 
+    // Log the aggregated scores for debugging
+    console.log('Aggregate Scores:', aggregateScores);
+
     // Format aggregated scores into data suitable for a pie chart
     const pieChartData = aggregateScores.map(score => ({
       domain: score._id,
       score: score.totalScore
     }));
+
+    // Log the formatted pie chart data for debugging
+    console.log('Pie Chart Data:', pieChartData);
 
     // Respond with the formatted pie chart data
     res.status(200).json(pieChartData);
