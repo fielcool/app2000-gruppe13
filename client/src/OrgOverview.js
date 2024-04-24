@@ -1,16 +1,22 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { useAuth } from "./context/AuthContext";  
+import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { useAuth } from './context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import PieChart from './PieChart';
 
 const OrgOverview = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const [chartData, setChartData] = useState([]);
+
+  // Mock data for demonstration purposes
+  useEffect(() => {
+    // Replace this with actual data from your API
+    setChartData([30, 20, 40, 25, 35]);
+  }, []);
 
   const handleLogout = () => {
-    // Perform logout action
     logout();
-    // Redirect to login page or any other page
     navigate('/');
   };
 
@@ -18,10 +24,8 @@ const OrgOverview = () => {
     <div className="org-overview">
       <h1>Org Overview</h1>
       <Button variant="danger" onClick={handleLogout}>Logout</Button>
-      {/* Placeholder for pie chart */}
       <div className="pie-chart-container">
-        {/* Add your pie chart component here */}
-        <p>Pie Chart will be displayed here</p>
+        <PieChart data={chartData} />
       </div>
     </div>
   );
