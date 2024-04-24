@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const TestResult = require('../models/TestResultModel');
+const TestResult = require('../models/TestResult');
 const { protect } = require('../middleware');
 
 // Route to aggregate test scores and generate pie chart data
