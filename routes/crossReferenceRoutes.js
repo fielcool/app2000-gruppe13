@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const router = express.Router();
 const TestResult = require('../models/TestResult');
@@ -10,7 +8,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
   try {
     const organization = req.user.organization;
 
-    // Aggregate test scores for users within the organization
+    // Adjust the timeout limit for the aggregation operation
     const aggregateScores = await TestResult.aggregate([
       {
         $match: { organization } // Filter by organization
@@ -21,7 +19,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
           totalScore: { $sum: '$score' } // Aggregate scores for each domain
         }
       }
-    ]);
+    ]).option({ maxTimeMS: 20000 }); // Increase timeout to 20 seconds (20000 milliseconds)
 
     // Format aggregated scores into data suitable for a pie chart
     const pieChartData = aggregateScores.map(score => ({
