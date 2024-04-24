@@ -27,7 +27,7 @@ const OrgOverview = () => {
         } catch (error) {
           console.error('Error fetching pie chart data:', error);
           // Handle the error gracefully, e.g., redirect to login page
-          navigate('/login');
+          navigate('/LoggedInUser');
         }
       };
       

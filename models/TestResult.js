@@ -1,6 +1,7 @@
 // models/TestResult.js
 
 const mongoose = require('mongoose');
+const { connection2 } = require('../database');
 
 const testResultSchema = new mongoose.Schema({
   testId: {
@@ -37,6 +38,6 @@ const testResultSchema = new mongoose.Schema({
   ]
 }, { timestamps: true });
 
-const TestResult = mongoose.model('TestResults', testResultSchema, 'results');
+const TestResult = connection2.model('TestResults', testResultSchema, 'results');
 
 module.exports = TestResult;
