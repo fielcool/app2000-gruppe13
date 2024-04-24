@@ -1,3 +1,4 @@
+/*
 const express = require('express');
 const router = express.Router();
 const TestResult = require('../models/TestResult');
@@ -46,3 +47,4 @@ router.post('/testResults/associate', async (req, res) => {
 });
 
 module.exports = router;
+*/
