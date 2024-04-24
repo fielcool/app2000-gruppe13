@@ -8,7 +8,7 @@ const loginRoutes = require('./loginRoutes');
 router.use('/login', loginRoutes);
 router.post('/createUser', async (req, res) => {
   try {
-    const { navn, email, passord, organisasjon, stillingstittel, testId} = req.body;
+    const { navn, email, passord, organisasjon, stillingstittel, resultatId} = req.body;
 
     // Check if the user with the provided email already exists
     const existingUser = await User.findOne({ email }).exec();
@@ -26,7 +26,7 @@ router.post('/createUser', async (req, res) => {
       stillingstittel,
       email,
       passord: hashedPassword,
-      testId,
+      resultatId,
       // Add other fields as needed
     });
 
