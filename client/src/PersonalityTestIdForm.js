@@ -13,7 +13,7 @@ function PersonalityTestIdForm({ authToken }) {
     try {
       console.log("Sending request to save personality test ID...");
       await axios.put(
-        "/api/updateTestId", // Using PUT request to match backend route
+        "/api/updateTestId", 
         { testId },
         {
           headers: {

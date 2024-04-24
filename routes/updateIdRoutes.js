@@ -7,13 +7,14 @@ const User = require('../models/UserModel');
 router.put('/updateTestId', verifyToken, async (req, res) => {
   try {
     const { testId } = req.body;
-    const userId = req.user._id; // Assuming the user ID is available in the request object
+    const userId = req.user.userId; // Assuming the user ID is available in the request object
 
     console.log('Received testId:', testId);
     console.log('Updating testId for user:', userId);
 
     // Update the user's testId
-    await User.findByIdAndUpdate(userId, { testId });
+    await User.findByIdAndUpdate(userId, { testId },
+    {new: true});
 
     console.log('TestId updated successfully');
 
