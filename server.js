@@ -14,7 +14,7 @@ const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const updateIdRoutes = require('./routes/updateIdRoutes');
-const crossReferenceRoutes = require('./routes/crossReferenceRoutes');
+//const crossReferenceRoutes = require('./routes/crossReferenceRoutes');
 
 const testResultRoutes = require('./routes/testResultRoutes'); // Import test result routes
 const port = process.env.PORT || 8080;
@@ -27,7 +27,7 @@ process.on("uncaughtException", function (err) {
 // Routes
 appMiddleware.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
 appMiddleware.use('/api', updateIdRoutes);
-appMiddleware.use('/api', crossReferenceRoutes);
+//appMiddleware.use('/api', crossReferenceRoutes);
 appMiddleware.use('/api', testResultRoutes); // Protect test result routes with authentication middleware
 appMiddleware.delete('/api', verifyToken, deleteRoutes);
 
