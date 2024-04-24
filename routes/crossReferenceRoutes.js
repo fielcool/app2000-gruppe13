@@ -12,7 +12,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
 
     // Retrieve data from the 'brukere' database (connection1)
     const User = connection1.model('User', UserModel);
-    const TestResultModel = connection2.model('TestResult', TestResult);
+
 
      // Perform aggregation
      const aggregateScores = await User.aggregate([
@@ -21,7 +21,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
         },
         {
           $lookup: {
-            from: TestResultModel.collection.name,
+            from: TestResult.collection.name,
             localField: "testId",
             foreignField: "_id",
             as: "testResults"
