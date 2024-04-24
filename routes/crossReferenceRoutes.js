@@ -1,25 +1,37 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/UserModel');
 const TestResult = require('../models/TestResult');
 const { verifyToken } = require('../LogInTokens');
 
 // Route to aggregate test scores and generate pie chart data
 router.get('/pieChart', verifyToken, async (req, res) => {
   try {
-    const organization = req.user.organization;
+    const organization = req.user.organisasjon;
 
-    // Adjust the timeout limit for the aggregation operation
-    const aggregateScores = await TestResult.aggregate([
+    // Aggregate test scores for the organization
+    const aggregateScores = await User.aggregate([
       {
-        $match: { organization } // Filter by organization
+        $match: { organisasjon: organisasjon } // Filter by organization
+      },
+      {
+        $lookup: {
+          from: "testResults",
+          localField: "testId",
+          foreignField: "_id",
+          as: "testResults"
+        }
+      },
+      {
+        $unwind: "$testResults" // Unwind the array of test results
       },
       {
         $group: {
-          _id: '$domain',
-          totalScore: { $sum: '$score' } // Aggregate scores for each domain
+          _id: "$testResults.domain",
+          totalScore: { $sum: "$testResults.score" }
         }
       }
-    ]).exec({ maxTimeMS: 20000 }); // Increase timeout to 20 seconds (20000 milliseconds)
+    ]);
 
     // Format aggregated scores into data suitable for a pie chart
     const pieChartData = aggregateScores.map(score => ({
@@ -27,6 +39,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
       score: score.totalScore
     }));
 
+    // Respond with the formatted pie chart data
     res.status(200).json(pieChartData);
   } catch (error) {
     console.error('Error generating pie chart data:', error);
