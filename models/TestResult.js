@@ -48,7 +48,7 @@ const testResultSchema = new mongoose.Schema({
     }
   },
   timeElapsed: {
-    type: Int32,
+    type: mongoose.Schema.Types.Int32,
     required: true
   },
   dateStamp: {
