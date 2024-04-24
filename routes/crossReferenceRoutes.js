@@ -1,12 +1,12 @@
-/*
+
 
 const express = require('express');
 const router = express.Router();
 const TestResult = require('../models/TestResult');
-const { protect } = require('../middleware');
+const { verifyToken } = require('../LogInTokens');
 
 // Route to aggregate test scores and generate pie chart data
-router.get('/pieChart', protect, async (req, res) => {
+router.get('/pieChart', verifyToken, async (req, res) => {
   try {
     const organization = req.user.organization;
 
@@ -37,4 +37,3 @@ router.get('/pieChart', protect, async (req, res) => {
 });
 
 module.exports = router;
-*/

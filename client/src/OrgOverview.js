@@ -3,17 +3,25 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from './context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import PieChart from './PieChart';
+import axios from 'axios'; // Import Axios for making HTTP requests
 
 const OrgOverview = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [chartData, setChartData] = useState([]);
 
-  // Mock data for demonstration purposes
   useEffect(() => {
-    // Replace this with actual data from your API
-    setChartData([30, 20, 40, 25, 35]);
-  }, []);
+    const fetchChartData = async () => {
+      try {
+        const response = await axios.get('/api/pieChart');
+        setChartData(response.data);
+      } catch (error) {
+        console.error('Error fetching pie chart data:', error);
+      }
+    };
+
+    fetchChartData();
+  }, []); // Empty dependency array ensures the effect runs only once on mount
 
   const handleLogout = () => {
     logout();
