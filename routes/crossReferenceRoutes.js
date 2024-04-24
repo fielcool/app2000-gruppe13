@@ -7,7 +7,7 @@ const { verifyToken } = require('../LogInTokens');
 // Route to aggregate test scores and generate pie chart data
 router.get('/pieChart', verifyToken, async (req, res) => {
   try {
-    const organization = req.user.organisasjon;
+    const organisasjon = req.user.organisasjon;
 
     // Aggregate test scores for the organization
     const aggregateScores = await User.aggregate([
