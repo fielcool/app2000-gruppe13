@@ -28,9 +28,9 @@ const verifyToken = (req, res, next) => {
       return res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
 
-    console.log('Decoded token:', decoded); // Log the entire decoded token .... >>remove this<<
+    console.log('Decoded token:', decoded); // Log the entire decoded token
 
-    req.user = decoded; // Attach the user information to the request ---- >>>remove this<<<
+    req.user = decoded; // Attach the user information to the request
 
     next();
   });
@@ -38,7 +38,10 @@ const verifyToken = (req, res, next) => {
 
 // Token generation
 const generateToken = (user) => {
-  const payload = { userId: user.id, username: user.username };
+  const payload = {
+    userId: user.id,
+    username: user.username,
+    organization: user.organisasjon };
   const options = { expiresIn: process.env.JWT_EXPIRATION_TIME || '1h' };
   return jwt.sign(payload, secretKey, options);
 };
