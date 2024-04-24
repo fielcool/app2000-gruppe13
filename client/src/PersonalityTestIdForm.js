@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function PersonalityTestIdForm({ authToken }) {
-  const [testId, setTestId] = useState("");
+  const [resultatId, setTestId] = useState("");
 
   const handleTestIdChange = (e) => {
     setTestId(e.target.value);
@@ -14,7 +14,7 @@ function PersonalityTestIdForm({ authToken }) {
       console.log("Sending request to save personality test ID...");
       await axios.put(
         "/api/updateTestId", 
-        { testId },
+        { resultatId },
         {
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -32,7 +32,7 @@ function PersonalityTestIdForm({ authToken }) {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={testId}
+        value={resultatId}
         onChange={handleTestIdChange}
         placeholder="Paste your personality test ID here"
       />

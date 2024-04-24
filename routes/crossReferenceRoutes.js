@@ -22,7 +22,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
         {
           $lookup: {
             from: TestResult.collection.name,
-            localField: "testId",
+            localField: "resultatId",
             foreignField: "_id",
             as: "testResults"
           }
