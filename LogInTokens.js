@@ -41,7 +41,7 @@ const generateToken = (user) => {
   const payload = {
     userId: user.id,
     username: user.username,
-    organization: user.organisasjon };
+    organisasjon: user.organisasjon };
   const options = { expiresIn: process.env.JWT_EXPIRATION_TIME || '1h' };
   return jwt.sign(payload, secretKey, options);
 };
