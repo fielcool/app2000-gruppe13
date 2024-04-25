@@ -20,7 +20,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
         },
         {
             $lookup: {
-                from: results, // This needs to match the actual collection name in the database
+                from: "results", // This needs to match the actual collection name in the database
                 localField: "resultatId",
                 foreignField: "_id",
                 as: "testResults"
