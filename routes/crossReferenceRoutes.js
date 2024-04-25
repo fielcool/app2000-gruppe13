@@ -10,9 +10,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
         const organisasjon = req.user.organisasjon;
         console.log('Organisation:', organisasjon);
 
-        // Define models using the respective connections
-        const User = connection1.models.User || connection1.model('User', userSchema);
-        const TestResult = connection2.models.TestResult || connection2.model('TestResult', testResult);
+
 
         console.log('Checking database connections...');
         console.log('User model ready:', !!User);
