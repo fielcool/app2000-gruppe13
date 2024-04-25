@@ -1,3 +1,4 @@
+// PieChart.js
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
@@ -7,19 +8,13 @@ const PieChart = ({ data }) => {
   useEffect(() => {
     if (data && data.length > 0) {
       const ctx = chartRef.current.getContext('2d');
-
-      // Assuming data is directly an array of numbers [N, E, O, A, C]
-      // If data comes in as objects or needs transformation you would handle it here
-      // For example:
-      // const chartData = data.map(item => item.score); // Transform if data is [{domain: 'N', score: 10}, ...]
-
       new Chart(ctx, {
         type: 'pie',
         data: {
           labels: ['Neuroticism', 'Extraversion', 'Openness to Experience', 'Agreeableness', 'Conscientiousness'],
           datasets: [{
             label: 'Domain Scores',
-            data: data,  // Use chartData if transformed
+            data: data,
             backgroundColor: [
               'rgba(255, 99, 132, 0.5)',
               'rgba(54, 162, 235, 0.5)',
@@ -42,6 +37,10 @@ const PieChart = ({ data }) => {
           plugins: {
             legend: {
               position: 'top',
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
             },
           }
         }
