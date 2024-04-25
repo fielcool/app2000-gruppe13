@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
+const { connection2 } = require('../database'); 
 
-// Define the test result schema
+
 const testResultSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
-  },
   testId: {
     type: String,
     required: true
@@ -18,35 +15,24 @@ const testResultSchema = new mongoose.Schema({
     type: Boolean,
     required: true
   },
-  answers: {
-    type: [
-      {
-        questionID: {
-          type: String,
-          required: true
-        },
-        score: {
-          type: Number,
-          required: true
-        },
-        domain: {
-          type: String,
-          required: true
-        },
-        facet: {
-          type: Number,
-          required: true
-        }
-      }
-    ],
-    required: true,
-    validate: {
-      validator: function(v) {
-        return v.length === 120; 
-      },
-      message: props => `${props.value} is not a valid length for answers array.`
+  answers: [{
+    questionID: {
+      type: String,
+      required: true
+    },
+    score: {
+      type: Number,
+      required: true
+    },
+    domain: {
+      type: String,
+      required: true
+    },
+    facet: {
+      type: Number,
+      required: true
     }
-  },
+  }],
   timeElapsed: {
     type: Number,
     required: true
@@ -57,5 +43,10 @@ const testResultSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Export the test result schema
-module.exports = testResultSchema;
+
+
+// Create the TestResult model using the connection2 instance
+const TestResult = connection2.model('TestResult', testResultSchema);
+
+// Export the TestResult model
+module.exports = TestResult;
