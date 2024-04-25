@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { connection2 } = require('../database');
 
 const testResultSchema = new mongoose.Schema({
   _id: {
@@ -56,4 +57,6 @@ const testResultSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-module.exports = testResultSchema;
+const TestResult = connection2.model('TestResults', testResultSchema, 'results');
+
+module.exports = TestResult;
