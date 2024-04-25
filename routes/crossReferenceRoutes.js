@@ -44,7 +44,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
 
     // Log the aggregated scores for debugging
     console.log('Aggregate Scores:', aggregateScores);
-
+    console.log('Aggregation Query:', JSON.stringify(aggregateScores));
     // Format aggregated scores into data suitable for a pie chart
     const pieChartData = aggregateScores.map(score => ({
       domain: score._id,
