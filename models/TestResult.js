@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { connection2 } = require('../database'); 
+const connection2 = require('../database').connection2;
+
 
 
 const testResultSchema = new mongoose.Schema({
@@ -45,8 +46,5 @@ const testResultSchema = new mongoose.Schema({
 
 
 
-// Create the TestResult model using the connection2 instance
-const TestResult = connection2.model('TestResult', testResultSchema);
-
 // Export the TestResult model
-module.exports = TestResult;
+module.exports = connection2.model('TestResult', testResultSchema);
