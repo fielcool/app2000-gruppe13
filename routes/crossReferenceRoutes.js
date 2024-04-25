@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { connection1, connection2 } = require('../database'); // Import the database connections
 const { verifyToken } = require('../LogInTokens');
-const UserModel = require('../models/UserModel');
-const TestResult = require('../models/TestResult');
+const userSchema = require('../models/UserModel');
+const testResultSchema = require('../models/TestResult');
 
 
 // Route to aggregate test scores and generate pie chart data
@@ -16,7 +16,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
 
     console.log(typeof TestResult); // Log the type of TestResult
     // Retrieve data from the 'results' collection (connection2)
-    const TestResultModel = connection2.model('TestResult', TestResultSchema);
+    const TestResultModel = connection2.model('TestResult', testResultSchema);
 
     // Perform aggregation
     const aggregateScores = await User.aggregate([
