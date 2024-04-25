@@ -19,3 +19,5 @@ prøv å simplifiser pie chart med kun 1 database mby?
 
     const User = connection1.models.User || connection1.model('User', userSchema);
     const TestResultModel = connection2.models.TestResult || connection2.model('TestResult', testResultSchema);
+
+  //  Make sure each part of your route handles data correctly, and remember to handle any potential exceptions or edge cases, such as missing resultatId fields

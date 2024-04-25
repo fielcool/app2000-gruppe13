@@ -2,16 +2,17 @@ const express = require('express');
 const router = express.Router();
 const { connection1 } = require('../database'); // Import only connection1, TestResult will use connection2 internally
 const { verifyToken } = require('../LogInTokens');
-const userSchema = require('../models/UserSchema');  // Import User schema
-const TestResult = require('../models/TestResult');  // Properly initialized with connection2
+const userSchema = require('../models/UserSchema'); // Schema for users
+const testResultSchema = require('../models/TestResultSchema'); // Ensure this schema is correctly imported
 
 router.get('/pieChart', verifyToken, async (req, res) => {
     try {
         const organisasjon = req.user.organisasjon;
         console.log('Organisation:', organisasjon);
 
-        // Initialize User model with connection1
-        const User = connection1.model('User', userSchema);  // Ensures User is associated with connection1
+        // Use existing models or initialize if they don't exist yet
+        const User = connection1.models.User || connection1.model('User', userSchema);
+        const TestResult = connection2.models.TestResult || connection2.model('TestResult', testResultSchema);
 
         console.log('Checking database connections...');
         console.log('User model ready:', !!User);
