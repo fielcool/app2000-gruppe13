@@ -19,7 +19,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
         console.log('TestResult model ready:', !!TestResult);
 
         // Fetch users for initial data verification
-        const users = await User.find({ organisasjon: organisjon });
+        const users = await User.find({ organisasjon: organisasjon });
         console.log('Users found:', users.length);
 
         if (!users.length) {
