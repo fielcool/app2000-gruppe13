@@ -5,18 +5,23 @@ const { verifyToken } = require('../LogInTokens');
 const userSchema = require('../models/UserModel');
 const testResultSchema = require('../models/TestResult');
 
-
 // Route to aggregate test scores and generate pie chart data
 router.get('/pieChart', verifyToken, async (req, res) => {
   try {
     const organisasjon = req.user.organisasjon;
 
+    // Log request parameters
+    console.log('Organisation:', organisasjon);
+
     // Retrieve data from the 'brukere' database (connection1)
     const User = connection1.model('User', userSchema);
 
-    console.log(typeof TestResult); // Log the type of TestResult
+    console.log('User Schema:', userSchema);
+
     // Retrieve data from the 'results' collection (connection2)
     const TestResultModel = connection2.model('TestResult', testResultSchema);
+
+    console.log('Test Result Schema:', testResultSchema);
 
     // Perform aggregation
     const aggregateScores = await User.aggregate([
