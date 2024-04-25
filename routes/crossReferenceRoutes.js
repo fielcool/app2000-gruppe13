@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { connection1 } = require('../database'); // Import only connection1, TestResult will use connection2 internally
+const { connection1, connection2 } = require('../database'); // Import only connection1, TestResult will use connection2 internally
 const { verifyToken } = require('../LogInTokens');
 const userSchema = require('../models/UserSchema'); // Schema for users
 const testResultSchema = require('../models/TestResult'); // Ensure this schema is correctly imported
