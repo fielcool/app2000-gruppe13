@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt'); 
-
+const bcrypt = require('bcrypt');
 // Define the user schema
 const userSchema = new mongoose.Schema({
   navn: { type: String, required: true },
@@ -21,8 +20,5 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
   }
 };
 
-// Create the User model
-const User = mongoose.model('User', userSchema);
-
-// Export the User model
-module.exports = User;
+// Export the user schema
+module.exports = userSchema;

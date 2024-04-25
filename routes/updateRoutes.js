@@ -1,37 +1,43 @@
 const express = require('express');
 const router = express.Router();
 const { verifyToken } = require('../LogInTokens');
-const userSchema = require('../models/UserModel');
+const User = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 
-// Create the User model from the schema
-const User = mongoose.model('User', userSchema);
 
+// Update user information
 router.put('/update-user-info', verifyToken, async (req, res) => {
   try {
+    // Assuming the user ID is available in req.user.userId after verification
     const userId = req.user.userId;
-    const { navn, organisasjon, stillingstittel, email, newPassword, confirmPassword } = req.body;
 
-    if (!confirmPassword) {
-      return res.status(400).json({ error: 'Current password is required' });
-    }
+    // Assuming the updated user information is available in req.body
+    const { navn, organisasjon, stillingstittel, email, passord, confirmPassword } = req.body;
 
+    // Fetch the current user from the database
     const currentUser = await User.findById(userId);
-    if (!currentUser) {
-      return res.status(404).json({ error: 'User not found' });
-    }
 
+    // Check if the entered current password matches the stored password
     const passwordMatch = await bcrypt.compare(confirmPassword, currentUser.passord);
+
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Current password does not match' });
     }
 
-    const updateData = { navn, organisasjon, stillingstittel, email };
-    if (newPassword) {
-      updateData.passord = await bcrypt.hash(newPassword, 10);
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(passord, 10); // 10 is the number of salt rounds
+
+    // If the current password matches, proceed with the update
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { navn, organisasjon, stillingstittel, email, passord: hashedPassword },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
     }
 
-    const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
     res.status(200).json({ message: 'User information updated successfully', user: updatedUser });
   } catch (error) {
     console.error('Error updating user information:', error);
