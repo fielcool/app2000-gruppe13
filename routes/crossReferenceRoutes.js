@@ -1,17 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const { connection1 } = require('../database'); // Import the database connection
+const { connection1 } = require('../database'); // Import only connection1, TestResult will use connection2 internally
 const { verifyToken } = require('../LogInTokens');
-const User = require('../models/UserSchema'); // Import User model
-const TestResult = require('../models/TestResult'); // Import TestResult model
+const userSchema = require('../models/UserSchema');  // Import User schema
+const TestResult = require('../models/TestResult');  // Properly initialized with connection2
 
 router.get('/pieChart', verifyToken, async (req, res) => {
     try {
         const organisasjon = req.user.organisasjon;
         console.log('Organisation:', organisasjon);
 
+        // Initialize User model with connection1
+        const User = connection1.model('User', userSchema);  // Ensures User is associated with connection1
+
+        console.log('Checking database connections...');
+        console.log('User model ready:', !!User);
+        console.log('TestResult model ready:', !!TestResult);
+
         // Fetch users for initial data verification
-        const users = await User.find({ organisasjon: organisasjon });
+        const users = await User.find({ organisasjon: organisjon });
         console.log('Users found:', users.length);
 
         if (!users.length) {
@@ -19,7 +26,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
             return res.status(404).json({ error: 'No users found' });
         }
 
-        // Fetch Test Results using users' resultatId
+        // Fetch Test Results using users' resultatId from connection2
         const testResults = await Promise.all(users.map(user => {
             console.log('Fetching result for ID:', user.resultatId);
             return TestResult.findById(user.resultatId).then(result => {
@@ -28,8 +35,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
             });
         }));
 
-        // Filter out null results if any user's resultatId didn't have a matching TestResult
-        const validResults = testResults.filter(result => result !== null);
+        const validResults = testResults.filter(result => result);
         console.log('Valid test results found:', validResults.length);
 
         if (!validResults.length) {
