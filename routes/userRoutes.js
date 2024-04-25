@@ -1,38 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const User = require('../models/UserModel');
+const userSchema = require('../models/UserModel');
 const loginRoutes = require('./loginRoutes');
-
+const User = mongoose.model('User', userSchema);
 
 router.use('/login', loginRoutes);
+
 router.post('/createUser', async (req, res) => {
   try {
-    const { navn, email, passord, organisasjon, stillingstittel, resultatId} = req.body;
+    const { navn, email, passord, organisasjon, stillingstittel, resultatId } = req.body;
 
-    // Check if the user with the provided email already exists
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       return res.status(400).json({ error: 'User with this email already exists' });
     }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(passord, 10); // 10 is the number of salt rounds
-
-    // Create a new user with the hashed password
+    const hashedPassword = await bcrypt.hash(passord, 10);
     const newUser = new User({
       navn,
-      organisasjon,
-      stillingstittel,
       email,
       passord: hashedPassword,
-      resultatId,
-      // Add other fields as needed
+      organisasjon,
+      stillingstittel,
+      resultatId
     });
 
-    // Save the user to the database using the specified connection
     await newUser.save();
-
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error('Error registering user:', error);

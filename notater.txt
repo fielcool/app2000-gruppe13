@@ -5,8 +5,14 @@ Applikasjonen skal ha et rikt brukergrensesnitt og lese inn ulike typer av innda
 
 
 
-Sjekk at xrefroutes bruker array som parameter ??
+fikset pie chart aggregation. 
+fiks alle andre routes - vis til ny model/schema (begge) exports.
+kun routes + model skal være problemet nå.
+organisasjon er undefined akk nå.
+lag ny kjat gpt samtale
 
-Sjekk syntax generelt i testresult.js
 
-dobbelsjekk connection, test?
+
+
+
+prøv å simplifiser pie chart med kun 1 database mby?
