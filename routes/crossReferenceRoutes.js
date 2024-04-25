@@ -13,13 +13,8 @@ router.get('/pieChart', verifyToken, async (req, res) => {
     // Log request parameters
     console.log('Organisation:', organisasjon);
 
-    // Retrieve data from the 'brukere' database (connection1)
-    const User = connection1.model('User', userSchema);
-
-    console.log('User Schema:', userSchema);
-
-    // Retrieve data from the 'results' collection (connection2)
-    const TestResultModel = connection2.model('TestResult', testResultSchema);
+    const User = connection1.models.User || connection1.model('User', userSchema);
+    const TestResultModel = connection2.models.TestResult || connection2.model('TestResult', testResultSchema);
 
     console.log('Test Result Schema:', testResultSchema);
 
