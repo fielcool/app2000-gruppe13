@@ -2,61 +2,61 @@ const express = require('express');
 const router = express.Router();
 const { connection1, connection2 } = require('../database'); // Import the database connections
 const { verifyToken } = require('../LogInTokens');
-const userSchema = require('../models/UserSchema');
-const testResultSchema = require('../models/TestResult');
+const User = connection1.model('User', require('../models/UserSchema')); // Corrected User model reference
+const TestResultModel = connection2.model('TestResult', require('../models/TestResult'));
 
-// Route to aggregate test scores and generate pie chart data
 router.get('/pieChart', verifyToken, async (req, res) => {
-  try {
-    const organisasjon = req.user.organisasjon;
+    try {
+        const organisasjon = req.user.organisasjon;
+        console.log('Organisation:', organisasjon);
 
-    // Log request parameters
-    console.log('Organisation:', organisasjon);
+        // Assuming you have confirmed that 'results' is the correct collection name
+        const aggregateScores = await User.aggregate([
+            {
+                $match: { organisasjon: organisasjon }
+            },
+            {
+                $lookup: {
+                    from: "results", // Ensure this is the correct collection name
+                    localField: "resultatId",
+                    foreignField: "_id",
+                    as: "testResults"
+                }
+            },
+            {
+                $unwind: "$testResults"
+            },
+            {
+                $unwind: "$testResults.answers"
+            },
+            {
+                $group: {
+                    _id: "$testResults.answers.domain",
+                    totalScore: { $sum: "$testResults.answers.score" }
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+        ]);
 
-    const User = connection1.models.User || connection1.model('User', userSchema);
-    const TestResultModel = connection2.models.TestResult || connection2.model('TestResult', testResultSchema);
+        console.log('Aggregate Scores:', aggregateScores);
 
-  //  console.log('Test Result Schema:', testResultSchema);
-
-    // Perform aggregation
-    const aggregateScores = await User.aggregate([
-      {
-        $match: { organisasjon: organisasjon } // Filter by organization
-      },
-      {
-        $lookup: {
-          from: TestResultModel.collection.name,
-          localField: "resultatId",
-          foreignField: "_id",
-          as: "testResults"
+        if (!aggregateScores.length) {
+            console.log('No data found for the given organisation');
+            return res.status(404).json({ error: 'No data found' });
         }
-      },
-      {
-        $unwind: "$testResults" // Unwind the array of test results
-      },
-      {
-        $group: {
-          _id: "$testResults.domain",
-          totalScore: { $sum: "$testResults.score" }
-        }
-      }
-    ]);
 
-    // Log the aggregated scores for debugging
-    console.log('Aggregate Scores:', aggregateScores);
-    console.log('Aggregation Query:', JSON.stringify(aggregateScores));
-    // Format aggregated scores into data suitable for a pie chart
-    const pieChartData = aggregateScores.map(score => ({
-      domain: score._id,
-      score: score.totalScore
-    }));
+        const pieChartData = aggregateScores.map(score => ({
+            domain: score._id,
+            score: score.totalScore
+        }));
 
-    // Respond with the formatted pie chart data
-    res.status(200).json(pieChartData);
-  } catch (error) {
-    console.error('Error generating pie chart data:', error);
-    res.status(500).json({ error: 'Internal Server Error', details: error.message });
-  }
+        res.status(200).json(pieChartData);
+    } catch (error) {
+        console.error('Error generating pie chart data:', error);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    }
 });
 
 module.exports = router;
