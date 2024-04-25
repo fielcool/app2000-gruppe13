@@ -16,7 +16,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
     const User = connection1.models.User || connection1.model('User', userSchema);
     const TestResultModel = connection2.models.TestResult || connection2.model('TestResult', testResultSchema);
 
-    console.log('Test Result Schema:', testResultSchema);
+  //  console.log('Test Result Schema:', testResultSchema);
 
     // Perform aggregation
     const aggregateScores = await User.aggregate([

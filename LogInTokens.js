@@ -39,11 +39,18 @@ const verifyToken = (req, res, next) => {
 // Token generation
 const generateToken = (user) => {
   const payload = {
-    userId: user.id,
+    userId: user._id,
     username: user.username,
-    organisasjon: user.organisasjon };
+    organisasjon: user.organisasjon
+  };
   const options = { expiresIn: process.env.JWT_EXPIRATION_TIME || '1h' };
-  return jwt.sign(payload, secretKey, options);
+  const token = jwt.sign(payload, secretKey, options);
+
+  // Debugging: Decode token immediately to verify content
+  const decoded = jwt.decode(token); // Decode token to verify its content
+  console.log("Decoded token immediately after generation:", decoded);
+
+  return token;
 };
 
 // Export the functions for use in other files
