@@ -3,7 +3,7 @@ const router = express.Router();
 const { connection1, connection2 } = require('../database'); // Import the database connections
 const { verifyToken } = require('../LogInTokens');
 const userSchema = require('../models/UserSchema');
-const testResultSchema = require('../models/TestResult');
+const testResult = require('../models/TestResult');
 
 router.get('/pieChart', verifyToken, async (req, res) => {
     try {
@@ -12,7 +12,7 @@ router.get('/pieChart', verifyToken, async (req, res) => {
 
         // Define models using the respective connections
         const User = connection1.models.User || connection1.model('User', userSchema);
-        const TestResult = connection2.models.TestResult || connection2.model('TestResult', testResultSchema);
+        const TestResult = connection2.models.TestResult || connection2.model('TestResult', testResult);
 
         console.log('Checking database connections...');
         console.log('User model ready:', !!User);
