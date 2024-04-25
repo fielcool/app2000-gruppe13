@@ -1,62 +1,41 @@
 const express = require('express');
 const router = express.Router();
-const { connection1, connection2 } = require('../database'); // Import the database connections
+const { connection1 } = require('../database'); // Assuming TestResult is already correctly configured and exported
 const { verifyToken } = require('../LogInTokens');
-const userSchema = require('../models/UserSchema');
-const testResult = require('../models/TestResult');
+const User = require('../models/UserSchema'); // Assuming direct import of models
+const TestResult = require('../models/TestResult');
 
 router.get('/pieChart', verifyToken, async (req, res) => {
     try {
         const organisasjon = req.user.organisasjon;
-        console.log('Organisation:', organisasjon);
-
-
-
-        console.log('Checking database connections...');
-        console.log('User model ready:', !!User);
-        console.log('TestResultModel ready:', !!TestResult);
 
         // Fetch users for initial data verification
         const users = await User.find({ organisasjon: organisasjon });
-        console.log('Users found:', users.length);
-
         if (!users.length) {
-            console.log('No users found for the given organisation');
             return res.status(404).json({ error: 'No users found' });
         }
 
-        // Fetch Test Results from connection2 using users' resultatId
-        const testResults = await Promise.all(
-          users.map(user => {
-              console.log('Fetching result for ID:', user.resultatId);
-              return TestResult.findById(user.resultatId).then(result => {
-                  console.log('Result for ID:', user.resultatId, result);
-                  return result;
-              });
-          })
-      );
+        // Fetch Test Results using users' resultatId
+        const testResults = await Promise.all(users.map(user =>
+            TestResult.findById(user.resultatId)
+        ));
 
-        // Filter out null results if any user's resultatId didn't have a matching TestResult
-        const validResults = testResults.filter(result => result !== null);
+        const validResults = testResults.filter(result => result);
 
         if (!validResults.length) {
-            console.log('No test results found for the given users');
             return res.status(404).json({ error: 'No test results found' });
         }
 
         // Process Results to create Pie Chart Data
         const domainScores = validResults.reduce((acc, result) => {
             result.answers.forEach(answer => {
-                if (!acc[answer.domain]) {
-                    acc[answer.domain] = 0;
-                }
-                acc[answer.domain] += answer.score;
+                acc[answer.domain] = (acc[answer.domain] || 0) + answer.score;
             });
             return acc;
         }, {});
 
         const pieChartData = Object.keys(domainScores).map(domain => ({
-            domain: domain,
+            domain,
             score: domainScores[domain]
         }));
 
