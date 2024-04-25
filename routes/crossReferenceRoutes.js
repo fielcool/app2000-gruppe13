@@ -42,7 +42,10 @@ router.get('/pieChart', verifyToken, async (req, res) => {
             $sort: { _id: 1 } // Optionally sort by domain alphabetically
         }
       ]);
-
+      console.log('Matching users in organisation:', organisasjon);
+      console.log('Users found:', JSON.stringify(users)); // After fetching users but before aggregation
+      console.log('TestResult Lookup Results:', JSON.stringify(testResults)); // Immediate results of $lookup
+      
       console.log('Aggregate Scores:', aggregateScores);
 
       if (!aggregateScores.length) {
