@@ -2,3 +2,11 @@ Applikasjonen skal også følge andre relevante webstandarder (for HTML, CSS, os
 Applikasjonen skal oppfylle krav til personvern og GDPR.
 Applikasjonen skal ha funksjonalitet som både setter inn, endrer, sletter og henter ut opplysninger fra en underliggende database.
 Applikasjonen skal ha et rikt brukergrensesnitt og lese inn ulike typer av inndata fra brukeren med god inndatavalidering. Løsningen skal være sikret mot vanlige sikkerhetstrusler (som f.eks. SQL injection).
+
+
+
+Sjekk at xrefroutes bruker array som parameter ??
+
+Sjekk syntax generelt i testresult.js
+
+dobbelsjekk connection, test?

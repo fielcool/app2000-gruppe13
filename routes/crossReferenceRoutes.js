@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { connection1, connection2 } = require('../database'); // Import the database connections
+const { verifyToken } = require('../LogInTokens');
 const UserModel = require('../models/UserModel');
 const TestResult = require('../models/TestResult');
-const { verifyToken } = require('../LogInTokens');
+
 
 // Route to aggregate test scores and generate pie chart data
 router.get('/pieChart', verifyToken, async (req, res) => {
