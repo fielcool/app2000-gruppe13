@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
 import { useAuth } from './context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import PieChart from './PieChart';
-import axios from 'axios'; // Import Axios for making HTTP requests
+import axios from 'axios';
 
 const OrgOverview = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [chartData, setChartData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchChartData = async () => {
+        setIsLoading(true);
+        setError('');
         try {
-          const authToken = localStorage.getItem('authToken'); // Assuming the token is stored in localStorage
+          const authToken = localStorage.getItem('authToken');
           if (!authToken) {
-            throw new Error('Missing token');
+            throw new Error('Authentication required');
           }
       
           const response = await axios.get('/api/pieChart', {
@@ -26,14 +30,16 @@ const OrgOverview = () => {
           setChartData(response.data);
         } catch (error) {
           console.error('Error fetching pie chart data:', error);
-          // Handle the error gracefully, e.g., redirect to login page
+          setError('Failed to fetch chart data');
           navigate('/LoggedInUser');
+        } finally {
+          setIsLoading(false);
         }
       };
       
 
     fetchChartData();
-  }, []); // Empty dependency array ensures the effect runs only once on mount
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -43,9 +49,10 @@ const OrgOverview = () => {
   return (
     <div className="org-overview">
       <h1>Org Overview</h1>
+      {error && <Alert variant="danger">{error}</Alert>}
       <Button variant="danger" onClick={handleLogout}>Logout</Button>
       <div className="pie-chart-container">
-        <PieChart data={chartData} />
+        {isLoading ? <p>Loading...</p> : <PieChart data={chartData} />}
       </div>
     </div>
   );
