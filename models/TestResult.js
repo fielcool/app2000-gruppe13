@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const { connection2 } = require('../database');
 
+// Define the test result schema
 const testResultSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -57,6 +57,5 @@ const testResultSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-const TestResult = connection2.model('TestResults', testResultSchema, 'results');
-
-module.exports = TestResult;
+// Export the test result schema
+module.exports = testResultSchema;

@@ -12,11 +12,11 @@ router.get('/pieChart', verifyToken, async (req, res) => {
     const organisasjon = req.user.organisasjon;
 
     // Retrieve data from the 'brukere' database (connection1)
-    const User = connection1.model('User', UserModel);
+    const User = connection1.model('User', userSchema);
 
     console.log(typeof TestResult); // Log the type of TestResult
     // Retrieve data from the 'results' collection (connection2)
-    const TestResultModel = connection2.model('TestResult', TestResult);
+    const TestResultModel = connection2.model('TestResult', TestResultSchema);
 
     // Perform aggregation
     const aggregateScores = await User.aggregate([

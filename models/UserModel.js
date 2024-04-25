@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const { connection1 } = require('../database'); // Import the database connection
-const bcrypt = require('bcrypt');
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
@@ -22,7 +20,5 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
   }
 };
 
-// Create the User model using connection1
-const User = connection1.model('User', userSchema, 'users');
-
-module.exports = User;
+// Export the user schema
+module.exports = userSchema;
