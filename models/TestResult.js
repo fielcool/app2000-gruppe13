@@ -47,4 +47,4 @@ const testResultSchema = new mongoose.Schema({
 
 
 // Export the TestResult model
-module.exports = connection2.model('TestResult', testResultSchema);
+module.exports = connection2.model('TestResult', testResultSchema, "results");
