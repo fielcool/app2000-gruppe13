@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 
-
 router.post('/login', async (req, res) => {
     try {
         const { email, passord } = req.body;
@@ -27,7 +26,11 @@ router.post('/login', async (req, res) => {
         }
 
         // Hvis passordet er gyldig, generer en token
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+        const token = jwt.sign({
+            userId: user._id,
+            username: user.username,
+            organisasjon: user.organisasjon
+        }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Send tokenet til klienten
         res.status(200).json({ token });
