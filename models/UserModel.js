@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); 
 const { connection1 } = require('../database'); // Adjust the path as necessary to import correctly
+const { ObjectId } = require('mongodb');
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
@@ -9,7 +10,7 @@ const userSchema = new mongoose.Schema({
   stillingstittel: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   passord: { type: String, required: true },
-  resultatId: { type: String } 
+  resultatId: { type: ObjectId } 
 });
 
 // Adding a method to compare passwords during login

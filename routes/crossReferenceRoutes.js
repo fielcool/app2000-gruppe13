@@ -29,8 +29,14 @@ router.get('/pieChart', verifyToken, async (req, res) => {
 
         // Fetch Test Results from connection2 using users' resultatId
         const testResults = await Promise.all(
-            users.map(user => TestResult.findById(user.resultatId))
-        );
+          users.map(user => {
+              console.log('Fetching result for ID:', user.resultatId);
+              return TestResult.findById(user.resultatId).then(result => {
+                  console.log('Result for ID:', user.resultatId, result);
+                  return result;
+              });
+          })
+      );
 
         // Filter out null results if any user's resultatId didn't have a matching TestResult
         const validResults = testResults.filter(result => result !== null);
