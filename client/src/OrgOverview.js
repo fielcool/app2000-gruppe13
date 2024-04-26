@@ -29,7 +29,7 @@ const OrgOverview = () => {
 
     fetchChartData();
   }, [navigate]);
-
+  console.log("Chart data being passed to components:", chartData);
   return (
     <div className="main">
       <h1>Organization Overview</h1>
