@@ -39,7 +39,7 @@ const ChartComponent = ({ data, chartType }) => {
         responsive: true,
         plugins: {
           legend: {
-            position: chartType === 'pie',
+            position: chartType === 'pie' ? 'top' : false,
           },
           tooltip: {
             mode: 'index',
