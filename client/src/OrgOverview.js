@@ -18,7 +18,7 @@ const OrgOverview = () => {
           return;
         }
 
-        const response = await axios.get('/api/pieChart', {
+        const response = await axios.get('/api/chart', {
           headers: { Authorization: `Bearer ${authToken}` }
         });
         setChartData(response.data);
@@ -33,7 +33,7 @@ const OrgOverview = () => {
 
   return (
     <div>
-      <h1>Organization Overview</h1>
+      <h1>Poengfordeling av personlighetstrekk for din organisasjon</h1>
       <div>
         <button onClick={() => setChartType('pie')}>Kakediagram</button>
         <button onClick={() => setChartType('bar')}>Stolpediagram</button>

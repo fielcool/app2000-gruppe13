@@ -5,7 +5,7 @@ const { verifyToken } = require('../LogInTokens');
 const userSchema = require('../models/UserSchema'); // Schema for users
 const testResultSchema = require('../models/TestResult'); // Ensure this schema is correctly imported
 
-router.get('/pieChart', verifyToken, async (req, res) => {
+router.get('/chart', verifyToken, async (req, res) => {
     try {
         const organisasjon = req.user.organisasjon;
         console.log('Organisation:', organisasjon);
@@ -53,13 +53,13 @@ router.get('/pieChart', verifyToken, async (req, res) => {
             return acc;
         }, {});
 
-        const pieChartData = Object.keys(domainScores).map(domain => ({
+        const chartData = Object.keys(domainScores).map(domain => ({
             domain: domain,
             score: domainScores[domain]
         }));
-        console.log('Pie chart data prepared:', pieChartData);
+        console.log('Pie chart data prepared:', chartData);
 
-        res.status(200).json(pieChartData);
+        res.status(200).json(chartData);
     } catch (error) {
         console.error('Error generating pie chart data:', error);
         res.status(500).json({ error: 'Internal Server Error', details: error.message });
