@@ -45,12 +45,12 @@ h1 {
 }
 
 .shadow-custom {
-  box-shadow: 0 8px 16px 0 rgba(23, 162, 184, 0.2); /* Adjust the color rgba values to match the button color for a consistent glow */
+  box-shadow: 0 8px 16px 0 rgba(11, 59, 146, 0.2); /* Adjust the color rgba values to match the button color for a consistent glow */
   transition: all 0.3s ease-in-out;
 }
 
 .shadow-custom:hover {
-  box-shadow: 0 0 12px 0 rgba(23, 162, 184, 0.4); /* Brighter glow on hover */
+  box-shadow: 0 0 12px 0 rgba(24, 87, 168, 0.7); /* Brighter glow on hover */
 }
 
 /* Additional styling for centering and aesthetic adjustments */
