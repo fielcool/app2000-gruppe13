@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import PieChart from './PieChart';
+import ChartComponent from './ChartComponent';
 import { useNavigate } from 'react-router-dom';
 
 const OrgOverview = () => {
-  const [chartData, setChartData] = useState([]);
   const navigate = useNavigate();
+  const [chartData, setChartData] = useState([]);
+  const [chartType, setChartType] = useState('bar'); // You can toggle between 'pie' and 'bar'
 
   useEffect(() => {
     const fetchChartData = async () => {
@@ -17,13 +18,12 @@ const OrgOverview = () => {
           return;
         }
 
-        const response = await axios.get('/api/pieChart', {
+        const response = await axios.get('/api/pieChart', { // Make sure endpoint is correct
           headers: { Authorization: `Bearer ${authToken}` }
         });
 
-        // Assuming the data comes in as [{domain: 'N', score: 154}, ...]
-        const scores = response.data.map(item => item.score);
-        setChartData(scores);
+        // Transforming data to array of objects as expected
+        setChartData(response.data);
       } catch (error) {
         console.error('Error fetching pie chart data:', error);
         navigate('/error'); // or handle errors appropriately
@@ -36,7 +36,9 @@ const OrgOverview = () => {
   return (
     <div>
       <h1>Organization Overview</h1>
-      <PieChart data={chartData} />
+      <button onClick={() => setChartType('pie')}>Show Pie Chart</button>
+      <button onClick={() => setChartType('bar')}>Show Bar Chart</button>
+      <ChartComponent data={chartData} chartType={chartType} />
     </div>
   );
 };

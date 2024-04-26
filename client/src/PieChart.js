@@ -1,20 +1,22 @@
-// PieChart.js
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
-const PieChart = ({ data }) => {
+const ChartComponent = ({ data, chartType }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
     if (data && data.length > 0) {
       const ctx = chartRef.current.getContext('2d');
-      new Chart(ctx, {
-        type: 'pie',
+      if (window.myChart instanceof Chart) {
+        window.myChart.destroy(); // Destroy the existing chart before creating a new one
+      }
+      window.myChart = new Chart(ctx, {
+        type: chartType, // 'pie' or 'bar'
         data: {
-          labels: ['Neuroticism', 'Extraversion', 'Openness to Experience', 'Agreeableness', 'Conscientiousness'],
+          labels: data.map(item => item.domain), // ['N', 'E', 'O', 'A', 'C']
           datasets: [{
-            label: 'Domain Scores',
-            data: data,
+            label: chartType === 'pie' ? 'Domain Scores' : 'Scores by Domain',
+            data: data.map(item => item.score),
             backgroundColor: [
               'rgba(255, 99, 132, 0.5)',
               'rgba(54, 162, 235, 0.5)',
@@ -36,7 +38,7 @@ const PieChart = ({ data }) => {
           responsive: true,
           plugins: {
             legend: {
-              position: 'top',
+              position: chartType === 'pie' ? 'top' : 'right'
             },
             tooltip: {
               mode: 'index',
@@ -45,12 +47,10 @@ const PieChart = ({ data }) => {
           }
         }
       });
-    } else {
-      console.log('No data available for PieChart');
     }
-  }, [data]);
+  }, [data, chartType]); // Re-run the effect if data or chartType changes
 
   return <canvas ref={chartRef} />;
 };
 
-export default PieChart;
+export default ChartComponent;
