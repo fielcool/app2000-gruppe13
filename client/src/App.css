@@ -61,3 +61,10 @@ h1 {
   justify-content: center;
   height: 100vh; /* Use full screen height */
 }
+
+.create-user-button {
+  margin: 3px;
+}
+.user-login-button {
+  margin: 3px;
+}
