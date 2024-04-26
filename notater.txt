@@ -4,20 +4,38 @@ Applikasjonen skal ha funksjonalitet som både setter inn, endrer, sletter og he
 Applikasjonen skal ha et rikt brukergrensesnitt og lese inn ulike typer av inndata fra brukeren med god inndatavalidering. Løsningen skal være sikret mot vanlige sikkerhetstrusler (som f.eks. SQL injection).
 
 
+Er sidene logisk satt opp?
 
-fikset pie chart aggregation. 
-fiks alle andre routes - vis til ny model/schema (begge) exports.
-kun routes + model skal være problemet nå.
-organisasjon er undefined akk nå.
-lag ny kjat gpt samtale
+stolpediagram
+
+Lag eksempeldata
+
+prøv å fikse kommentarer på det som er ""ferdig""
+
+input regler 
+
+fjerning av ekstra logs (ikke alle)
+
+jwt tokens timeout inconsistency, sjekk jwt secret idk, alle routes burde sjekkes.
+
+slette overflødige ting som userSchema og setupTest
+
+ >>>>>Fiks CSS<<<<<<< 
+
+få tak i rapportklovnen
+
+sjekk kravene på oppgaven
+
+send mail til pål - få han til å bekrefte at han er fornøyd med kravene 
+
+
+
+Make sure each part of your route handles data correctly, and remember to handle any potential exceptions or edge cases, such as missing resultatId fields
 
 
 
 
-
-prøv å simplifiser pie chart med kun 1 database mby?
 
     const User = connection1.models.User || connection1.model('User', userSchema);
     const TestResultModel = connection2.models.TestResult || connection2.model('TestResult', testResultSchema);
 
-  //  Make sure each part of your route handles data correctly, and remember to handle any potential exceptions or edge cases, such as missing resultatId fields
