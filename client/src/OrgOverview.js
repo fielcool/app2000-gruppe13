@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const OrgOverview = () => {
   const navigate = useNavigate();
   const [chartData, setChartData] = useState([]);
+  const [chartType, setChartType] = useState('bar'); // default to bar
 
   useEffect(() => {
     const fetchChartData = async () => {
@@ -23,21 +24,22 @@ const OrgOverview = () => {
         setChartData(response.data);
       } catch (error) {
         console.error('Error fetching chart data:', error);
-        navigate('/error'); // or handle errors appropriately
+        navigate('/error'); // Handle errors appropriately
       }
     };
 
     fetchChartData();
   }, [navigate]);
-  console.log("Chart data being passed to components:", chartData);
-  return (
-    <div className="main">
-      <h1>Organization Overview</h1>
-      <div className="chart-container">
-        <div className="canvas-container">
-          <ChartComponent data={chartData} chartType="pie" />
-        </div>
 
+  return (
+    <div>
+      <h1>Organization Overview</h1>
+      <div>
+        <button onClick={() => setChartType('pie')}>Show Pie Chart</button>
+        <button onClick={() => setChartType('bar')}>Show Bar Chart</button>
+      </div>
+      <div className="chart-container">
+        <ChartComponent data={chartData} chartType={chartType} />
       </div>
     </div>
   );
