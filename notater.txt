@@ -6,8 +6,6 @@ Applikasjonen skal ha et rikt brukergrensesnitt og lese inn ulike typer av innda
 
 Er sidene logisk satt opp?
 
-stolpediagram
-
 Lag eksempeldata
 
 prøv å fikse kommentarer på det som er ""ferdig""
