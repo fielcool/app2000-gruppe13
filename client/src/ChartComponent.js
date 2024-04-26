@@ -58,7 +58,7 @@ const ChartComponent = ({ data, chartType }) => {
   }, [data, chartType]);
 
   return (
-    <div className="container p-3">
+    <div className="container p-3 bg-dark">
       <div className="card">
         <canvas ref={chartRef}></canvas>
       </div>
