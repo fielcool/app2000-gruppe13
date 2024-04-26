@@ -1,4 +1,5 @@
 /* Existing styles */
+
 * {
   padding: 0;
   margin: 0;
@@ -43,3 +44,20 @@ h1 {
   margin: 10px; 
 }
 
+.shadow-custom {
+  box-shadow: 0 8px 16px 0 rgba(23, 162, 184, 0.2); /* Adjust the color rgba values to match the button color for a consistent glow */
+  transition: all 0.3s ease-in-out;
+}
+
+.shadow-custom:hover {
+  box-shadow: 0 0 12px 0 rgba(23, 162, 184, 0.4); /* Brighter glow on hover */
+}
+
+/* Additional styling for centering and aesthetic adjustments */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Use full screen height */
+}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./App.css";
 import "./Medium.css";
 import "./Small.css";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   const navigate = useNavigate();
@@ -16,18 +16,15 @@ export default function App() {
     navigate("/LoginUser");
   };
 
-
   return (
-    <div className="main">
-      <div className="start-text">
-        <h1 className="intro-heading">testing testing</h1>
-        <button onClick={handleUserLoginClick} className="user-login-button">
-          Logg inn
-        </button>
-        <button onClick={handleUserCreationClick} className="create-user-button">
-          Opprett ny bruker
-        </button>
-      </div>
+    <div className="main text-center">
+      <h1 className="intro-heading">Big Five personlighetstest for organisasjoner</h1>
+      <button onClick={handleUserLoginClick} className="btn btn-info btn-md user-login-button shadow-custom">
+        Logg inn
+      </button>
+      <button onClick={handleUserCreationClick} className="btn btn-info btn-md create-user-button shadow-custom">
+        Opprett ny bruker
+      </button>
     </div>
   );
 }
