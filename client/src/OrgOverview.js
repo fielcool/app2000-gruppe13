@@ -38,7 +38,7 @@ const OrgOverview = () => {
         <button onClick={() => setChartType('pie')}>Kakediagram</button>
         <button onClick={() => setChartType('bar')}>Stolpediagram</button>
       </div>
-      <div className="chart-container bg-dark">
+      <div className="chart-container">
         <ChartComponent data={chartData} chartType={chartType} />
       </div>
     </div>
