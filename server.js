@@ -1,12 +1,8 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
-
 const mongoose = require("mongoose");
 const path = require("path");
-const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const { connection1, connection2 } = require('./database');
 const appMiddleware = require('./middleware'); // Import the app object from middleware.js
 const { verifyToken, generateToken } = require('./LogInTokens');
 const deleteRoutes = require('./routes/deleteRoutes');
