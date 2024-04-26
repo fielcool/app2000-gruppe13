@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   stillingstittel: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   passord: { type: String, required: true },
-  resultatId: { type: mongoose.Schema.Types.ObjectId, ref: 'TestResult' } // Specify the reference to the TestResult model
+  resultatId: { type: mongoose.Schema.Types.ObjectId, ref: 'TestResult' } 
 });
 
 // Adding a method to compare passwords during login
