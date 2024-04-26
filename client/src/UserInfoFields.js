@@ -54,15 +54,6 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           onChange={(e) => handleChange(e.target.name, e.target.value)}
         />
       </Form.Group>
-      <Form.Group>
-        <Form.Label>Test ID - kan legges til senere</Form.Label>
-        <Form.Control
-          type="text"
-          name="TestID"
-          value={newUserInfo.testId}
-          onChange={(e) => handleChange(e.target.name, e.target.value)}
-        />
-      </Form.Group>
     </>
   );
 }

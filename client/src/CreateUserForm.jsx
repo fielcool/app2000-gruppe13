@@ -84,18 +84,22 @@ function CreateUserForm() {
     <div className="main">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="credentials-form m-credentials-form">
-          {Object.keys(input).map((fieldName) => (
-            <Form.Control
-              key={fieldName}
-              autoComplete="off"
-              type={fieldName === 'passord' ? 'password' : 'text'}
-              placeholder={`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}*`}
-              name={fieldName}
-              value={input[fieldName]}
-              onChange={handleChange}
-              className="credentials-input m-credentials-input"
-            />
-          ))}
+          {Object.keys(input).map((fieldName) => {
+            if (fieldName !== 'testId') { // Exclude 'testId' from the form display
+              return (
+                <Form.Control
+                  key={fieldName}
+                  autoComplete="off"
+                  type={fieldName === 'passord' ? 'password' : 'text'}
+                  placeholder={`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}*`}
+                  name={fieldName}
+                  value={input[fieldName]}
+                  onChange={handleChange}
+                  className="credentials-input m-credentials-input"
+                />
+              );
+            }
+          })}
         </Form.Group>
         <Button type="submit" variant="primary">
           Opprett bruker
