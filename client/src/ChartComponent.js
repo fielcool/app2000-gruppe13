@@ -14,9 +14,9 @@ const ChartComponent = ({ data, chartType }) => {
     chartInstance = new Chart(ctx, {
       type: chartType, // 'pie' or 'bar'
       data: {
-        labels: data.map(item => item.domain), // ['Nevrotisme', 'Ekstroversjon', 'Åpenhet for erfaringer', 'Medmennesklighet', 'Planmessighet']
+        labels: ['Nevrotisme', 'Ekstroversjon', 'Åpenhet for erfaringer', 'Medmennesklighet', 'Planmessighet'],
         datasets: [{
-          label: chartType === 'pie' ? 'Domain Scores' : 'Poeng på',
+          label: chartType === 'pie' ? 'Poeng' : 'Poeng',
           data: data.map(item => item.score),
           backgroundColor: [
             'rgba(255, 99, 132, 0.5)',
