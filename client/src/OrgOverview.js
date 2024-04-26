@@ -35,8 +35,8 @@ const OrgOverview = () => {
     <div>
       <h1>Organization Overview</h1>
       <div>
-        <button onClick={() => setChartType('pie')}>Show Pie Chart</button>
-        <button onClick={() => setChartType('bar')}>Show Bar Chart</button>
+        <button onClick={() => setChartType('pie')}>Kakediagram</button>
+        <button onClick={() => setChartType('bar')}>Stolpediagram</button>
       </div>
       <div className="chart-container">
         <ChartComponent data={chartData} chartType={chartType} />

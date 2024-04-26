@@ -3,8 +3,8 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import UserInfoFields from './UserInfoFields'; // New component for user information fields
-import PasswordConfirmationModal from './PasswordConfirmationModal'; // New component for password confirmation modal
+import UserInfoFields from './UserInfoFields'; 
+import PasswordConfirmationModal from './PasswordConfirmationModal'; 
 import axios from "axios";
 
 function UpdateUserInfoForm() {

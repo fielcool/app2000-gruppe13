@@ -62,9 +62,7 @@ h1 {
   height: 100vh; /* Use full screen height */
 }
 
-.create-user-button {
-  margin: 3px;
+.fp-button {
+  margin: 5px;
 }
-.user-login-button {
-  margin: 3px;
-}
+
