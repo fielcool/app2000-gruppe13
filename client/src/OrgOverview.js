@@ -37,9 +37,7 @@ const OrgOverview = () => {
         <div className="canvas-container">
           <ChartComponent data={chartData} chartType="pie" />
         </div>
-        <div className="canvas-container">
-          <ChartComponent data={chartData} chartType="bar" />
-        </div>
+
       </div>
     </div>
   );
