@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  background-color: #000000;
+  background-color: #ffffff;
   height: 100%;
   margin: 0;
 }
@@ -64,8 +64,4 @@ h1 {
 
 .fp-button {
   margin: 5px;
-}
-
-.card.bg-black {
-  color: white; 
 }

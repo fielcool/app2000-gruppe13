@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Header from './Header'; 
+import Footer from './Footer'; 
 import "./App.css";
 import "./Medium.css";
 import "./Small.css";
@@ -17,14 +19,18 @@ export default function App() {
   };
 
   return (
-    <div className="main text-center">
-      <h1 className="intro-heading">Big Five personlighetstest for organisasjoner</h1>
-      <button onClick={handleUserLoginClick} className="btn btn-info btn-md fp-button shadow-custom">
-        Logg inn
-      </button>
-      <button onClick={handleUserCreationClick} className="btn btn-info btn-md fp-button shadow-custom">
-        Opprett ny bruker
-      </button>
-    </div>
+    <>
+      <Header /> 
+      <div className="main text-center">
+        <h1 className="intro-heading">Big Five personlighetstest for organisasjoner</h1>
+        <button onClick={handleUserLoginClick} className="btn btn-info btn-md fp-button shadow-custom">
+          Logg inn
+        </button>
+        <button onClick={handleUserCreationClick} className="btn btn-info btn-md fp-button shadow-custom">
+          Opprett ny bruker
+        </button>
+      </div>
+      <Footer /> 
+    </>
   );
 }

@@ -59,7 +59,7 @@ const ChartComponent = ({ data, chartType }) => {
 
   return (
     <div className="container p-3">
-      <div className="card bg-black">
+      <div className="card">
         <canvas ref={chartRef}></canvas>
       </div>
     </div>
