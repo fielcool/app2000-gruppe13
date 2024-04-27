@@ -58,11 +58,12 @@ a {
   height: 100%;
   min-height: 100vh;
   padding: 10px;
-  margin-right:auto;
 }
 
 .btn2 {
-  padding: 4px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .id-input{
@@ -117,7 +118,7 @@ a {
 
 .navbar-logo img {
   max-height: 50px;
-  margin-left: 10px;
+  margin-left: 60px;
 }
 
 .org-container {

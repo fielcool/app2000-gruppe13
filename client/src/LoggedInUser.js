@@ -87,7 +87,7 @@ const LoggedInUser = () => {
               Slett bruker
             </Button>
 
-            <PersonalityTestIdForm authToken={authToken} />
+            <PersonalityTestIdForm authToken={authToken}className="btn2" />
 
             <Modal show={showModal} onHide={handleCancel}>
               <Modal.Header closeButton>
