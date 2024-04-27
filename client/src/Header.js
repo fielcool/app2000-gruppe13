@@ -7,7 +7,7 @@ const Header = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <Link to="/">
-          <img src="./images/brain.png" alt="Logo" />
+          <img src="/brain.png" alt="Logo" />
         </Link>
       </div>
     </nav>
