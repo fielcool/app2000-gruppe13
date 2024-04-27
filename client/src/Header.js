@@ -7,7 +7,7 @@ const Header = () => {
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
       <a href="/">
-      <img src={brainImage} alt="Logo" className="navbar-brand" style={{ maxHeight: '50px', marginRight: '10px' }} />
+      <img src={brainImage} alt="Logo" className="navbar-brand" style={{ maxHeight: '50px', marginleft: '25%' }} />
       </a>
       </div>
     </nav>
