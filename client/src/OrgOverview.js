@@ -8,7 +8,9 @@ const OrgOverview = () => {
   const [chartData, setChartData] = useState([]);
   const [chartType, setChartType] = useState('bar'); // default to bar
   const [highestScore, setHighestScore] = useState('');
+  const [highestScoreDomain, setHighestScoreDomain] = useState('');
   const [lowestScore, setLowestScore] = useState('');
+  const [lowestScoreDomain, setLowestScoreDomain] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('- Nevrotisisme: Nevrotisisme omhandler tendensen til å oppleve negative følelser.');
 
   useEffect(() => {
@@ -32,6 +34,24 @@ const OrgOverview = () => {
         const minScore = Math.min(...scores);
         setHighestScore(maxScore);
         setLowestScore(minScore);
+
+        // Find domains associated with highest and lowest scores
+        const highestScoreItem = response.data.find(item => item.score === maxScore);
+        const lowestScoreItem = response.data.find(item => item.score === minScore);
+        if (highestScoreItem) {
+          setHighestScoreDomain(highestScoreItem.domain);
+        }
+        if (lowestScoreItem) {
+          setLowestScoreDomain(lowestScoreItem.domain);
+        }
+
+        // Calculate percentages of total score
+        const totalScore = scores.reduce((acc, score) => acc + score, 0);
+        const highestScorePercentage = (maxScore / totalScore) * 100;
+        const lowestScorePercentage = (minScore / totalScore) * 100;
+
+        // Set additional info including percentages
+        setAdditionalInfo(`- Nevrotisisme: Nevrotisisme omhandler tendensen til å oppleve negative følelser.\n\nHøyeste poengsum (${highestScore}) tilhører domenet ${highestScoreDomain} og utgjør ${highestScorePercentage.toFixed(2)}% av totalen.\nLaveste poengsum (${lowestScore}) tilhører domenet ${lowestScoreDomain} og utgjør ${lowestScorePercentage.toFixed(2)}% av totalen.`);
       } catch (error) {
         console.error('Error fetching chart data:', error);
         navigate('/error'); // Handle errors appropriately
