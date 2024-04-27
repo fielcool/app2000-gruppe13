@@ -14,7 +14,6 @@ const OrgOverview = () => {
   const [highestScoreDomain, setHighestScoreDomain] = useState('');
   const [lowestScore, setLowestScore] = useState('');
   const [lowestScoreDomain, setLowestScoreDomain] = useState('');
-  const [additionalInfo, setAdditionalInfo] = useState('- Nevrotisisme: Nevrotisisme omhandler tendensen til å oppleve negative følelser.');
 
   // Function to map single-letter domain codes to full words
   const mapDomainCodeToWord = (code) => {
@@ -65,12 +64,6 @@ const OrgOverview = () => {
         if (lowestScoreItem) {
           setLowestScoreDomain(mapDomainCodeToWord(lowestScoreItem.domain));
         }
-
-        // Calculate percentages of total score
-        const totalScore = scores.reduce((acc, score) => acc + score, 0);
-        const highestScorePercentage = (maxScore / totalScore) * 100;
-        const lowestScorePercentage = (minScore / totalScore) * 100;
-
        
       } catch (error) {
         console.error('Error fetching chart data:', error);
@@ -95,9 +88,9 @@ const OrgOverview = () => {
         </div>
         <div className="text-container">
           <h3>Svakeste og sterkeste organisasjonstrekk</h3>
-          <p1>Høyeste samlede personlighetstrekk er: {highestScore} {highestScoreDomain} -{highestScorePercentage}
+          <p1>Høyeste samlede personlighetstrekk er: {highestScore} {highestScoreDomain} 
           <br></br>
-          Laveste samlede personlighetstrekk er: {lowestScore} {lowestScoreDomain} - {lowestScorePercentage}</p1>
+          Laveste samlede personlighetstrekk er: {lowestScore} {lowestScoreDomain} </p1>
           <h2>Nevrotisisme</h2>
           <p>Beskriver tendens til å oppleve slike negative følelser også uten at det nødvendigvis har skjedd noe konkret som utløser slike følelser.I motsatt ende finner vi de som har sterkere tendens til å tåle stress og usikkerhet uten sterk bekymring og engstelse. Er forbundet med å tåle presset i lederrollen.</p>
           <h2>Ekstroversjon</h2>
