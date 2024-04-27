@@ -26,10 +26,8 @@ h1 {
 h2 {
   color: #ac1d48;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 40%;
-  padding: 20px;
+  padding: 8px;
   
 }
 
