@@ -72,8 +72,6 @@ const LoggedInUser = () => {
   };
 
   return (
-    <>
-      <Header /> 
       <div className="main">
         <Card style={{ width: '44rem' }}>
           <Card.Body>
@@ -118,8 +116,7 @@ const LoggedInUser = () => {
 
         {showUpdateForm && <UpdateUserInfoForm />}
       </div>
-      <Footer /> 
-    </>
+
   );
 };
 
