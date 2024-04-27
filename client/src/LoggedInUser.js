@@ -13,40 +13,36 @@ const LoggedInUser = () => {
   const [password, setPassword] = useState('');
   const { authToken, logout } = useAuth();  
   const [showUpdateForm, setShowUpdateForm] = useState(false); 
-  const [hasResultatId, setHasResultatId] = useState(false); // State to track if the user has a resultatId
+  const [resultatId, setResultatId] = useState(null);
 
   useEffect(() => {
-    const fetchResultatId = async () => {
-      try {
-        const response = await axios.get("/api/getResultatId", {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
-        setHasResultatId(!!response.data.resultatId);
-      } catch (error) {
-        console.error("Error fetching resultatId:", error);
-      }
-    };
+    // Fetch user data including resultatId
+    axios.get('/api/userData')
+      .then(response => {
+        setResultatId(response.data.resultatId);
+      })
+      .catch(error => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
 
-    fetchResultatId();
-  }, [authToken]);
+  const handleBeforeUnload = (e) => {
+    if (!resultatId) {
+      // Prevent the user from leaving the page
+      e.preventDefault();
+      // Prompt the user to complete the required action
+      e.returnValue = "You have unsaved changes. Are you sure you want to leave?";
+    }
+  };
 
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      if (!hasResultatId) {
-        // Display an alert if the user does not have a resultatId when leaving the page
-        event.preventDefault();
-        event.returnValue = "";
-      }
-    };
-
+    // Add event listener for beforeunload to check if user has unsaved changes
     window.addEventListener("beforeunload", handleBeforeUnload);
-
     return () => {
+      // Remove event listener when component unmounts
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [hasResultatId]);
+  }, [resultatId]);
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
   
