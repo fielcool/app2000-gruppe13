@@ -6,9 +6,6 @@ Applikasjonen skal ha et rikt brukergrensesnitt og lese inn ulike typer av innda
 
 
 
->>> API request for din egen test <<<<
-
-Er sidene logisk satt opp?
 
 Lag eksempeldata
 
@@ -16,19 +13,10 @@ prøv å fikse kommentarer på det som er ""ferdig""
 
 input regler 
 
-fjerning av ekstra logs (ikke alle)
-
-jwt tokens timeout inconsistency, sjekk jwt secret idk, alle routes burde sjekkes.
-
-slette overflødige ting som userSchema og setupTest
-
  >>>>>Fiks CSS<<<<<<< 
 
 få tak i rapportklovnen
 
-sjekk kravene på oppgaven
-
-send mail til pål - få han til å bekrefte at han er fornøyd med kravene 
 
 
 

@@ -73,52 +73,52 @@ const LoggedInUser = () => {
 
   return (
     <>
-    <Header />
-    <div className="main">
-      <Card style={{ width: '44rem' }}>
-        <Card.Body>
-          <Card.Title>Din profil</Card.Title>
-          <Button variant="danger" onClick={() => setShowModal(true)}>
-            Slett bruker
-          </Button>
+      <Header /> 
+      <div className="main">
+        <Card style={{ width: '44rem' }}>
+          <Card.Body>
+            <Card.Title>Din profil</Card.Title>
+            <Button variant="danger" onClick={() => setShowModal(true)}>
+              Slett bruker
+            </Button>
 
-          <Button variant="primary" onClick={handleUpdateUserInfo}>
-            Oppdater brukerinformasjon
-          </Button>
+            <Button variant="primary" onClick={handleUpdateUserInfo}>
+              Oppdater brukerinformasjon
+            </Button>
 
-          <Button variant="info" onClick={handleGoToOrgOverview}>
-            Go to OrgOverview
-          </Button>
+            <Button variant="info" onClick={handleGoToOrgOverview}>
+              Go to OrgOverview
+            </Button>
 
-          <PersonalityTestIdForm authToken={authToken} />
+            <PersonalityTestIdForm authToken={authToken} />
 
-          <Modal show={showModal} onHide={handleCancel}>
-            <Modal.Header closeButton>
-              <Modal.Title>Confirm Deletion</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>Please enter your password to confirm deletion:</p>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCancel}>
-                Cancel
-              </Button>
-              <Button variant="danger" onClick={handleDeleteAccount}>
-                Confirm Deletion
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </Card.Body>
-      </Card>
+            <Modal show={showModal} onHide={handleCancel}>
+              <Modal.Header closeButton>
+                <Modal.Title>Confirm Deletion</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>Please enter your password to confirm deletion:</p>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCancel}>
+                  Cancel
+                </Button>
+                <Button variant="danger" onClick={handleDeleteAccount}>
+                  Confirm Deletion
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </Card.Body>
+        </Card>
 
-      {showUpdateForm && <UpdateUserInfoForm />}
-    </div>
-    <Footer />
+        {showUpdateForm && <UpdateUserInfoForm />}
+      </div>
+      <Footer /> 
     </>
   );
 };

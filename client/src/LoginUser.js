@@ -3,8 +3,11 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import LoggedInUser from "./LoggedInUser";
 import { useAuth } from './context/AuthContext'; 
+import { useNavigate } from 'react-router-dom';
 import Header from './Header'; 
 import Footer from './Footer'; 
+
+const navigate = useNavigate();
 
 async function loginUser(credentials) {
   try {
@@ -71,19 +74,15 @@ function LoginForm() {
   const handleLogout = () => {
     // Perform any additional logout logic if needed
     logout();
+       navigate('/');
     console.log("Logged out");
   };
 
   return (
     <div className="main">
+      <Header /> 
       {authToken ? (
-        <>
-        <Header />
-          <LoggedInUser authToken={authToken} />
-          <Button variant="danger" onClick={handleLogout}>
-            Logg ut
-          </Button>
-        </>
+        <LoggedInUser authToken={authToken} />
       ) : (
         <Form onSubmit={handleLogin}>
           <Form.Group className="credentials-form m-credentials-form">
@@ -105,9 +104,11 @@ function LoginForm() {
           </Button>
         </Form>
       )}
-        <Footer/>
+      <Button variant="danger" onClick={handleLogout}>
+        Logg ut
+      </Button>
+      <Footer /> 
     </div>
-    
   );
 }
 

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; 
+import Header from './Header'; 
+import Footer from './Footer'; 
 
 function CreateUserForm() {
   const navigate = useNavigate();  // Initialize the useNavigate hook
@@ -82,6 +84,7 @@ function CreateUserForm() {
 
   return (
     <div className="main">
+      <Header /> {/* Include the Header component */}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="credentials-form m-credentials-form">
           {Object.keys(input).map((fieldName) => {
@@ -105,6 +108,7 @@ function CreateUserForm() {
           Opprett bruker
         </Button>
       </Form>
+      <Footer /> {/* Include the Footer component */}
     </div>
   );
 }
