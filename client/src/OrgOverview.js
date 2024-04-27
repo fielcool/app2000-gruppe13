@@ -72,13 +72,9 @@ const OrgOverview = () => {
         <ChartComponent data={chartData} chartType={chartType} />
       </div>
       <div>
-        <p>Høyeste poengsum er: {highestScore}</p>
-        <p>Laveste poengsum er: {lowestScore}</p>
-        <textarea
-          value={additionalInfo}
-          readOnly
-          placeholder="Lim inn ekstra informasjon her..."
-        />
+        <p>Høyeste poengsum er: {highestScore} ({highestScoreDomain})</p>
+        <p>Laveste poengsum er: {lowestScore} ({lowestScoreDomain})</p>
+        <p>{additionalInfo}</p>
       </div>
     </div>
   );
