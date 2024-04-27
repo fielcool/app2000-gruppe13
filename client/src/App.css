@@ -17,13 +17,7 @@ body {
   height: 100%;
   margin: 0;
 }
-p {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  padding: 20px;
-}
+
 
 h1 {
   color: #000000;
