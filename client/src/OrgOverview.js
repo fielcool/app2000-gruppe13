@@ -89,10 +89,10 @@ const OrgOverview = () => {
         <ChartComponent data={chartData} chartType={chartType} />
       </div>
       <div className="text-container">
-        <h2>Svakeste og sterkeste organisasjonstrekk</h2>
-        <p>Høyeste samlede personlighetstrekk er: {highestScore} ({highestScoreDomain}) 
+        <h3>Svakeste og sterkeste organisasjonstrekk</h3>
+        <p>Høyeste samlede personlighetstrekk er: {highestScore} {highestScoreDomain}
         <br></br>
-        Laveste samlede personlighetstrekk er: {lowestScore} ({lowestScoreDomain})</p>
+        Laveste samlede personlighetstrekk er: {lowestScore} {lowestScoreDomain}</p>
         <h2>Nevrotisisme</h2>
         <p>Beskriver tendens til å oppleve slike negative følelser også uten at det nødvendigvis har skjedd noe konkret som utløser slike følelser.I motsatt ende finner vi de som har sterkere tendens til å tåle stress og usikkerhet uten sterk bekymring og engstelse. Er forbundet med å tåle presset i lederrollen.</p>
         <h2>Ekstroversjon</h2>
