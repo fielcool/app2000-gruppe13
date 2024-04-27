@@ -81,7 +81,7 @@ const LoggedInUser = () => {
               Organisasjonsoversikt
             </Button>
 
-            <Button variant="primary" onClick={handleUpdateUserInfo} className="btn btn-primary btn-md fp-button shadow-custom">
+            <Button variant="primary" onClick={handleUpdateUserInfo} className="btn btn-primary btn-md fp-button">
               Oppdater brukerinformasjon
             </Button>
 
