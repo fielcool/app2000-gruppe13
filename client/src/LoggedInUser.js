@@ -19,7 +19,9 @@ const LoggedInUser = () => {
     // Fetch user data including resultatId
     axios.get('/api/userData')
       .then(response => {
+        
         setResultatId(response.data.resultatId);
+        console.log (response.data);
       })
       .catch(error => {
         console.error("Error fetching user data:", error);
