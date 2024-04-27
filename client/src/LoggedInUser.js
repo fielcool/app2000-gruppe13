@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from "./context/AuthContext";  
 import UpdateUserInfoForm from "./UpdateUserInfoForm"; 
 import PersonalityTestIdForm from "./PersonalityTestIdForm"; 
-import Header from './Header'; 
-import Footer from './Footer'; 
+
 
 const LoggedInUser = () => {
   const navigate = useNavigate();

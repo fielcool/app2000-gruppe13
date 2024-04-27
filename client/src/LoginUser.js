@@ -104,14 +104,11 @@ function LoginForm() {
               />
             ))}
           </Form.Group>
-          <Button type="submit" variant="primary">
+          <Button type="submit" variant="primary" className="btn btn-info btn-md fp-button shadow-custom"  >
             Logg inn
           </Button>
         </Form>
       )}
-      <Button variant="danger" onClick={handleLogout}>
-        Logg ut
-      </Button>
     </div>
     <Footer /> 
     </>
