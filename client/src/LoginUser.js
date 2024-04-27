@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-import LoggedInUser from "./LoggedInUser";
-import { useAuth } from './context/AuthContext'; 
-import { useNavigate } from 'react-router-dom';
-import Header from './Header'; 
-import Footer from './Footer'; 
+import LoggedInUser from "./LoggedInUser"; // Importing LoggedInUser component
+import { useAuth } from './context/AuthContext'; // Importing useAuth hook
+import Header from './Header'; // Importing Header component
+import Footer from './Footer'; // Importing Footer component
 
-const navigate = useNavigate();
-
+// Async function to log in user with provided credentials
 async function loginUser(credentials) {
   try {
     const response = await axios.post('/api/login', credentials, {
@@ -41,6 +39,7 @@ function LoginForm() {
   // Using the useAuth hook to access authentication state and functions
   const { authToken, login, logout } = useAuth();
 
+  // Function to handle input change in form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prevCredentials) => ({
@@ -49,6 +48,7 @@ function LoginForm() {
     }));
   };
 
+  // Function to handle user login
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -71,10 +71,11 @@ function LoginForm() {
       });
   };
 
+  // Function to handle user logout
   const handleLogout = () => {
     // Perform any additional logout logic if needed
     logout();
-       navigate('/');
+    // Navigate to the home page after logout
     console.log("Logged out");
   };
 
