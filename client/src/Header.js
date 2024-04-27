@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './images/logo.svg'; // Import the image
-import 'bootstrap/dist/css/bootstrap.min.css';
+import brainImage from './images/logo.svg'; // Import the image
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg">
-      <div className="container-logo">
-        <img src={logo} alt="Logo" /> {/* Use the imported image */}
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <img src={brainImage} alt="Logo" /> {/* Use the imported image */}
       </div>
     </nav>
   );
