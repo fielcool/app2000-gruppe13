@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './images/logo.svg'; // Import the image
 import 'bootstrap/dist/css/bootstrap.min.css'
-import "/app.css"
+
 
 const Header = () => {
   return (
