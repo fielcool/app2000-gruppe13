@@ -1,4 +1,3 @@
-// UserInfoFields.js
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
@@ -12,6 +11,8 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="navn"
           value={newUserInfo.navn}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          maxLength={50} 
+          required 
         />
       </Form.Group>
 
@@ -22,6 +23,8 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="organisasjon"
           value={newUserInfo.organisasjon}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          maxLength={50} 
+          required 
         />
       </Form.Group>
 
@@ -32,6 +35,8 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="stillingstittel"
           value={newUserInfo.stillingstittel}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          maxLength={50} 
+          required 
         />
       </Form.Group>
 
@@ -42,6 +47,8 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="email"
           value={newUserInfo.email}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          maxLength={50} 
+          required 
         />
       </Form.Group>
 
@@ -52,6 +59,8 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="passord"
           value={newUserInfo.passord}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          minLength={2} // valgte 2 som minimum antall tegn på passord pga jeg må lage testprofiler.
+          required 
         />
       </Form.Group>
     </>
