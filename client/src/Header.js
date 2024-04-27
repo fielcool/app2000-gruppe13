@@ -4,13 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand color-black">Hjem</Link>
+        <Link to="/">
+          <img src="/images/brain.png" alt="Logo" />
+        </Link>
       </div>
     </nav>
   );
 };
 
 export default Header;
-
