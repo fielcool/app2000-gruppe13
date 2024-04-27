@@ -1,21 +1,36 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Header from './Header';
-import OrgOverview from './OrgOverview';
-import loginUser from './LoginUser';
-import UserInfoFields from './UserInfoFields';
+import Footer from './Footer'; 
+import "./App.css";
+import "./Medium.css";
+import "./Small.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = () => {
+export default function App() {
+  const navigate = useNavigate();
+
+  const handleUserCreationClick = () => {
+    navigate("/CreateUserForm");
+  };
+
+  const handleUserLoginClick = () => {
+    navigate("/LoginUser");
+  };
+
   return (
-    <Router>
-      <Header showLogin showSignup />
-      <Switch>
-        <Route exact path="/" component={OrgOverview} />
-        <Route path="/login" component={loginUser} />
-        <Route path="/signup" component={UserInfoFields} />
-      </Switch>
-    </Router>
+    <>
+      <Header /> 
+      <div className="main text-center">
+        <h1 className="intro-heading">Big Five personlighetstest for organisasjoner</h1>
+        <button onClick={handleUserLoginClick} className="btn btn-info btn-md fp-button shadow-custom">
+          Logg inn
+        </button>
+        <button onClick={handleUserCreationClick} className="btn btn-info btn-md fp-button shadow-custom">
+          Opprett ny bruker
+        </button>
+      </div>
+      <Footer /> 
+    </>
   );
-};
-
-export default App;
+}

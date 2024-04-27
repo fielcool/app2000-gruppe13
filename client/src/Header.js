@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Header = ({ showLogin, showSignup, handleUserLoginClick, handleUserCreationClick }) => {
+const Header = () => {
   return (
-    <div>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
       <Link to="/">
         <img src="./images/logo.svg" alt="Logo" />
       </Link>
-      {showLogin && <button onClick={handleUserLoginClick}>Logg inn</button>}
-      {showSignup && <button onClick={handleUserCreationClick}>Opprett ny bruker</button>}
-    </div>
+      </div>
+    </nav>
   );
 };
 
 export default Header;
+
