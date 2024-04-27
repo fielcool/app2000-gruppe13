@@ -14,7 +14,7 @@ const ChartComponent = ({ data, chartType }) => {
     chartInstance = new Chart(ctx, {
       type: chartType, // 'pie' or 'bar'
       data: {
-        labels: ['Nevrotisme', 'Ekstroversjon', 'Åpenhet for erfaringer', 'Medmennesklighet', 'Planmessighet'],
+        labels: ['Nevrotisme', 'Ekstroversjon', 'Åpenhet for erfaringer', 'Medmenneskelighet', 'Planmessighet'],
         datasets: [{
           label: chartType === 'pie' ? 'Poeng' : 'Poeng',
           data: data.map(item => item.score),

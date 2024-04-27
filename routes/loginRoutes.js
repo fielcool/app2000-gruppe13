@@ -2,42 +2,34 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
-const jwt = require('jsonwebtoken');
+const { generateToken } = require('../LogInTokens');
+
 
 router.post('/login', async (req, res) => {
     try {
-        const { email, passord } = req.body;
-
-        // Finn brukeren basert på e-post
+        const { email, password } = req.body;
         const user = await User.findOne({ email });
-
-        // Sjekk om brukeren eksisterer
         if (!user) {
-            console.log('Ugyldige påloggingsopplysninger: Bruker ikke funnet');
-            return res.status(401).json({ error: 'Ugyldige påloggingsopplysninger e-post' });
+            console.log('Invalid login credentials: User not found');
+            return res.status(401).json({ error: 'Invalid login credentials' });
         }
 
-        // Sammenlign det innskrevne passordet med det hasjede passordet i databasen
-        const erPassordGyldig = await bcrypt.compare(passord, user.passord);
-
-        if (!erPassordGyldig) {
-            console.log('Ugyldige påloggingsopplysninger: Passord stemmer ikke');
-            return res.status(401).json({ error: 'Ugyldige påloggingsopplysninger passord' });
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            console.log('Invalid login credentials: Incorrect password');
+            return res.status(401).json({ error: 'Invalid login credentials' });
         }
 
-        // Hvis passordet er gyldig, generer en token
-        const token = jwt.sign({
-            userId: user._id,
-            username: user.username,
-            organisasjon: user.organisasjon
-        }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // Use the generateToken function
+        const token = generateToken(user);
 
-        // Send tokenet til klienten
+        // Send the token to the client
         res.status(200).json({ token });
     } catch (error) {
-        console.error('Feil ved pålogging:', error);
-        res.status(500).json({ error: 'Intern serverfeil', detaljer: error.message, stakk: error.stack });
+        console.error('Error during login:', error);
+        res.status(500).json({ error: 'Internal server error', details: error.message, stack: error.stack });
     }
 });
+
 
 module.exports = router;

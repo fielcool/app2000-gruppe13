@@ -13,6 +13,24 @@ const OrgOverview = () => {
   const [lowestScoreDomain, setLowestScoreDomain] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('- Nevrotisisme: Nevrotisisme omhandler tendensen til å oppleve negative følelser.');
 
+  // Function to map single-letter domain codes to full words
+  const mapDomainCodeToWord = (code) => {
+    switch (code) {
+      case 'N':
+        return 'Nevrotisisme';
+      case 'E':
+        return 'Ekstroversjon';
+      case 'O':
+        return 'Åpenhet for erfaringer';
+      case 'A':
+        return 'Medmenneskelighet';
+      case 'C':
+        return 'Planmessighet';
+      default:
+        return code;
+    }
+  };
+
   useEffect(() => {
     const fetchChartData = async () => {
       try {
@@ -39,10 +57,10 @@ const OrgOverview = () => {
         const highestScoreItem = response.data.find(item => item.score === maxScore);
         const lowestScoreItem = response.data.find(item => item.score === minScore);
         if (highestScoreItem) {
-          setHighestScoreDomain(highestScoreItem.domain);
+          setHighestScoreDomain(mapDomainCodeToWord(highestScoreItem.domain));
         }
         if (lowestScoreItem) {
-          setLowestScoreDomain(lowestScoreItem.domain);
+          setLowestScoreDomain(mapDomainCodeToWord(lowestScoreItem.domain));
         }
 
         // Calculate percentages of total score
