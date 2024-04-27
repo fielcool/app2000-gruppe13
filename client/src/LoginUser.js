@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import LoggedInUser from "./LoggedInUser";
-import { useAuth } from './context/AuthContext'; // Adjust the path accordingly
+import { useAuth } from './context/AuthContext'; 
+import Header from './Header'; 
+import Footer from './Footer'; 
 
 async function loginUser(credentials) {
   try {
@@ -76,6 +78,7 @@ function LoginForm() {
     <div className="main">
       {authToken ? (
         <>
+        <Header />
           <LoggedInUser authToken={authToken} />
           <Button variant="danger" onClick={handleLogout}>
             Logg ut
@@ -102,7 +105,9 @@ function LoginForm() {
           </Button>
         </Form>
       )}
+        <Footer/>
     </div>
+    
   );
 }
 

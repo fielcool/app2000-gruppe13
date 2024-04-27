@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ChartComponent from './ChartComponent';
 import { useNavigate } from 'react-router-dom';
-import Header from './Header'; // Import the Header component
-import Footer from './Footer'; // Import the Footer component
+import Header from './Header'; 
+import Footer from './Footer'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OrgOverview = () => {
