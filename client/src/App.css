@@ -130,3 +130,8 @@ a {
 .wider-input {
   width: 300px;
 }
+
+.invalid-format {
+  width: 300px;
+  color: red;
+}
