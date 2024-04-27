@@ -1,14 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './images/logo.svg'; // Import the image
 
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link to="/">
-          <img src="/brain.png" />
-        </Link>
+        <img src={logo} alt="Logo" /> {/* Use the imported image */}
       </div>
     </nav>
   );
