@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Button, Modal } from "react-bootstrap";
-import { useNavigate, useEffect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from "./context/AuthContext";  
 import UpdateUserInfoForm from "./UpdateUserInfoForm"; 
 import PersonalityTestIdForm from "./PersonalityTestIdForm"; 
