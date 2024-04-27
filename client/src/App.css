@@ -57,8 +57,16 @@ a {
   align-items: center;
   height: 100%;
   min-height: 100vh;
+  padding: 10px;
 }
 
+.id-input{
+  display: flex;
+  width: 200px;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+}
 .chart-container {
   display: flex;
   justify-content: center;

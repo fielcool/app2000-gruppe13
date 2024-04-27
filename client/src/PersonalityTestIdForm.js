@@ -30,13 +30,13 @@ function PersonalityTestIdForm({ authToken }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <input className="id-input"
         type="text"
         value={resultatId}
         onChange={handleTestIdChange}
-        placeholder="Paste your personality test ID here"
+        placeholder="Lim inn ID fra personlighetstesten"
       />
-      <button type="submit">Save Test ID</button>
+      <button type="submit" className="btn btn-info btn-md fp-button shadow-custom">Save Test ID</button>
     </form>
   );
 }

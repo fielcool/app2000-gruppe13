@@ -75,16 +75,16 @@ const LoggedInUser = () => {
         <Card style={{ width: '44rem' }}>
           <Card.Body>
             <Card.Title>Din profil</Card.Title>
-            <Button variant="danger" onClick={() => setShowModal(true)}>
-              Slett bruker
+            <Button variant="info" onClick={handleGoToOrgOverview} className="btn btn-info btn-md fp-button shadow-custom">
+              Go to OrgOverview
             </Button>
 
             <Button variant="primary" onClick={handleUpdateUserInfo}>
               Oppdater brukerinformasjon
             </Button>
 
-            <Button variant="info" onClick={handleGoToOrgOverview}>
-              Go to OrgOverview
+            <Button variant="danger" onClick={() => setShowModal(true)}>
+              Slett bruker
             </Button>
 
             <PersonalityTestIdForm authToken={authToken} />
