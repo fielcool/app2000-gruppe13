@@ -72,7 +72,7 @@ const LoggedInUser = () => {
 
   return (
       <div className="main">
-        <Card style={{ width: '44rem' }}>
+        <Card style={{ width: '40rem' }}>
           <Card.Body>
             <Card.Title>
               <h1>Din profil</h1>
@@ -81,7 +81,7 @@ const LoggedInUser = () => {
               Organisasjonsoversikt
             </Button>
 
-            <Button variant="primary" onClick={handleUpdateUserInfo} className="btn btn-info btn-md fp-button shadow-custom">
+            <Button variant="primary" onClick={handleUpdateUserInfo} className="btn btn-primary btn-md fp-button shadow-custom">
               Oppdater brukerinformasjon
             </Button>
 

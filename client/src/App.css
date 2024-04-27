@@ -64,10 +64,8 @@ a {
   padding: 10px;
 }
 
-.btn2 {
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
+.btn-primary {
+color: blue;
 }
 
 .id-input{
