@@ -66,6 +66,7 @@ h1 {
   margin: 5px;
 }
 
-.navbar {
-  height: 4%;
+.navbar-logo img {
+  max-height: 50px;
+  margin-left: 10px;
 }
