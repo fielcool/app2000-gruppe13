@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ChartComponent from './ChartComponent';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header'; // Import the Header component
+import Footer from './Footer'; // Import the Footer component
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OrgOverview = () => {
   const navigate = useNavigate();
@@ -79,33 +82,36 @@ const OrgOverview = () => {
   }, [navigate]);
 
   return (
-    <div className="org-container">
-      <h1>Poengfordeling av personlighetstrekk for din organisasjon</h1>
-      <div>
-        <button onClick={() => setChartType('pie')}>Kakediagram</button>
-        <button onClick={() => setChartType('bar')}>Stolpediagram</button>
+    <>
+      <Header />
+      <div className="org-container">
+        <h1>Poengfordeling av personlighetstrekk for din organisasjon</h1>
+        <div>
+          <button onClick={() => setChartType('pie')}  className="btn btn-info btn-md fp-button shadow-custom" >Kakediagram</button>
+          <button onClick={() => setChartType('bar')}  className="btn btn-info btn-md fp-button shadow-custom">Stolpediagram</button>
+        </div>
+        <div className="chart-container">
+          <ChartComponent data={chartData} chartType={chartType} />
+        </div>
+        <div className="text-container">
+          <h3>Svakeste og sterkeste organisasjonstrekk</h3>
+          <p1>Høyeste samlede personlighetstrekk er: {highestScore} {highestScoreDomain} -{highestScorePercentage}
+          <br></br>
+          Laveste samlede personlighetstrekk er: {lowestScore} {lowestScoreDomain} - {lowestScorePercentage}</p1>
+          <h2>Nevrotisisme</h2>
+          <p>Beskriver tendens til å oppleve slike negative følelser også uten at det nødvendigvis har skjedd noe konkret som utløser slike følelser.I motsatt ende finner vi de som har sterkere tendens til å tåle stress og usikkerhet uten sterk bekymring og engstelse. Er forbundet med å tåle presset i lederrollen.</p>
+          <h2>Ekstroversjon</h2>
+          <p>Tendens til å være “sosialt anlagt” og å oppsøke/skape muligheter for følelsesmessig stimulerende aktiviteter. Er forbundet med endringsorientert og relasjonsorientert ledelse. Introversjon (i andre enden) beskriver at man har mindre behov for dette. </p>
+          <h2>Åpenhet for erfaringer</h2>
+          <p>Tilbøyelighet til fantasi, å søke nye opplevelser, å ha et liberalt syn på livet. Er forbundet med endringsorientert ledelse.  I “den andre enden” finner vi tendens til å foretrekke regler, systemer, at man er mer praktisk orientert og konservativt anlagt.</p>
+          <h2>Medmenneskelighet</h2>
+          <p>Tilbøyelighet til å ville glede og hjelpe andre, man er menneskekjærlig anlagt og empatisk av natur. Er forbundet med relasjonsorientert ledelse. I motsatt ende finner man mer egennyttige, “tøffere”, konkurranseorienterte mennesker som er opptatt av å få ting på sin måte. </p>
+          <h2>Planmessighet</h2>
+          <p>Beskriver tendens til å være målorientert, pliktoppfyllende, grundig og gjennomtenkt. Er forbundet med styrende og oppgaveorientert ledelse. I andre enden av dette trekket finner vi folk som er mer tilbakelente og mindre “ordnede”. </p>
+        </div>
       </div>
-      <div className="chart-container">
-        <ChartComponent data={chartData} chartType={chartType} />
-      </div>
-      <div className="text-container">
-        <h3>Svakeste og sterkeste organisasjonstrekk</h3>
-        <p>Høyeste samlede personlighetstrekk er: {highestScore} {highestScoreDomain}
-        <br></br>
-        Laveste samlede personlighetstrekk er: {lowestScore} {lowestScoreDomain}</p>
-        <h2>Nevrotisisme</h2>
-        <p>Beskriver tendens til å oppleve slike negative følelser også uten at det nødvendigvis har skjedd noe konkret som utløser slike følelser.I motsatt ende finner vi de som har sterkere tendens til å tåle stress og usikkerhet uten sterk bekymring og engstelse. Er forbundet med å tåle presset i lederrollen.</p>
-        <h2>Ekstroversjon</h2>
-        <p>Tendens til å være “sosialt anlagt” og å oppsøke/skape muligheter for følelsesmessig stimulerende aktiviteter. Er forbundet med endringsorientert og relasjonsorientert ledelse. Introversjon (i andre enden) beskriver at man har mindre behov for dette. </p>
-        <h2>Åpenhet for erfaringer</h2>
-        <p>Tilbøyelighet til fantasi, å søke nye opplevelser, å ha et liberalt syn på livet. Er forbundet med endringsorientert ledelse.  I “den andre enden” finner vi tendens til å foretrekke regler, systemer, at man er mer praktisk orientert og konservativt anlagt.</p>
-        <h2>Medmenneskelighet</h2>
-        <p>Tilbøyelighet til å ville glede og hjelpe andre, man er menneskekjærlig anlagt og empatisk av natur. Er forbundet med relasjonsorientert ledelse. I motsatt ende finner man mer egennyttige, “tøffere”, konkurranseorienterte mennesker som er opptatt av å få ting på sin måte. </p>
-        <h2>Planmessighet</h2>
-        <p>Beskriver tendens til å være målorientert, pliktoppfyllende, grundig og gjennomtenkt. Er forbundet med styrende og oppgaveorientert ledelse. I andre enden av dette trekket finner vi folk som er mer tilbakelente og mindre “ordnede”. </p>
-
-      </div>
-    </div>
+      <Footer /> 
+    </>
   );
 };
 

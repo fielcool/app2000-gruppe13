@@ -31,6 +31,10 @@ h2 {
   
 }
 
+.p1 {
+  margin-bottom: 20px;
+}
+
 h3 {
   color: #ac1d48;
   display: flex;
