@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import LoggedInUser from "./LoggedInUser"; // Importing LoggedInUser component
 import { useAuth } from './context/AuthContext'; // Importing useAuth hook
+import { useNavigate } from 'react-router-dom'; 
 import Header from './Header'; // Importing Header component
 import Footer from './Footer'; // Importing Footer component
 
@@ -70,18 +71,21 @@ function LoginForm() {
         console.error("Error logging in:", error);
       });
   };
-
+  const navigate = useNavigate(); // Initialize the useNavigate hook
   // Function to handle user logout
   const handleLogout = () => {
     // Perform any additional logout logic if needed
     logout();
     // Navigate to the home page after logout
+    navigate('/');
     console.log("Logged out");
   };
 
   return (
+    <>
+    <Header />
     <div className="main">
-      <Header /> 
+    
       {authToken ? (
         <LoggedInUser authToken={authToken} />
       ) : (
@@ -108,8 +112,9 @@ function LoginForm() {
       <Button variant="danger" onClick={handleLogout}>
         Logg ut
       </Button>
-      <Footer /> 
     </div>
+    <Footer /> 
+    </>
   );
 }
 

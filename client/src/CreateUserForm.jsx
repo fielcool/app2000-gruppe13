@@ -83,8 +83,9 @@ function CreateUserForm() {
   };
 
   return (
+    <>
+    <Header /> 
     <div className="main">
-      <Header /> {/* Include the Header component */}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="credentials-form m-credentials-form">
           {Object.keys(input).map((fieldName) => {
@@ -108,8 +109,9 @@ function CreateUserForm() {
           Opprett bruker
         </Button>
       </Form>
-      <Footer /> {/* Include the Footer component */}
     </div>
+    <Footer /> 
+    </>
   );
 }
 
