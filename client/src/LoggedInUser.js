@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Card, Button, Modal } from "react-bootstrap";
+import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "./context/AuthContext";  
 import UpdateUserInfoForm from "./UpdateUserInfoForm"; 
@@ -13,38 +13,7 @@ const LoggedInUser = () => {
   const [password, setPassword] = useState('');
   const { authToken, logout } = useAuth();  
   const [showUpdateForm, setShowUpdateForm] = useState(false); 
-  const [resultatId, setResultatId] = useState(null);
 
-  useEffect(() => {
-    // Fetch user data including resultatId
-    axios.get('/api/userData')
-      .then(response => {
-        
-        setResultatId(response.data.resultatId);
-        console.log (response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching user data:", error);
-      });
-  }, []);
-
-  const handleBeforeUnload = (e) => {
-    if (!resultatId) {
-      // Prevent the user from leaving the page
-      e.preventDefault();
-      // Prompt the user to complete the required action
-      e.returnValue = "You have unsaved changes. Are you sure you want to leave?";
-    }
-  };
-
-  useEffect(() => {
-    // Add event listener for beforeunload to check if user has unsaved changes
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      // Remove event listener when component unmounts
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [resultatId]);
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
   

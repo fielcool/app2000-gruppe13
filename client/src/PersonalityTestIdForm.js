@@ -17,7 +17,7 @@ function PersonalityTestIdForm({ authToken }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValidFormat) {
-      alert("Invalid ObjectId format!"); // Display an alert if the format is invalid
+      alert("Feil ID format! Vennligst sjekk at riktig ID er kopiert og limt inn"); // Display an alert if the format is invalid
       return;
     }
 
@@ -46,7 +46,7 @@ function PersonalityTestIdForm({ authToken }) {
         value={resultatId}
         onChange={handleTestIdChange}
         placeholder="Lim inn ID fra personlighetstesten"
-        className={`wider-input ${isValidFormat ? '' : 'invalid-format'}`} // Apply different class based on format validity
+        className={`wider-input ${isValidFormat ? '' : 'invalid-format'}`} //Red text if the input doesn't match object id format.
       />
       <button type="submit" className="btn btn-info btn-md fp-button shadow-custom">Lagre test-ID</button>
     </form>
