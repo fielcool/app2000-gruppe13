@@ -6,13 +6,12 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-      <Link to="./">
-        <img src="/images/logo.svg" alt="Logo" />
-      </Link>
+        <Link to="/">
+          <img src="/images/logo.svg" alt="Logo" />
+        </Link>
       </div>
     </nav>
   );
 };
 
 export default Header;
-
