@@ -40,7 +40,7 @@ const verifyToken = (req, res, next) => {
 const generateToken = (user) => {
   const payload = {
     userId: user._id,
-    username: user.navn,
+    email: user.email,
     organisasjon: user.organisasjon
   };
   const options = { expiresIn: process.env.JWT_EXPIRATION_TIME || '1h' };
