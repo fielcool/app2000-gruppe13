@@ -79,7 +79,7 @@ const OrgOverview = () => {
   }, [navigate]);
 
   return (
-    <div className="text-container">
+    <div className="org-container">
       <h1>Poengfordeling av personlighetstrekk for din organisasjon</h1>
       <div>
         <button onClick={() => setChartType('pie')}>Kakediagram</button>

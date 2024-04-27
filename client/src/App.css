@@ -94,3 +94,9 @@ a {
   max-height: 50px;
   margin-left: 10px;
 }
+
+.org-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
