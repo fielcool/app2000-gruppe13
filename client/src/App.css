@@ -34,6 +34,10 @@ h2 {
 .p1 {
   margin-bottom: 20px;
 }
+.p3 {
+  font-size: xx-small;
+  color: rgb(66, 66, 66)
+}
 
 h3 {
   color: #ac1d48;
