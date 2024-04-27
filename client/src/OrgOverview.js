@@ -7,6 +7,9 @@ const OrgOverview = () => {
   const navigate = useNavigate();
   const [chartData, setChartData] = useState([]);
   const [chartType, setChartType] = useState('bar'); // default to bar
+  const [highestScore, setHighestScore] = useState('');
+  const [lowestScore, setLowestScore] = useState('');
+  const [additionalInfo, setAdditionalInfo] = useState('- Nevrotisisme: Nevrotisisme omhandler tendensen til å oppleve negative følelser.');
 
   useEffect(() => {
     const fetchChartData = async () => {
@@ -22,6 +25,13 @@ const OrgOverview = () => {
           headers: { Authorization: `Bearer ${authToken}` }
         });
         setChartData(response.data);
+
+        // Calculate highest and lowest scores
+        const scores = response.data.map(item => item.score);
+        const maxScore = Math.max(...scores);
+        const minScore = Math.min(...scores);
+        setHighestScore(maxScore);
+        setLowestScore(minScore);
       } catch (error) {
         console.error('Error fetching chart data:', error);
         navigate('/error'); // Handle errors appropriately
@@ -40,6 +50,15 @@ const OrgOverview = () => {
       </div>
       <div className="chart-container">
         <ChartComponent data={chartData} chartType={chartType} />
+      </div>
+      <div>
+        <p>Høyeste poengsum er: {highestScore}</p>
+        <p>Laveste poengsum er: {lowestScore}</p>
+        <textarea
+          value={additionalInfo}
+          readOnly
+          placeholder="Lim inn ekstra informasjon her..."
+        />
       </div>
     </div>
   );
