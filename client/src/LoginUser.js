@@ -4,8 +4,7 @@ import axios from "axios";
 import LoggedInUser from "./LoggedInUser"; // Importing LoggedInUser component
 import { useAuth } from './context/AuthContext'; // Importing useAuth hook
 import { useNavigate } from 'react-router-dom'; 
-import Header from './Header'; // Importing Header component
-import Footer from './Footer'; // Importing Footer component
+
 
 // Async function to log in user with provided credentials
 async function loginUser(credentials) {
@@ -83,7 +82,6 @@ function LoginForm() {
 
   return (
     <>
-    <Header />
     <div className="main">
     
       {authToken ? (
@@ -113,7 +111,6 @@ function LoginForm() {
         Logg ut
       </Button>
     </div>
-    <Footer /> 
     </>
   );
 }
