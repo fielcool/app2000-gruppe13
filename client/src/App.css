@@ -60,8 +60,12 @@ a {
   padding: 10px;
 }
 
+.btn{
+  padding: 10px;
+}
+
 .btn2 {
-  padding: 20px;
+  padding: 10px;
   justify-content: center;
   align-items: center;
 }

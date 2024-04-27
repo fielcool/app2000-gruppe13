@@ -74,27 +74,29 @@ const LoggedInUser = () => {
       <div className="main">
         <Card style={{ width: '44rem' }}>
           <Card.Body>
-            <Card.Title>Din profil</Card.Title>
+            <Card.Title>
+              <h1>Din profil</h1>
+              </Card.Title>
             <Button variant="info" onClick={handleGoToOrgOverview} className="btn btn-info btn-md fp-button shadow-custom">
               Organisasjonsoversikt
             </Button>
 
-            <Button variant="primary" onClick={handleUpdateUserInfo} className="btn2">
+            <Button variant="primary" onClick={handleUpdateUserInfo} className="btn btn-info btn-md fp-button shadow-custom">
               Oppdater brukerinformasjon
             </Button>
 
-            <Button variant="danger" onClick={() => setShowModal(true)}className="btn2">
+            <Button variant="danger" onClick={() => setShowModal(true)}className="btn btn-info btn-md fp-button shadow-custom">
               Slett bruker
             </Button>
 
-            <PersonalityTestIdForm authToken={authToken}className="btn2" />
+            <PersonalityTestIdForm authToken={authToken}className="btn btn-info btn-md fp-button shadow-custom" />
 
             <Modal show={showModal} onHide={handleCancel}>
               <Modal.Header closeButton>
                 <Modal.Title>Confirm Deletion</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>Please enter your password to confirm deletion:</p>
+                <p>Vennligst skriv inn passordet ditt for å bekrefte sletting av bruker:</p>
                 <input
                   type="password"
                   value={password}
@@ -103,10 +105,10 @@ const LoggedInUser = () => {
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleCancel}>
-                  Cancel
+                  Avbryt
                 </Button>
                 <Button variant="danger" onClick={handleDeleteAccount}>
-                  Confirm Deletion
+                  Bekreft
                 </Button>
               </Modal.Footer>
             </Modal>
