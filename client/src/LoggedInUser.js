@@ -13,7 +13,40 @@ const LoggedInUser = () => {
   const [password, setPassword] = useState('');
   const { authToken, logout } = useAuth();  
   const [showUpdateForm, setShowUpdateForm] = useState(false); 
+  const [hasResultatId, setHasResultatId] = useState(false); // State to track if the user has a resultatId
 
+  useEffect(() => {
+    const fetchResultatId = async () => {
+      try {
+        const response = await axios.get("/api/getResultatId", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setHasResultatId(!!response.data.resultatId);
+      } catch (error) {
+        console.error("Error fetching resultatId:", error);
+      }
+    };
+
+    fetchResultatId();
+  }, [authToken]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (!hasResultatId) {
+        // Display an alert if the user does not have a resultatId when leaving the page
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [hasResultatId]);
   const handleDeleteAccount = async () => {
     console.log('Auth Token:', authToken);
   

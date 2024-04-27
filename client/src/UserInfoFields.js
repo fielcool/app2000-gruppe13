@@ -1,7 +1,10 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Alert } from 'react-bootstrap';
 
 function UserInfoFields({ newUserInfo, handleChange }) {
+  const password = newUserInfo.passord;
+  const minLength = 2;
+
   return (
     <>
       <Form.Group>
@@ -11,10 +14,14 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="navn"
           value={newUserInfo.navn}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
-          maxLength={50} 
-          required 
+          maxLength={50}
+          required
         />
       </Form.Group>
+
+
+{// navn er ikke påkrevd, hvis folk vil være anonyme}
+}
 
       <Form.Group>
         <Form.Label>Organisasjon</Form.Label>
@@ -23,11 +30,16 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="organisasjon"
           value={newUserInfo.organisasjon}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
-          maxLength={50} 
-          required 
+          maxLength={50}
+          required
         />
       </Form.Group>
 
+      {newUserInfo.organisasjon.length === 0 && (
+        <Alert variant="danger">Organisasjon is required.</Alert>
+      )}
+
+      {/* Stillingstittel */}
       <Form.Group>
         <Form.Label>Stillingstittel</Form.Label>
         <Form.Control
@@ -35,11 +47,16 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="stillingstittel"
           value={newUserInfo.stillingstittel}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
-          maxLength={50} 
-          required 
+          maxLength={50}
+          required
         />
       </Form.Group>
 
+      {newUserInfo.stillingstittel.length === 0 && (
+        <Alert variant="danger">Stillingstittel is required.</Alert>
+      )}
+
+      {/* Email */}
       <Form.Group>
         <Form.Label>Email</Form.Label>
         <Form.Control
@@ -47,11 +64,17 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="email"
           value={newUserInfo.email}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
-          maxLength={50} 
-          required 
+          maxLength={50}
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         />
       </Form.Group>
 
+      {(!newUserInfo.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newUserInfo.email)) && (
+        <Alert variant="danger">Email is invalid.</Alert>
+      )}
+
+      {/* Passord */}
       <Form.Group>
         <Form.Label>Passord</Form.Label>
         <Form.Control
@@ -59,9 +82,12 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="passord"
           value={newUserInfo.passord}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
-          minLength={2} // valgte 2 som minimum antall tegn på passord pga jeg må lage testprofiler.
-          required 
+          minLength={minLength} // Minimum password length
+          required
         />
+        {password.length < minLength && (
+          <Alert variant="danger">The password must be minimum {minLength} characters long.</Alert>
+        )}
       </Form.Group>
     </>
   );
