@@ -62,8 +62,8 @@ a {
 
 .id-input{
   display: flex;
-  width: 200px;
-  padding: 30px;
+  width: 500px;
+  padding: 4px;
   justify-content: center;
   align-items: center;
 }

@@ -29,8 +29,8 @@ function PersonalityTestIdForm({ authToken }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input className="id-input"
+    <form onSubmit={handleSubmit}className="id-input">
+      <input 
         type="text"
         value={resultatId}
         onChange={handleTestIdChange}
