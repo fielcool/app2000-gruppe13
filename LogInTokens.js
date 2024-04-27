@@ -43,7 +43,7 @@ const generateToken = (user) => {
     email: user.email,
     organisasjon: user.organisasjon
   };
-  const options = { expiresIn: process.env.JWT_EXPIRATION_TIME || '1h' };
+  const options = { expiresIn:'1h' };
   const token = jwt.sign(payload, secretKey, options);
 
   // Debugging: Decode token immediately to verify content
