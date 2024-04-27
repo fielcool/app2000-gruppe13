@@ -4,6 +4,10 @@ Applikasjonen skal ha funksjonalitet som både setter inn, endrer, sletter og he
 Applikasjonen skal ha et rikt brukergrensesnitt og lese inn ulike typer av inndata fra brukeren med god inndatavalidering. Løsningen skal være sikret mot vanlige sikkerhetstrusler (som f.eks. SQL injection).
 
 
+
+
+>>> API request for din egen test <<<<
+
 Er sidene logisk satt opp?
 
 Lag eksempeldata
