@@ -6,10 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Header = () => {
   console.log('brainImage:', brainImage); // Log the brainImage variable
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <Link to="/">
-          <img src={brainImage} alt="Logo" className="navbar-brand" style={{ maxHeight: '50px', marginRight: '10px' }} />
+          <img src={brainImage} alt="Logo" className="navbar-brand" style={{ maxHeight: '50px', marginRight: '25%' }} />
         </Link>
       </div>
     </nav>

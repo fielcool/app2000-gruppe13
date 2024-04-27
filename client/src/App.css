@@ -17,6 +17,13 @@ body {
   height: 100%;
   margin: 0;
 }
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding: 20px;
+}
 
 h1 {
   color: #000000;
@@ -24,6 +31,12 @@ h1 {
 
 h2 {
   color: #ac1d48;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding: 20px;
+  
 }
 
 a {
@@ -41,9 +54,16 @@ a {
 
 .chart-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 30%;
+  padding: 20px;
+}
+.text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
   padding: 20px;
 }
 
