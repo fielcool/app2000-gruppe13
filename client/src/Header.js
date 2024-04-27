@@ -1,14 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-white">
       <div className="container-fluid">
-        <Link to="/">
-          <img src="/images/openness.jpg" alt="Logo" />
-        </Link>
+        <a href="/">
+          <img src="https://sveeee.vercel.app/_nuxt/img/7bc354c.svg" alt="Logo" />
+        </a>
       </div>
     </nav>
   );
