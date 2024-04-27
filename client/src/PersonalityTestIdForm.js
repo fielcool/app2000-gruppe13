@@ -36,7 +36,7 @@ function PersonalityTestIdForm({ authToken }) {
         onChange={handleTestIdChange}
         placeholder="Lim inn ID fra personlighetstesten"
       />
-      <button type="submit" className="btn btn-info btn-md fp-button shadow-custom">Save Test ID</button>
+      <button type="submit" className="btn btn-info btn-md fp-button shadow-custom">Lagre test-ID</button>
     </form>
   );
 }

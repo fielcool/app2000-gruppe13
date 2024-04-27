@@ -58,6 +58,11 @@ a {
   height: 100%;
   min-height: 100vh;
   padding: 10px;
+  margin-right:auto;
+}
+
+.btn2 {
+  padding: 4px;
 }
 
 .id-input{

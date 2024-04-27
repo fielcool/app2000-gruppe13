@@ -76,14 +76,14 @@ const LoggedInUser = () => {
           <Card.Body>
             <Card.Title>Din profil</Card.Title>
             <Button variant="info" onClick={handleGoToOrgOverview} className="btn btn-info btn-md fp-button shadow-custom">
-              Go to OrgOverview
+              Organisasjonsoversikt
             </Button>
 
-            <Button variant="primary" onClick={handleUpdateUserInfo}>
+            <Button variant="primary" onClick={handleUpdateUserInfo} className="btn2">
               Oppdater brukerinformasjon
             </Button>
 
-            <Button variant="danger" onClick={() => setShowModal(true)}>
+            <Button variant="danger" onClick={() => setShowModal(true)}className="btn2">
               Slett bruker
             </Button>
 
