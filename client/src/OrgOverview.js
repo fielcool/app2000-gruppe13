@@ -91,7 +91,8 @@ const OrgOverview = () => {
           <p1>Høyeste samlede personlighetstrekk er: {highestScoreDomain} med {highestScore} poeng
           <br></br>
           Laveste samlede personlighetstrekk er:  {lowestScoreDomain} med {lowestScore} poeng  </p1>
-          <br/>
+          <br />
+          <hr />
           <h2>Nevrotisisme</h2>
           <p>Beskriver tendens til å oppleve slike negative følelser også uten at det nødvendigvis har skjedd noe konkret som utløser slike følelser.I motsatt ende finner vi de som har sterkere tendens til å tåle stress og usikkerhet uten sterk bekymring og engstelse. Er forbundet med å tåle presset i lederrollen.</p>
           <h2>Ekstroversjon</h2>
