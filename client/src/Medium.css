@@ -1,196 +1,97 @@
-/* responsive for tablets: width smaller than 768px */
-@media (max-width: 768px) {
-  body {
-    /* background-image: url("./back3.gif");
-    background-attachment: fixed; */
-    background-color: #dedede;
-  }
-  p {
-    font-size: 16px;
-  }
-  .nav-bar {
-    width: 80%;
-    margin: 0 auto;
-    padding: 0;
-    padding-right: 1rem;
-    background-color: #2d2d2d;
-  }
-  .nav-bar-text {
-    color: #fff;
-    font-weight: bold;
-    width: 250px;
-    text-align: right;
-  }
-  .logo {
-    width: 100px;
-  }
-  .main {
-    text-align: center;
-    width: 80%;
-    margin: auto auto;
-    background-color: white;
-    padding: 1rem 2rem;
-    height: 100%;
-    min-height: 100vh;
-  }
-  .main .intro-heading {
-    text-align: center;
-    margin: 2rem auto;
-    width: 80%;
-  }
-  .main .intro-text {
-    text-align: justify;
-    margin: 1rem auto 2rem;
-    width: 100%;
-  }
-  .lng-btn {
-    margin: 1rem auto;
-    height: 60px;
-    font-size: 22px;
-    color: white;
-    width: 100%;
-  }
-  .lng-btn:active {
-    color: white;
-  }
-  .lng-menu {
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-  }
-  .lng-menu a {
-    text-decoration: none;
-    color: black;
-  }
-  .lng-div {
-    background-color: rgb(244, 244, 244);
-    border-radius: 8px;
-    padding: 10px;
-  }
-  .m-credentials-input {
-    margin: 1rem 0;
-    height: 60px;
-  }
-  .percent {
-    text-align: left;
-  }
-  .progressBarEmpty {
-    width: 100%;
-    margin: 0 auto 40px;
-    border-radius: 8px;
-    height: 10px;
-    background-color: lightgray;
-  }
-  .progressBarFilled {
-    background-color: #db536a;
-    border-radius: 8px;
-    height: 10px;
-  }
-  .back-next-btns {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 3rem;
-  }
-  .lng-btn,
-  .back-btn,
-  .next-btn,
-  .finish-btn {
-    margin-top: 2rem;
-    width: 250px;
-    height: 60px;
-    font-size: 22px;
-  }
-  .question {
-    text-align: left;
-    margin-top: 2rem;
-  }
-  .left-align-text {
-    text-align: left;
-    vertical-align: middle;
-  }
-  .m-div {
-    padding: 12px;
-    background-color: rgb(244, 244, 244);
-    border-radius: 8px;
-    margin: 1rem 0;
-  }
-  .m-label {
-    width: 100%;
-  }
-  .m-label:hover {
-    cursor: pointer;
-  }
-  .m-input {
-    margin-right: 8px;
-    padding: 0;
-  }
-  .m-radio-div {
-    background-color: red;
-    height: 200px;
-  }
-  .sticky-sub-div {
-    background-color: white;
-    position: sticky;
-    z-index: 100;
-    padding: 1rem 0;
-    top: 1px;
-  }
-  .back-arrow {
-    margin-right: 10px;
-  }
-  .next-arrow {
-    margin-left: 10px;
-  }
-  .select-countries,
-  .input-text {
-    width: 100%;
-    margin: 1rem auto;
-    height: 60px;
-  }
-  .dontknow-div {
-    text-align: left;
-    margin-top: 2rem;
-  }
-  .dontknow-btn {
-    width: 250px;
-    height: 60px;
-    font-size: 16px;
-    margin-top: 1rem;
-  }
-  .none-btn {
-    height: 60px;
-    width: 250px;
-    font-size: 16px;
-    margin-top: 1rem;
-  }
-  .m-input-22 {
-    height: 60px;
-    margin-bottom: 2rem;
-  }
-  .m-dontknow-22 {
-    height: 60px;
-    width: 100%;
-    border-radius: 6px;
-    border: none;
-    background-color: #dedede;
-  }
-  .m-none-dontknow-div {
-    display: flex;
-    justify-content: space-between;
-  }
+/* Reset and general styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-  .dropdown-toggle {
-    width: 100%;
-    height: 60px;
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Headings */
+h1 {
+  color: #000000;
+  font-size: 1.5rem; /* Adjust size for tablet */
+  text-align: center; /* Center align for tablet */
+  margin-bottom: 10px; /* Add space below heading */
+}
+
+h2, h3 {
+  color: #ac1d48;
+  text-align: center; /* Center align for tablet */
+  padding: 8px;
+}
+
+/* Paragraphs */
+.p1 {
+  margin-bottom: 20px;
+  font-size: 1rem; /* Adjust size for tablet */
+}
+
+.p3 {
+  font-size: 0.8rem; /* Adjust size for tablet */
+  color: #424242; /* Use slightly darker grey for better readability */
+  text-align: center; /* Center align for tablet */
+}
+
+/* Links */
+a {
+  display: inline-block; /* Ensure links are block elements for proper spacing */
+  width: 100px; /* Adjust size for tablet */
+  height: 30px; /* Adjust size for tablet */
+  text-align: center; /* Center align text within links */
+}
+
+/* Main container */
+.main {
+  padding: 20px; /* Increase padding for better spacing */
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px; /* Increase padding for better touch interaction */
+  text-align: center; /* Center align text within buttons */
+  margin-bottom: 10px; /* Add space below buttons */
+}
+
+/* Form input */
+.id-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Occupy full width of the container */
+  padding: 10px; /* Increase padding for better spacing */
+}
+
+.wider-input, .invalid-format {
+  width: 100%; /* Occupy full width of the container */
+}
+
+/* Chart and text containers */
+.chart-container, .text-container {
+  width: 100%; /* Occupy full width of the container */
+  padding: 10px; /* Increase padding for better spacing */
+}
+
+/* Responsive adjustments */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Adjustments for tablets */
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
   }
-  .dropdown-btn {
-    height: 60px;
-    width: 100%;
-  }
-  .finish-btn {
-    background-color: #db536a;
-    border: #db536a;
+  
+  .chart-container, .text-container {
+    width: 40%; /* Occupy 40% of the container */
   }
 }

@@ -99,10 +99,10 @@ const OrgOverview = () => {
         </div>
         <div className="text-container">
           <h3>Svakeste og sterkeste organisasjonstrekk</h3>
-          <p1>Høyeste samlede personlighetstrekk er: {highestScoreDomain} med {highestScore} poeng 
+          <p1>Høyeste samlede personlighetstrekk er {highestScoreDomain} med {highestScore} poeng 
           <br /> Dette Tilsvarer {percentageHigh}% av totalscoren.
           <br />
-          Laveste samlede personlighetstrekk er:  {lowestScoreDomain} med {lowestScore} poeng
+          Laveste samlede personlighetstrekk er {lowestScoreDomain} med {lowestScore} poeng
           <br /> Dette tilsvarer {percentageLow}% av totalscoren  </p1>
           <br />
           <p1>  </p1>
