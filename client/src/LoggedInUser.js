@@ -87,6 +87,7 @@ const LoggedInUser = () => {
             Slett bruker
           </Button>
           <PersonalityTestIdForm authToken={authToken} className="btn btn-info btn-md fp-button shadow-custom" />
+          <a href="https://sveeee.vercel.app/" className="test-link">Link til testen</a>
           <Modal show={showModal} onHide={handleCancel}>
             <Modal.Header closeButton>
               <Modal.Title>Confirm Deletion</Modal.Title>
