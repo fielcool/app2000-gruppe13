@@ -1,29 +1,15 @@
-// CreateUserForm.js
-// This component handles the user registration form. It manages state for form inputs and submits them to an API.
-// Author: Philip Stapnes
-// ChatGPT assisted in the creation of this document.
-
-import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
-import axios from "axios";
-import { useNavigate } from 'react-router-dom'; 
-import Header from './Header'; 
-import Footer from './Footer'; 
-
 function CreateUserForm() {
-  const navigate = useNavigate();  // Use the useNavigate hook for redirecting after actions
+  const navigate = useNavigate();  // Initialize the useNavigate hook
 
-  // State management for form inputs
   const [input, setInput] = useState({
     navn: "",
     organisasjon: "",
     stillingstittel: "",
     email: "",
     passord: "",
-    testId: "", 
+    testId: " ", 
   });
 
-  // Handle input changes for the form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput((prevInput) => ({
@@ -32,7 +18,6 @@ function CreateUserForm() {
     }));
   };
 
-  // Register user with provided data to the server
   const registerUser = async (userData) => {
     try {
       const response = await axios.post('/api/createUser', userData, {
@@ -60,12 +45,10 @@ function CreateUserForm() {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form data:', input);
 
-    // Prevent submission if any field is empty
     if (Object.values(input).some((value) => value === "")) {
       // Show modal alert or handle the empty fields case as needed
       return;
@@ -84,7 +67,7 @@ function CreateUserForm() {
       });
 
       if (isUserRegistered) {
-        // Navigate to login page after successful registration
+        // Optionally, you can reset the form after updating MongoDB
         navigate('/LoginUser');  
       }
     } catch (error) {
