@@ -61,10 +61,10 @@ const OrgOverview = () => {
         const lowestScoreItem = response.data.find(item => item.score === minScore);
 
         const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
-        const percentageHigh = (highestScore / totalScore) * 100;
-        const percentageLow = (lowestScore / totalScore) * 100;
+        const percentageHigh = (maxScore / totalScore) * 100;
+        const percentageLow = (minScore / totalScore) * 100;
         setPercentageHigh(percentageHigh);
-        setPercentageLow(percentageLow)
+        setPercentageLow(percentageLow);
 
         if (highestScoreItem) {
           setHighestScoreDomain(mapDomainCodeToWord(highestScoreItem.domain));
