@@ -22,7 +22,7 @@ export default function App() {
     <>
       <Header /> 
       <div className="main text-center">
-        <h1 className="intro-heading">Big Five personlighetstest for organisasjoner</h1>
+        <h1 className="intro-heading">Big Five personlighetstestoversikt for organisasjoner</h1>
         <button onClick={handleUserLoginClick} className="btn btn-info btn-md fp-button shadow-custom">
           Logg inn
         </button>
