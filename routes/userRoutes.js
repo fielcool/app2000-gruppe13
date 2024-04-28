@@ -1,52 +1,42 @@
-
-const { verifyToken } = require('../LogInTokens');
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 const User = require('../models/UserModel');
+const loginRoutes = require('./loginRoutes');
 
 
-// DELETE route for deleting a user account
-router.delete('/user', verifyToken, async (req, res) => {
+router.use('/login', loginRoutes);
+router.post('/createUser', async (req, res) => {
   try {
-    console.log('Incoming headers:', req.headers);
+    const { navn, email, passord, organisasjon, stillingstittel, resultatId} = req.body;
 
-    // Check if req.user exists and has userId property
-    if (!req.user || !req.user.userId) {
-      throw new Error('User information not available');
+    // Check if the user with the provided email already exists
+    const existingUser = await User.findOne({ email }).exec();
+    if (existingUser) {
+      return res.status(400).json({ error: 'User with this email already exists' });
     }
 
-    // Get the user ID from the decoded token
-    const userId = req.user.userId;
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(passord, 10); // 10 is the number of salt rounds
 
-    // Get the user's password from the request body
-    const { password } = req.body;
-    console.log('Entered password:', password);
+    // Create a new user with the hashed password
+    const newUser = new User({
+      navn,
+      organisasjon,
+      stillingstittel,
+      email,
+      passord: hashedPassword,
+      resultatId,
+      // Add other fields as needed
+    });
 
-    // Find the user by ID
-    const user = await User.findById(userId);
+    // Save the user to the database using the specified connection
+    await newUser.save();
 
-    // If the user is not found, respond with an error
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
- // Compare the entered password with the stored hashed password
-const isPasswordValid = await user.comparePassword(password);
-console.log('Is password valid:', isPasswordValid);
-
-    if (!isPasswordValid) {
-      // If the password is not valid, respond with an error
-      return res.status(401).json({ error: 'Invalid password' });
-    }
-
-    // Perform the logic to delete the user account based on the user ID
-    await User.findByIdAndDelete(userId);
-
-    // Respond with a success message or appropriate response
-    res.status(200).json({ message: 'Account deleted successfully' });
+    res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    console.error('Error deleting account:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error registering user:', error);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message, stack: error.stack });
   }
 });
 
