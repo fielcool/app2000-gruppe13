@@ -15,7 +15,6 @@ const loginRoutes = require('./routes/loginRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const updateIdRoutes = require('./routes/updateIdRoutes');
 const crossReferenceRoutes = require('./routes/crossReferenceRoutes');
-// const testResultRoutes = require('./routes/testResultRoutes'); // Uncomment to include test result handling routes
 
 const port = process.env.PORT || 8080; // Define the port to run the server on
 
