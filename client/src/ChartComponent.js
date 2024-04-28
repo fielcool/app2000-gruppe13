@@ -1,18 +1,28 @@
+// ChartComponent.jsx
+// This component renders dynamic charts based on the provided data and chart type.
+// It supports both 'pie' and 'bar' charts for visualizing personality traits scores.
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
 const ChartComponent = ({ data, chartType }) => {
+  // Ref for the canvas element where the chart will be rendered
   const chartRef = useRef(null);
 
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');
     let chartInstance = window.myChart;
 
+    // Check and destroy existing chart instance if exists
     if (chartInstance) {
       chartInstance.destroy(); // Destroy the existing chart before creating a new one
     }
+
+    // Create a new chart instance
     chartInstance = new Chart(ctx, {
-      type: chartType, // 'pie' or 'bar'
+      type: chartType, // Determines the chart type (e.g., 'pie' or 'bar')
       data: {
         labels: ['Nevrotisme', 'Ekstroversjon', 'Åpenhet for erfaringer', 'Medmenneskelighet', 'Planmessighet'],
         datasets: [{
@@ -49,13 +59,13 @@ const ChartComponent = ({ data, chartType }) => {
       }
     });
 
-    // Ensure we clean up on component unmount
+    // Cleanup function for component unmount
     return () => {
       if (chartInstance) {
         chartInstance.destroy();
       }
     };
-  }, [data, chartType]);
+  }, [data, chartType]); // Dependency array ensures effect runs only when data or chart type changes
 
   return (
     <div className="container p-3">

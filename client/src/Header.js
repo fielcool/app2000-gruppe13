@@ -1,3 +1,9 @@
+// Header.js
+// This component renders the footer for the application. It includes a message about the website's purpose
+// and its association with educational projects.
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import { Button } from 'react-bootstrap';
