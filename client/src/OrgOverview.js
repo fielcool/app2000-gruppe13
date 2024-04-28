@@ -14,7 +14,8 @@ const OrgOverview = () => {
   const [highestScoreDomain, setHighestScoreDomain] = useState('');
   const [lowestScore, setLowestScore] = useState('');
   const [lowestScoreDomain, setLowestScoreDomain] = useState('');
-
+  const [percentageHigh, setPercentageHigh] = useState(0);
+  const [percentageLow, setPercentageLow] = useState(0);
   // Function to map single-letter domain codes to full words
   const mapDomainCodeToWord = (code) => {
     switch (code) {
@@ -58,6 +59,13 @@ const OrgOverview = () => {
         // Find domains associated with highest and lowest scores
         const highestScoreItem = response.data.find(item => item.score === maxScore);
         const lowestScoreItem = response.data.find(item => item.score === minScore);
+
+        const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+        const percentageHigh = (highestScore / totalScore) * 100;
+        const percentageLow = (lowestScore / totalScore) * 100;
+        setPercentageHigh(percentageHigh);
+        setPercentageLow(percentageLow)
+
         if (highestScoreItem) {
           setHighestScoreDomain(mapDomainCodeToWord(highestScoreItem.domain));
         }
@@ -75,8 +83,7 @@ const OrgOverview = () => {
   }, [navigate]);
 
   //calculate the % of the total for highest and lowest score
-  const percentageHigh = highestScore/scores*100;
-  const percentageLow = lowestScore/scores*100;
+
 
   return (
     <>
