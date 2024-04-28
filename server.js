@@ -28,7 +28,7 @@ process.on("uncaughtException", function (err) {
 appMiddleware.use('/api', loginRoutes, userRoutes, deleteRoutes, updateRoutes);
 appMiddleware.use('/api', updateIdRoutes);
 appMiddleware.use('/api', crossReferenceRoutes);
-appMiddleware.use('/api', verifyToken, deleteRoutes); // This seems incorrect and might be a typo. It's likely meant to configure middleware or specific route handling.
+appMiddleware.use('/api', verifyToken, deleteRoutes);
 
 // Static files configuration for production
 if (process.env.NODE_ENV === "production") {

@@ -1,54 +1,52 @@
-// userRoutes.js
-// This module defines the Express router for user-related operations, such as registration.
-// It includes secure password hashing and user creation with validation against existing records.
-// Author: Philip Stapnes
-// ChatGPT assisted in the creation of this document.
-
+User
+const { verifyToken } = require('../LogInTokens');
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');  // Library for hashing passwords securely
-const User = require('../models/UserModel');  // User model to interact with the database
-const loginRoutes = require('./loginRoutes');  // Importing the login routes to be used with this router
+const User = require('../models/UserModel');
 
-// Use login routes under the '/login' path
-router.use('/login', loginRoutes);
 
-// POST endpoint to create a new user
-router.post('/createUser', async (req, res) => {
+// DELETE route for deleting a user account
+router.delete('/user', verifyToken, async (req, res) => {
   try {
-    // Extracting user details from the request body
-    const { navn, email, passord, organisasjon, stillingstittel, resultatId } = req.body;
+    console.log('Incoming headers:', req.headers);
 
-    // Check if a user with the same email already exists
-    const existingUser = await User.findOne({ email }).exec();
-    if (existingUser) {
-      // If a user exists, return an error
-      return res.status(400).json({ error: 'User with this email already exists' });
+    // Check if req.user exists and has userId property
+    if (!req.user || !req.user.userId) {
+      throw new Error('User information not available');
     }
 
-    // Hash the password using bcrypt with 10 rounds of salting
-    const hashedPassword = await bcrypt.hash(passord, 10);
+    // Get the user ID from the decoded token
+    const userId = req.user.userId;
 
-    // Create a new user instance with the hashed password
-    const newUser = new User({
-      navn,
-      organisasjon,
-      stillingstittel,
-      email,
-      passord: hashedPassword,
-      resultatId,
-      // Additional fields can be added here as required
-    });
+    // Get the user's password from the request body
+    const { password } = req.body;
+    console.log('Entered password:', password);
 
-    // Save the new user to the database
-    await newUser.save();
+    // Find the user by ID
+    const user = await User.findById(userId);
 
-    // Respond with success if the user is registered without issues
-    res.status(201).json({ message: 'User registered successfully' });
+    // If the user is not found, respond with an error
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+ // Compare the entered password with the stored hashed password
+const isPasswordValid = await user.comparePassword(password);
+console.log('Is password valid:', isPasswordValid);
+
+    if (!isPasswordValid) {
+      // If the password is not valid, respond with an error
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+
+    // Perform the logic to delete the user account based on the user ID
+    await User.findByIdAndDelete(userId);
+
+    // Respond with a success message or appropriate response
+    res.status(200).json({ message: 'Account deleted successfully' });
   } catch (error) {
-    // Log and respond with error details if an exception occurs
-    console.error('Error registering user:', error);
-    res.status(500).json({ error: 'Internal Server Error', details: error.message, stack: error.stack });
+    console.error('Error deleting account:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
