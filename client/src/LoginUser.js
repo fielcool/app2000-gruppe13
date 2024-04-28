@@ -24,7 +24,6 @@ async function loginUser(credentials) {
 
     if (response.status === 200) {
       const token = response.data.token;
-      console.log("Received token:", token);
       return token;
     } else {
       console.log('Server response:', response.data);

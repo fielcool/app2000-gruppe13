@@ -11,7 +11,6 @@ const User = require('../models/UserModel'); // Import the User model
 // DELETE route for deleting a user account
 router.delete('/user', verifyToken, async (req, res) => {
   try {
-    console.log('Incoming headers:', req.headers);
 
     // Check if user data from token is available and has userId
     if (!req.user || !req.user.userId) {

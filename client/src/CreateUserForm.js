@@ -44,7 +44,7 @@ function CreateUserForm() {
         console.log("User registered successfully");
         return true;
       } else {
-        console.log('Server response:', response.data);
+
         console.error("User registration failed");
         return false;
       }
@@ -61,7 +61,7 @@ function CreateUserForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form data:', input);
+
 
     if (Object.values(input).some(value => value === "")) {
       return; // Optionally, handle with modal/alert

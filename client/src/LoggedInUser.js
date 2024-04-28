@@ -21,7 +21,6 @@ const LoggedInUser = () => {
 
   // Handle account deletion
   const handleDeleteAccount = async () => {
-    console.log('Auth Token:', authToken);
     console.log('Request headers:', {
       Authorization: `Bearer ${authToken}`,
     });
