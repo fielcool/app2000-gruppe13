@@ -1,4 +1,4 @@
-User
+
 const { verifyToken } = require('../LogInTokens');
 const express = require('express');
 const router = express.Router();
