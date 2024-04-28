@@ -61,8 +61,8 @@ const OrgOverview = () => {
         const lowestScoreItem = response.data.find(item => item.score === minScore);
 
         const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
-        const percentageHigh = (maxScore / totalScore) * 100;
-        const percentageLow = (minScore / totalScore) * 100;
+        const percentageHigh = ((maxScore / totalScore) * 100).toFixed(2);
+        const percentageLow = ((minScore / totalScore) * 100).toFixed(2);
         setPercentageHigh(percentageHigh);
         setPercentageLow(percentageLow);
 
