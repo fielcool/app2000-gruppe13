@@ -1,19 +1,20 @@
 // CreateUserForm.js
 // This component handles the user registration form. It manages state for form inputs and submits them to an API.
+// It now includes validation alerts similar to those in the UserInfoFields component.
 // Author: Philip Stapnes
 // ChatGPT assisted in the creation of this document.
 
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap"; // Include Alert for validation messages
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; 
 import Header from './Header'; 
 import Footer from './Footer'; 
 
 function CreateUserForm() {
-  const navigate = useNavigate();  // Use the useNavigate hook for redirecting after actions
+  const navigate = useNavigate();
+  const minLength = 2; // Minimum length for the password field
 
-  // State management for form inputs
   const [input, setInput] = useState({
     navn: "",
     organisasjon: "",
@@ -23,16 +24,14 @@ function CreateUserForm() {
     testId: " ", 
   });
 
-  // Handle input changes for the form
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInput((prevInput) => ({
+    setInput(prevInput => ({
       ...prevInput,
       [name]: value,
     }));
   };
 
-  // Register user with provided data to the server
   const registerUser = async (userData) => {
     try {
       const response = await axios.post('/api/createUser', userData, {
@@ -60,35 +59,22 @@ function CreateUserForm() {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form data:', input);
 
-    // Prevent submission if any field is empty
-    if (Object.values(input).some((value) => value === "")) {
-      // Show modal alert or handle the empty fields case as needed
-      return;
+    if (Object.values(input).some(value => value === "")) {
+      return; // Optionally, handle with modal/alert
     }
 
     try {
       const { navn, organisasjon, stillingstittel, email, passord, testId } = input;
-
-      const isUserRegistered = await registerUser({
-        navn,
-        organisasjon,
-        stillingstittel,
-        email,
-        passord,
-        testId,
-      });
-
+      const isUserRegistered = await registerUser({ navn, organisasjon, stillingstittel, email, passord, testId });
       if (isUserRegistered) {
-        // Navigate to login page after successful registration
         navigate('/LoginUser');  
       }
     } catch (error) {
-      // Handle the error based on your application's requirements
+      console.error("Registration error:", error);
     }
   };
 
@@ -98,26 +84,39 @@ function CreateUserForm() {
     <div className="main">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="credentials-form m-credentials-form">
-          {Object.keys(input).map((fieldName) => {
-            if (fieldName !== 'testId') { // Exclude 'testId' from the form display
+          {Object.keys(input).map(fieldName => {
+            if (fieldName !== 'testId') {
               return (
-                <Form.Control
-                  key={fieldName}
-                  autoComplete="off"
-                  type={fieldName === 'passord' ? 'password' : 'text'}
-                  placeholder={`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}*`}
-                  name={fieldName}
-                  value={input[fieldName]}
-                  onChange={handleChange}
-                  className="credentials-input m-credentials-input"
-                />
+                <>
+                  <Form.Control
+                    key={fieldName}
+                    autoComplete="off"
+                    type={fieldName === 'passord' ? 'password' : 'text'}
+                    placeholder={`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}*`}
+                    name={fieldName}
+                    value={input[fieldName]}
+                    onChange={handleChange}
+                    className="credentials-input m-credentials-input"
+                    required
+                  />
+                  {fieldName === 'organisasjon' && input.organisasjon.length === 0 && (
+                    <Alert variant="danger">Organisasjon is required.</Alert>
+                  )}
+                  {fieldName === 'stillingstittel' && input.stillingstittel.length === 0 && (
+                    <Alert variant="danger">Stillingstittel is required.</Alert>
+                  )}
+                  {fieldName === 'email' && (!input.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) && (
+                    <Alert variant="danger">Email is invalid.</Alert>
+                  )}
+                  {fieldName === 'passord' && input.passord.length < minLength && (
+                    <Alert variant="danger">The password must be minimum {minLength} characters long.</Alert>
+                  )}
+                </>
               );
             }
           })}
         </Form.Group>
-        <Button type="submit" variant="primary">
-          Opprett bruker
-        </Button>
+        <Button type="submit" variant="primary">Opprett bruker</Button>
       </Form>
     </div>
     <Footer /> 
