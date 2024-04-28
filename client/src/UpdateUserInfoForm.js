@@ -35,6 +35,10 @@ function UpdateUserInfoForm() {
       [name]: value,
     }));
   };
+  // changes the password if a new password is input and confirmed
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   // Triggers the display of the confirmation modal
   const handleUpdate = () => {
