@@ -31,7 +31,6 @@ function PersonalityTestIdForm({ authToken }) {
   
     // Send the valid ID to the server using a PUT request
     try {
-      console.log("Sending request to save personality test ID...");
       const response = await axios.put(
         "/api/updateTestId", 
         { resultatId },
@@ -42,14 +41,15 @@ function PersonalityTestIdForm({ authToken }) {
           },
         }
       );
-  
+    
       if (response.status === 200) {
         console.log("Personality test ID saved successfully");
-        setTestId(""); // Reset the ID field on successful API response
+        setTestId(""); // This resets the input field, not the ID in the database
       }
     } catch (error) {
       console.error("Error saving personality test ID:", error);
-    } 
+    }
+
   
 
     // Send the valid ID to the server using a PUT request
