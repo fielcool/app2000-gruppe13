@@ -64,7 +64,7 @@ const OrgOverview = () => {
         if (lowestScoreItem) {
           setLowestScoreDomain(mapDomainCodeToWord(lowestScoreItem.domain));
         }
-       
+
       } catch (error) {
         console.error('Error fetching chart data:', error);
         navigate('/error'); // Handle errors appropriately
@@ -73,6 +73,10 @@ const OrgOverview = () => {
 
     fetchChartData();
   }, [navigate]);
+
+  //calculate the % of the total for highest and lowest score
+  const percentageHigh = highestScore/scores*100;
+  const percentageLow = lowestScore/scores*100;
 
   return (
     <>
@@ -88,9 +92,11 @@ const OrgOverview = () => {
         </div>
         <div className="text-container">
           <h3>Svakeste og sterkeste organisasjonstrekk</h3>
-          <p1>Høyeste samlede personlighetstrekk er: {highestScoreDomain} med {highestScore} poeng
-          <br></br>
-          Laveste samlede personlighetstrekk er:  {lowestScoreDomain} med {lowestScore} poeng  </p1>
+          <p1>Høyeste samlede personlighetstrekk er: {highestScoreDomain} med {highestScore} poeng - dette utgjør {percentageHigh}% av totalscoren.
+          <br />
+          Laveste samlede personlighetstrekk er:  {lowestScoreDomain} med {lowestScore} poeng - dette tilsvarer {percentageLow}% av totalscoren  </p1>
+          <br />
+          <p1>  </p1>
           <br />
           <hr />
           <h2>Nevrotisisme</h2>
