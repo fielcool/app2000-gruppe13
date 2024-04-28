@@ -100,16 +100,16 @@ function CreateUserForm() {
                     required
                   />
                   {fieldName === 'organisasjon' && input.organisasjon.length === 0 && (
-                    <Alert variant="danger">Organisasjon is required.</Alert>
+                    <Alert variant="danger">Organisasjonsnavn er påkrevd.</Alert>
                   )}
                   {fieldName === 'stillingstittel' && input.stillingstittel.length === 0 && (
-                    <Alert variant="danger">Stillingstittel is required.</Alert>
+                    <Alert variant="danger">Stillingstittel er påkrevd.</Alert>
                   )}
                   {fieldName === 'email' && (!input.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) && (
-                    <Alert variant="danger">Email is invalid.</Alert>
+                    <Alert variant="danger">Email ikke godkjent.</Alert>
                   )}
                   {fieldName === 'passord' && input.passord.length < minLength && (
-                    <Alert variant="danger">The password must be minimum {minLength} characters long.</Alert>
+                    <Alert variant="danger">Passordet må være på minst {minLength} tegn.</Alert>
                   )}
                 </>
               );
