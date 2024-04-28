@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer'; 
-//import "./App.css";
+import "./App.css";
 import "./Medium.css";
-//import "./Small.css";
+import "./Small.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
