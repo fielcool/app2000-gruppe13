@@ -25,10 +25,32 @@ function PersonalityTestIdForm({ authToken }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValidFormat) {
-      // Alert the user if the format of the test ID is invalid
       alert("Feil ID format! Vennligst sjekk at riktig ID er kopiert og limt inn");
       return;
     }
+  
+    // Send the valid ID to the server using a PUT request
+    try {
+      console.log("Sending request to save personality test ID...");
+      const response = await axios.put(
+        "/api/updateTestId", 
+        { resultatId },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      if (response.status === 200) {
+        console.log("Personality test ID saved successfully");
+        setTestId(""); // Reset the ID field on successful API response
+      }
+    } catch (error) {
+      console.error("Error saving personality test ID:", error);
+    } 
+  
 
     // Send the valid ID to the server using a PUT request
     try {
