@@ -72,7 +72,7 @@ const LoggedInUser = () => {
 
   return (
       <div className="main">
-        <Card style={{ width: '36rem' }}>
+        <Card>
           <Card.Body>
             <Card.Title>
               <h1>Din profil</h1>

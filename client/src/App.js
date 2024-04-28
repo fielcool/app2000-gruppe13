@@ -21,8 +21,8 @@ export default function App() {
   return (
     <>
       <Header /> 
-      <div className="main text-center">
-        <h1 className="intro-heading">Big Five personlighetstestoversikt for organisasjoner</h1>
+      <div className="main-page text-center">
+        <h1 >Big Five personlighetstestoversikt for organisasjoner</h1>
         <button onClick={handleUserLoginClick} className="btn btn-info btn-md fp-button shadow-custom">
           Logg inn
         </button>
