@@ -1,4 +1,4 @@
-// CreateUserForm.jsx
+// CreateUserForm.js
 // This component handles the user registration form. It manages state for form inputs and submits them to an API.
 // Author: Philip Stapnes
 // ChatGPT assisted in the creation of this document.

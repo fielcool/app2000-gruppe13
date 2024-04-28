@@ -1,51 +1,56 @@
-const { verifyToken } = require('../LogInTokens');
+// userRoutes.js
+// This module defines a router for handling user-related operations in an Express application, specifically deleting a user account.
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
+const { verifyToken } = require('../LogInTokens'); // Middleware to verify JWT token
 const express = require('express');
 const router = express.Router();
-const User = require('../models/UserModel');
-
+const User = require('../models/UserModel'); // Import the User model
 
 // DELETE route for deleting a user account
 router.delete('/user', verifyToken, async (req, res) => {
   try {
     console.log('Incoming headers:', req.headers);
 
-    // Check if req.user exists and has userId property
+    // Check if user data from token is available and has userId
     if (!req.user || !req.user.userId) {
       throw new Error('User information not available');
     }
 
-    // Get the user ID from the decoded token
+    // Extract the user ID from the decoded JWT token
     const userId = req.user.userId;
 
-    // Get the user's password from the request body
+    // Get the password from the request body to confirm user identity
     const { password } = req.body;
     console.log('Entered password:', password);
 
-    // Find the user by ID
+    // Retrieve the user document from the database using the userID
     const user = await User.findById(userId);
 
-    // If the user is not found, respond with an error
+    // If the user document is not found, send a 404 error response
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
- // Compare the entered password with the stored hashed password
-const isPasswordValid = await user.comparePassword(password);
-console.log('Is password valid:', isPasswordValid);
+    // Check if the provided password matches the one stored in the database
+    const isPasswordValid = await user.comparePassword(password);
+    console.log('Is password valid:', isPasswordValid);
 
+    // If the password is invalid, respond with a 401 Unauthorized error
     if (!isPasswordValid) {
-      // If the password is not valid, respond with an error
       return res.status(401).json({ error: 'Invalid password' });
     }
 
-    // Perform the logic to delete the user account based on the user ID
+    // If password verification is successful, delete the user account
     await User.findByIdAndDelete(userId);
 
-    // Respond with a success message or appropriate response
+    // Send a success response confirming the deletion of the account
     res.status(200).json({ message: 'Account deleted successfully' });
   } catch (error) {
+    // Log and return an error if an exception occurs
     console.error('Error deleting account:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
 

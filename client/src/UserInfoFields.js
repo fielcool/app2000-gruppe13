@@ -1,12 +1,19 @@
+// UserInfoFields.js
+// This component renders input fields for user information within a form context. It validates the input and provides feedback.
+// It supports inputs for name, organization, job title, email, and password with appropriate validation.
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 import React from 'react';
 import { Form, Alert } from 'react-bootstrap';
 
 function UserInfoFields({ newUserInfo, handleChange }) {
   const password = newUserInfo.passord;
-  const minLength = 2;
+  const minLength = 2; // Minimum length for the password field
 
   return (
     <>
+      {/* Name input field, not required to allow anonymity */}
       <Form.Group>
         <Form.Label>Navn</Form.Label>
         <Form.Control
@@ -19,10 +26,7 @@ function UserInfoFields({ newUserInfo, handleChange }) {
         />
       </Form.Group>
 
-
-{// navn er ikke påkrevd, hvis folk vil være anonyme}
-}
-
+      {/* Organization input field */}
       <Form.Group>
         <Form.Label>Organisasjon</Form.Label>
         <Form.Control
@@ -35,11 +39,12 @@ function UserInfoFields({ newUserInfo, handleChange }) {
         />
       </Form.Group>
 
+      {/* Alert if organization field is empty */}
       {newUserInfo.organisasjon.length === 0 && (
         <Alert variant="danger">Organisasjon is required.</Alert>
       )}
 
-      {/* Stillingstittel */}
+      {/* Job title input field */}
       <Form.Group>
         <Form.Label>Stillingstittel</Form.Label>
         <Form.Control
@@ -52,11 +57,12 @@ function UserInfoFields({ newUserInfo, handleChange }) {
         />
       </Form.Group>
 
+      {/* Alert if job title field is empty */}
       {newUserInfo.stillingstittel.length === 0 && (
         <Alert variant="danger">Stillingstittel is required.</Alert>
       )}
 
-      {/* Email */}
+      {/* Email input field with pattern validation */}
       <Form.Group>
         <Form.Label>Email</Form.Label>
         <Form.Control
@@ -70,11 +76,12 @@ function UserInfoFields({ newUserInfo, handleChange }) {
         />
       </Form.Group>
 
+      {/* Alert for invalid email format */}
       {(!newUserInfo.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newUserInfo.email)) && (
         <Alert variant="danger">Email is invalid.</Alert>
       )}
 
-      {/* Passord */}
+      {/* Password input field with length validation */}
       <Form.Group>
         <Form.Label>Passord</Form.Label>
         <Form.Control
@@ -82,7 +89,7 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           name="passord"
           value={newUserInfo.passord}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
-          minLength={minLength} // Minimum password length
+          minLength={minLength} // Enforce minimum password length
           required
         />
         {password.length < minLength && (

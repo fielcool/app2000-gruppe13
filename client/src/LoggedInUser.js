@@ -1,4 +1,4 @@
-// LoggedInUser.jsx
+// LoggedInUser.js
 // This component represents the user profile page where users can view their profile options, update information,
 // navigate to organizational overview, or delete their account.
 // Author: Philip Stapnes

@@ -1,5 +1,8 @@
-/* Reset and general styles */
-
+/*/ Relative.css
+// Styling for mobile and tablet
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+*/
 @media only screen and (max-width: 768px) {
 * {
   padding: 0;

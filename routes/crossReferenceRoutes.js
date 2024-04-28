@@ -1,12 +1,19 @@
+// chart.js
+// This module defines an Express router for fetching pie chart data based on test results associated with an organization.
+// It integrates with two separate MongoDB connections for handling user and test result data.
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 const express = require('express');
 const router = express.Router();
-const { connection1, connection2 } = require('../database'); // Import only connection1, TestResult will use connection2 internally
-const { verifyToken } = require('../LogInTokens');
-const testResultSchema = require('../models/TestResult'); // Ensure this schema is correctly imported
+const { connection1, connection2 } = require('../database'); // Import connections for user and test result data
+const { verifyToken } = require('../LogInTokens'); // Middleware for JWT token verification
+const testResultSchema = require('../models/TestResult'); // Import the schema for test results
 
+// Route to get chart data for an organization
 router.get('/chart', verifyToken, async (req, res) => {
     try {
-        const organisasjon = req.user.organisasjon;
+        const organisasjon = req.user.organisasjon; // Extract organization from the verified user
         console.log('Organisation:', organisasjon);
 
         // Use existing models or initialize if they don't exist yet
@@ -52,12 +59,14 @@ router.get('/chart', verifyToken, async (req, res) => {
             return acc;
         }, {});
 
+        // Prepare the chart data from accumulated scores
         const chartData = Object.keys(domainScores).map(domain => ({
             domain: domain,
             score: domainScores[domain]
         }));
         console.log('Pie chart data prepared:', chartData);
 
+        // Send the processed chart data as a response
         res.status(200).json(chartData);
     } catch (error) {
         console.error('Error generating pie chart data:', error);

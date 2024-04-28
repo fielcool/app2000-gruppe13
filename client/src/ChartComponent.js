@@ -1,4 +1,4 @@
-// ChartComponent.jsx
+// ChartComponent.js
 // This component renders dynamic charts based on the provided data and chart type.
 // It supports both 'pie' and 'bar' charts for visualizing personality traits scores.
 // Author: Philip Stapnes

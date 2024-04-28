@@ -1,6 +1,5 @@
 // Header.js
-// This component renders the footer for the application. It includes a message about the website's purpose
-// and its association with educational projects.
+// This component renders the Header for the application. Conditional logout button and home button
 // Author: Philip Stapnes
 // ChatGPT assisted in the creation of this document.
 

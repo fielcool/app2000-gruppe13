@@ -1,4 +1,4 @@
-// App.jsx
+// App.js
 // This component handles the main application routing and layout for the Big Five personality test overview application.
 // Author: Philip Stapnes
 // ChatGPT assisted in the creation of this document.
@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer'; 
 import "./App.css";
-import "./Medium.css";
-//import "./Small.css";
+import "./Relative.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {

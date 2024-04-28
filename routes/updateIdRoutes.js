@@ -1,16 +1,22 @@
+// testIdRoutes.js
+// Defines an Express route that handles updating a user's testId in the database.
+// This module includes token verification and ObjectId validation using Mongoose.
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');  // Import mongoose to use ObjectId
-const { verifyToken } = require('../LogInTokens');
-const User = require('../models/UserModel');
+const mongoose = require('mongoose');  // Necessary for ObjectId validation
+const { verifyToken } = require('../LogInTokens'); // Middleware for JWT verification
+const User = require('../models/UserModel'); // UserModel to interact with MongoDB
 
-// Route to update the user's testId
+// PUT route to update the user's testId in the database
 router.put('/updateTestId', verifyToken, async (req, res) => {
   try {
-    const { resultatId } = req.body;
-    const userId = req.user.userId; // Assuming the user ID is available in the request object
+    const { resultatId } = req.body; // Extract resultatId from request body
+    const userId = req.user.userId; // Assume the user ID is provided by token verification
 
-    // Validate the format of resultatId
+    // Validate the format of resultatId using Mongoose's ObjectId type
     if (!mongoose.Types.ObjectId.isValid(resultatId)) {
       return res.status(400).json({ error: 'Invalid ID format for resultatId' });
     }
@@ -18,11 +24,11 @@ router.put('/updateTestId', verifyToken, async (req, res) => {
     console.log('Received testId:', resultatId);
     console.log('Updating testId for user:', userId);
 
-    // Update the user's testId
+    // Update the user's testId in the database
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { resultatId },
-      { new: true }
+      { new: true } // Return the updated document
     );
 
     if (!updatedUser) {
@@ -30,9 +36,11 @@ router.put('/updateTestId', verifyToken, async (req, res) => {
       return res.status(404).json({ message: 'No user found' });
     }
 
+    // Log success and return the updated user information
     console.log('TestId updated successfully', updatedUser);
     res.status(200).json({ message: 'resultatId updated successfully', user: updatedUser });
   } catch (error) {
+    // Log any errors and return a server error status
     console.error('Error updating resultatId:', error);
     res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }

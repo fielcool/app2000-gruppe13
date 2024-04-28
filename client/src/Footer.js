@@ -1,4 +1,4 @@
-// Footer.jsx
+// Footer.js
 // This component renders the footer for the application. It includes a message about the website's purpose
 // and its association with educational projects.
 // Author: Philip Stapnes
