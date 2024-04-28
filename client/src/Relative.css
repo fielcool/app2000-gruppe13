@@ -71,6 +71,10 @@ a {
   text-align: center; /* Center align text within buttons */
   margin-bottom: 10px; /* Add space below buttons */
 }
+/*link to test - din side*/
+.test-link{
+  font-size: medium;
+}
 
 /* Form input */
 .id-input {

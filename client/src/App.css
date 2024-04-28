@@ -135,6 +135,10 @@ a {
   margin-top: 20px;
 }
 
+.test-link{
+  font-size: medium;
+}
+
 .wider-input {
   width: 300px;
 }
