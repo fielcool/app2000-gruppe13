@@ -110,12 +110,7 @@ a {
   justify-content: center;
   height: 100vh; /* Use full screen height */
 }
-.main-page{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:100vh;
-}
+
 .fp-button {
   margin: 5px;
 }
