@@ -1,4 +1,6 @@
 /* Reset and general styles */
+
+@media only screen and (max-width: 768px) {
 * {
   padding: 0;
   margin: 0;
@@ -19,40 +21,45 @@ body {
 /* Headings */
 h1 {
   color: #000000;
-  font-size: 1.5rem; /* Adjust size for tablet */
-  text-align: center; /* Center align for tablet */
+  font-size: 1.5rem; /* Adjust size for mobile */
+  text-align: center; /* Center align for mobile */
   margin-bottom: 10px; /* Add space below heading */
 }
 
 h2, h3 {
   color: #ac1d48;
-  text-align: center; /* Center align for tablet */
+  text-align: center; /* Center align for mobile */
   padding: 8px;
 }
 
 /* Paragraphs */
 .p1 {
   margin-bottom: 20px;
-  font-size: 1rem; /* Adjust size for tablet */
+  font-size: 1rem; /* Adjust size for mobile */
 }
 
 .p3 {
-  font-size: 0.8rem; /* Adjust size for tablet */
+  font-size: 0.8rem; /* Adjust size for mobile */
   color: #424242; /* Use slightly darker grey for better readability */
-  text-align: center; /* Center align for tablet */
+  text-align: center; /* Center align for mobile */
 }
 
 /* Links */
 a {
   display: inline-block; /* Ensure links are block elements for proper spacing */
-  width: 100px; /* Adjust size for tablet */
-  height: 30px; /* Adjust size for tablet */
+  width: 100px; /* Adjust size for mobile */
+  height: 30px; /* Adjust size for mobile */
   text-align: center; /* Center align text within links */
 }
 
 /* Main container */
 .main {
-  padding: 20px; /* Increase padding for better spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Use full viewport height */
+  padding: 20px; /* Add padding for better spacing */
 }
 
 /* Buttons */
@@ -80,17 +87,33 @@ a {
   width: 100%; /* Occupy full width of the container */
   padding: 10px; /* Increase padding for better spacing */
 }
-
-/* Responsive adjustments */
+}
+/* Responsive adjustments for tablets */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* Adjustments for tablets */
-  .main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
+  h1 {
+    font-size: 2rem; /* Increase font size for tablets */
   }
-  
+
+  h2, h3 {
+    padding: 12px; /* Increase padding for tablets */
+  }
+
+  .p1 {
+    font-size: 1.2rem; /* Increase font size for tablets */
+  }
+
+  .p3 {
+    font-size: 1rem; /* Increase font size for tablets */
+  }
+
+  .btn {
+    padding: 12px 24px; /* Increase padding for tablets */
+  }
+
+  .id-input {
+    padding: 12px; /* Increase padding for tablets */
+  }
+
   .chart-container, .text-container {
     width: 40%; /* Occupy 40% of the container */
   }

@@ -1,100 +1,145 @@
-/* Reset and general styles */
+/* Existing styles */
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
 }
 
-html, body {
-  height: 100%;
+html {
   margin: 0;
+  height: 100%;
 }
 
 body {
   background-color: #ffffff;
-  color: #000000;
+  height: 100%;
+  margin: 0;
 }
 
-/* Headings */
+
 h1 {
   color: #000000;
-  font-size: 1.5rem; /* Adjust size for tablet */
-  text-align: center; /* Center align for tablet */
-  margin-bottom: 10px; /* Add space below heading */
 }
 
-h2, h3 {
+h2 {
   color: #ac1d48;
-  text-align: center; /* Center align for tablet */
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  
+}
+
+.p1 {
+  margin-bottom: 20px;
+}
+.p3 {
+  font-size: 6;
+  color: rgb(66, 66, 66)
+}
+
+h3 {
+  color: #ac1d48;
+  display: flex;
+  align-items: center;
   padding: 8px;
 }
 
-/* Paragraphs */
-.p1 {
-  margin-bottom: 20px;
-  font-size: 1rem; /* Adjust size for tablet */
-}
-
-.p3 {
-  font-size: 0.8rem; /* Adjust size for tablet */
-  color: #424242; /* Use slightly darker grey for better readability */
-  text-align: center; /* Center align for tablet */
-}
-
-/* Links */
 a {
-  display: inline-block; /* Ensure links are block elements for proper spacing */
-  width: 100px; /* Adjust size for tablet */
-  height: 30px; /* Adjust size for tablet */
-  text-align: center; /* Center align text within links */
+  width: 51px;
+  height: 51px;
 }
 
-/* Main container */
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.btn{
+  padding: 10px;
+}
+
+
+.id-input{
+  display: flex;
+  width: 500px;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+}
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding: 10px;
+}
+.text-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 20px;
+}
+
+.canvas-container {
+  width: 400px;
+  height: 400px;
+  margin: 10px; 
+  position: center;
+}
+
+.shadow-custom {
+  box-shadow: 0 8px 16px 0 rgba(11, 59, 146, 0.2); 
+  transition: all 0.3s ease-in-out;
+}
+
+.shadow-custom:hover {
+  box-shadow: 0 0 12px 0 rgba(24, 87, 168, 0.7); 
+}
+
+
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Use full viewport height */
-  padding: 20px; /* Add padding for better spacing */
+  height: 100vh; 
 }
 
-/* Buttons */
-.btn {
-  padding: 10px 20px; /* Increase padding for better touch interaction */
-  text-align: center; /* Center align text within buttons */
-  margin-bottom: 10px; /* Add space below buttons */
-}
-
-/* Form input */
-.id-input {
+.main-page{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* Occupy full width of the container */
-  padding: 10px; /* Increase padding for better spacing */
+  justify-content: center;
+
+  height:100vh;
+}
+.fp-button {
+  margin: 5px;
 }
 
-.wider-input, .invalid-format {
-  width: 100%; /* Occupy full width of the container */
+.navbar-logo img {
+  max-height: 50px;
+  margin-left: 60px;
 }
 
-/* Chart and text containers */
-.chart-container, .text-container {
-  width: 100%; /* Occupy full width of the container */
-  padding: 10px; /* Increase padding for better spacing */
+.org-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
-/* Responsive adjustments */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* Adjustments for tablets */
-  .main {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  
-  .chart-container, .text-container {
-    width: 40%; /* Occupy 40% of the container */
-  }
+.wider-input {
+  width: 300px;
+}
+
+.invalid-format {
+  width: 300px;
+  color: red;
 }
