@@ -98,13 +98,15 @@ const OrgOverview = () => {
           <ChartComponent data={chartData} chartType={chartType} />
         </div>
         <div className="text-container">
-          <h3>Svakeste og sterkeste organisasjonstrekk</h3>
-          <p1>Høyeste samlede personlighetstrekk er {highestScoreDomain} med {highestScore} poeng 
-          <br /> Dette Tilsvarer {percentageHigh}% av totalscoren.
+          <h3>Sterkeste og svakeste organisasjonstrekk</h3>
+          <p1>Sterkeste samlede personlighetstrekk er {highestScoreDomain} med {highestScore} poeng 
+          <br /> Dette tilsvarer {percentageHigh}% av totalscoren.
           <br />
-          Laveste samlede personlighetstrekk er {lowestScoreDomain} med {lowestScore} poeng
-          <br /> Dette tilsvarer {percentageLow}% av totalscoren  </p1>
+          Svakeste samlede personlighetstrekk er {lowestScoreDomain} med {lowestScore} poeng
+          <br /> Dette tilsvarer {percentageLow}% av totalscoren  
           <br />
+          <br />
+          Differansen mellom sterkeste og svakeste personlighetstrekk er derfor {(percentageHigh-percentageLow)}%  </p1>
           <p1>  </p1>
           <br />
           <hr />
