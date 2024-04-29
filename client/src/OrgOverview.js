@@ -1,3 +1,8 @@
+// This component displays various personality traits scores for an organization using dynamic chart visualizations.
+// It fetches and calculates the highest and lowest scores, displaying them along with detailed descriptions of personality traits.
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ChartComponent from './ChartComponent';
@@ -58,6 +63,7 @@ const OrgOverview = () => {
         setHighestScore(maxScore);
         setLowestScore(minScore);
 
+        //display difference in scores as percentage 
         setPercentageHigh(displayPercentage((maxScore / totalScore) * 100));
         setPercentageLow(displayPercentage((minScore / totalScore) * 100));
 
