@@ -18,11 +18,6 @@ const OrgOverview = () => {
   const [percentageHigh, setPercentageHigh] = useState(0);
   const [percentageLow, setPercentageLow] = useState(0);
 
-  // Function to format percentages
-  const calculatePercentage = (value, total) => {
-    const percentage = new Decimal(value).div(new Decimal(total)).mul(100);
-    return percentage.toDecimalPlaces(2).toString();  // Ensuring precise calculation and rounding to 2 decimal places
-  };
 
   // Function to map single-letter domain codes to full words for better readability
   const mapDomainCodeToWord = (code) => {
@@ -34,6 +29,11 @@ const OrgOverview = () => {
       case 'C': return 'Planmessighet';
       default: return code;
     }
+  };
+  // Function to format percentages
+  const calculatePercentage = (value, total) => {
+    const percentage = new Decimal(value).div(new Decimal(total)).mul(100);
+    return percentage.toDecimalPlaces(2).toString();  // Ensuring precise calculation and rounding to 2 decimal places
   };
 
   useEffect(() => {
