@@ -76,7 +76,7 @@ const LoggedInUser = () => {
     <div className="main">
       <Card>
         <Card.Body>
-          <Card.Title><h1>Din profil</h1></Card.Title>
+          <Card.Title><h1>Min profil</h1></Card.Title>
           <Button variant="info" onClick={handleGoToOrgOverview} className="btn btn-info btn-md fp-button shadow-custom">
             Organisasjonsoversikt
           </Button>
