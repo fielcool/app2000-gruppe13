@@ -4,6 +4,7 @@ import ChartComponent from './ChartComponent';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import Decimal from 'decimal.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OrgOverview = () => {
@@ -18,8 +19,9 @@ const OrgOverview = () => {
   const [percentageLow, setPercentageLow] = useState(0);
 
   // Function to format percentages
-  const displayPercentage = (percentage) => {
-    return Number(percentage).toFixed(2);
+  const calculatePercentage = (value, total) => {
+    const percentage = new Decimal(value).div(new Decimal(total)).mul(100);
+    return percentage.toDecimalPlaces(2).toString();  // Ensuring precise calculation and rounding to 2 decimal places
   };
 
   // Function to map single-letter domain codes to full words for better readability
@@ -58,8 +60,8 @@ const OrgOverview = () => {
         setHighestScore(maxScore);
         setLowestScore(minScore);
 
-        setPercentageHigh(displayPercentage((maxScore / totalScore) * 100));
-        setPercentageLow(displayPercentage((minScore / totalScore) * 100));
+        setPercentageHigh(calculatePercentage(maxScore, totalScore));
+        setPercentageLow(calculatePercentage(minScore, totalScore));
 
         // Associate domains with scores
         const highestScoreItem = response.data.find(item => item.score === maxScore);
