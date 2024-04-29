@@ -41,7 +41,7 @@ function UserInfoFields({ newUserInfo, handleChange }) {
 
       {/* Alert if organization field is empty */}
       {newUserInfo.organisasjon.length === 0 && (
-        <Alert variant="danger">Organisasjon is required.</Alert>
+        <Alert variant="danger">Organisasjon er påkrevd.</Alert>
       )}
 
       {/* Job title input field */}
@@ -59,7 +59,7 @@ function UserInfoFields({ newUserInfo, handleChange }) {
 
       {/* Alert if job title field is empty */}
       {newUserInfo.stillingstittel.length === 0 && (
-        <Alert variant="danger">Stillingstittel is required.</Alert>
+        <Alert variant="danger">Stillingstittel er påkrevd.</Alert>
       )}
 
       {/* Email input field with pattern validation */}
@@ -78,7 +78,7 @@ function UserInfoFields({ newUserInfo, handleChange }) {
 
       {/* Alert for invalid email format */}
       {(!newUserInfo.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newUserInfo.email)) && (
-        <Alert variant="danger">Email is invalid.</Alert>
+        <Alert variant="danger">Email ikke godkjent.</Alert>
       )}
 
       {/* Password input field with length validation */}
@@ -93,7 +93,7 @@ function UserInfoFields({ newUserInfo, handleChange }) {
           required
         />
         {password.length < minLength && (
-          <Alert variant="danger">The password must be minimum {minLength} characters long.</Alert>
+          <Alert variant="danger">Passordet må være på minst {minLength} tegn.</Alert>
         )}
       </Form.Group>
     </>
