@@ -64,8 +64,8 @@ const OrgOverview = () => {
         setPercentageLow(calculatePercentage(minScore, totalScore));
 
         // Associate domains with scores
-        const highestScoreItem = response.data.find(item => item.score === maxScore);
-        const lowestScoreItem = response.data.find(item => item.score === minScore);
+        const highestScoreItem = response.data.find(item => new Decimal(item.score).equals(maxScore));
+        const lowestScoreItem = response.data.find(item => new Decimal(item.score).equals(minScore));
         if (highestScoreItem) setHighestScoreDomain(mapDomainCodeToWord(highestScoreItem.domain));
         if (lowestScoreItem) setLowestScoreDomain(mapDomainCodeToWord(lowestScoreItem.domain));
       } catch (error) {
