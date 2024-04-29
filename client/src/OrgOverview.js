@@ -55,12 +55,12 @@ const OrgOverview = () => {
         const scores = response.data.map(item => item.score);
         const maxScore = Math.max(...scores);
         const minScore = Math.min(...scores);
+        const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
         setHighestScore(maxScore);
         setLowestScore(minScore);
 
-        const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
-        setPercentageHigh(((maxScore / totalScore) * 100).toFixed(4));
-        setPercentageLow(((minScore / totalScore) * 100).toFixed(4));
+        setPercentageHigh(calculatePercentage(maxScore, totalScore));
+        setPercentageLow(calculatePercentage(minScore, totalScore));
 
         // Associate domains with scores
         const highestScoreItem = response.data.find(item => item.score === maxScore);
