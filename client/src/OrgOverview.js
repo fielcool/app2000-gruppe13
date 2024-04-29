@@ -63,7 +63,7 @@ const OrgOverview = () => {
         setHighestScore(maxScore);
         setLowestScore(minScore);
 
-        //display difference in scores as percentage 
+        //display difference in scores as percentage - try to compensate for floating-point arithmetic issues in JavaScript
         setPercentageHigh(displayPercentage((maxScore / totalScore) * 100));
         setPercentageLow(displayPercentage((minScore / totalScore) * 100));
 
