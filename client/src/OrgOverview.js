@@ -59,8 +59,8 @@ const OrgOverview = () => {
         setLowestScore(minScore);
 
         const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
-        setPercentageHigh(((maxScore / totalScore) * 100).toFixed(2));
-        setPercentageLow(((minScore / totalScore) * 100).toFixed(2));
+        setPercentageHigh(((maxScore / totalScore) * 100).toFixed(1));
+        setPercentageLow(((minScore / totalScore) * 100).toFixed(1));
 
         // Associate domains with scores
         const highestScoreItem = response.data.find(item => item.score === maxScore);
