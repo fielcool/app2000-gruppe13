@@ -10,6 +10,7 @@ import ChartComponent from './ChartComponent';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header'; 
 import Footer from './Footer'; 
+import Decimal from 'decimal.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OrgOverview = () => {
@@ -35,7 +36,7 @@ const OrgOverview = () => {
     }
   };
   const calculatePercentage = (value, total) => {
-    return Math.round((value / total) * 10000) / 100;
+    return new Decimal(value).div(total).mul(100).toDecimalPlaces(2).toNumber();
   };
   useEffect(() => {
     // Asynchronous function to fetch chart data from the API
