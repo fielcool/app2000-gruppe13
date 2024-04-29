@@ -4,7 +4,6 @@ import ChartComponent from './ChartComponent';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import Decimal from 'decimal.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OrgOverview = () => {
@@ -18,6 +17,10 @@ const OrgOverview = () => {
   const [percentageHigh, setPercentageHigh] = useState(0);
   const [percentageLow, setPercentageLow] = useState(0);
 
+  // Function to format percentages
+  const displayPercentage = (percentage) => {
+    return Number(percentage).toFixed(2);
+  };
 
   // Function to map single-letter domain codes to full words for better readability
   const mapDomainCodeToWord = (code) => {
@@ -29,11 +32,6 @@ const OrgOverview = () => {
       case 'C': return 'Planmessighet';
       default: return code;
     }
-  };
-  // Function to format percentages
-  const calculatePercentage = (value, total) => {
-    const percentage = new Decimal(value).div(new Decimal(total)).mul(100);
-    return percentage.toDecimalPlaces(2).toString();  // Ensuring precise calculation and rounding to 2 decimal places
   };
 
   useEffect(() => {
@@ -60,12 +58,12 @@ const OrgOverview = () => {
         setHighestScore(maxScore);
         setLowestScore(minScore);
 
-        setPercentageHigh(calculatePercentage(maxScore, totalScore));
-        setPercentageLow(calculatePercentage(minScore, totalScore));
+        setPercentageHigh(displayPercentage((maxScore / totalScore) * 100));
+        setPercentageLow(displayPercentage((minScore / totalScore) * 100));
 
         // Associate domains with scores
-        const highestScoreItem = response.data.find(item => new Decimal(item.score).equals(maxScore));
-        const lowestScoreItem = response.data.find(item => new Decimal(item.score).equals(minScore));
+        const highestScoreItem = response.data.find(item => item.score === maxScore);
+        const lowestScoreItem = response.data.find(item => item.score === minScore);
         if (highestScoreItem) setHighestScoreDomain(mapDomainCodeToWord(highestScoreItem.domain));
         if (lowestScoreItem) setLowestScoreDomain(mapDomainCodeToWord(lowestScoreItem.domain));
       } catch (error) {
