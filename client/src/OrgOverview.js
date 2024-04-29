@@ -34,7 +34,9 @@ const OrgOverview = () => {
       default: return code;
     }
   };
-
+  const calculatePercentage = (value, total) => {
+    return Math.round((value / total) * 10000) / 100;
+  };
   useEffect(() => {
     // Asynchronous function to fetch chart data from the API
     const fetchChartData = async () => {
