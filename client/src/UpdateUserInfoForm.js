@@ -77,7 +77,7 @@ function UpdateUserInfoForm() {
         {/* Component to render user input fields */}
         <UserInfoFields newUserInfo={newUserInfo} handleChange={handleChange} />
         <Button variant="primary" onClick={handleUpdate}>
-          Update User Info
+          Oppdater brukerkonto
         </Button>
       </Form>
 

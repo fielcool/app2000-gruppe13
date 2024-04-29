@@ -41,8 +41,6 @@ const verifyToken = (req, res, next) => {
       return res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
 
-    console.log('Decoded token:', decoded); // Log the entire decoded token
-
     // Attach the decoded user data to the request object
     req.user = decoded;
 
@@ -69,11 +67,7 @@ const generateToken = (user) => {
 
   // Sign the JWT with the secret key and options
   const token = jwt.sign(payload, secretKey, options);
-
-  // Optional: Decode the token immediately to verify contents
-  const decoded = jwt.decode(token); // Decode token to verify its content
-  console.log("Decoded token immediately after generation:", decoded);
-
+  
   return token;
 };
 

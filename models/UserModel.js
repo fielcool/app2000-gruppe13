@@ -1,3 +1,6 @@
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); 
 const { connection1 } = require('../database'); // Adjust the path as necessary to import correctly

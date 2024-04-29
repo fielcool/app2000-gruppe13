@@ -1,3 +1,6 @@
+// Author: Philip Stapnes
+// ChatGPT assisted in the creation of this document.
+
 const mongoose = require('mongoose');
 const connection2 = require('../database').connection2;
 
